@@ -11,7 +11,7 @@
         4-imputs board
     - The power board can be connected to a battery and detect a mains
       failure
-    - It's already able to comunicate with Openhab, an android ios
+    - It's already able to comunicate with Openhab, an android and ios
       application
     - It's in production now since April 8th 2016 in my home
     - There is also 2 more slots with 3 and 4 analogs inputs, I'm
@@ -23,10 +23,11 @@
 * This is my first project to be published
   I'm trying to sort thins out to make them easier to understan
 
-  Will re-write some of c++ objects to make them clear to understand
+  I will re-write some of c++ objects to make them clear to understand
 
 * What is now running
-  - A full functional project is in production at my home
+  - A full functional project is in production at my home have a look
+    at the pictures folder
   - Now I'm controlling 5 PWM circuits for lights
   - I've also 5 inputs
   - All outputs are controlled by Openhab web application from LAN/WAN
@@ -64,7 +65,7 @@
   - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
 
 * Project files
-  - [[file:docs/files-strucure.org][structure]]
+  - file:docs/files-strucure.org
 
 * Contact information
   - Damian Machtey
