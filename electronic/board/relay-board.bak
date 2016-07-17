@@ -1,0 +1,496 @@
+EESchema Schematic File Version 2
+LIBS:beagleboard
+LIBS:w_relay
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:relay-board-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "noname.sch"
+Date "17 jul 2015"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L PC817 IC1
+U 1 1 55A81D51
+P 5450 1850
+F 0 "IC1" H 5240 2040 40  0000 C CNN
+F 1 "PC817" H 5630 1660 40  0000 C CNN
+F 2 "Housings_DIP:DIP-4_W7.62mm_LongPads" H 5240 1670 30  0000 C CIN
+F 3 "~" H 5450 1850 60  0000 C CNN
+	1    5450 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L PC817 IC3
+U 1 1 55BF39C5
+P 5450 3400
+F 0 "IC3" H 5240 3590 40  0000 C CNN
+F 1 "PC817" H 5630 3210 40  0000 C CNN
+F 2 "Housings_DIP:DIP-4_W7.62mm_LongPads" H 5240 3220 30  0000 C CIN
+F 3 "~" H 5450 3400 60  0000 C CNN
+	1    5450 3400
+	1    0    0    -1  
+$EndComp
+Text Label 5150 1950 2    60   ~ 0
+GND
+Text Label 5150 3500 2    60   ~ 0
+GND
+$Comp
+L PC817 IC2
+U 1 1 55BF39C8
+P 5450 2600
+F 0 "IC2" H 5240 2790 40  0000 C CNN
+F 1 "PC817" H 5630 2410 40  0000 C CNN
+F 2 "Housings_DIP:DIP-4_W7.62mm_LongPads" H 5240 2420 30  0000 C CIN
+F 3 "~" H 5450 2600 60  0000 C CNN
+	1    5450 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L PC817 IC4
+U 1 1 55B15546
+P 5450 4200
+F 0 "IC4" H 5240 4390 40  0000 C CNN
+F 1 "PC817" H 5630 4010 40  0000 C CNN
+F 2 "Housings_DIP:DIP-4_W7.62mm_LongPads" H 5240 4020 30  0000 C CIN
+F 3 "~" H 5450 4200 60  0000 C CNN
+	1    5450 4200
+	1    0    0    -1  
+$EndComp
+Text Label 5150 2700 2    60   ~ 0
+GND
+Text Label 5150 4300 2    60   ~ 0
+GND
+Text Label 5100 1750 2    60   ~ 0
+in_1
+Text Label 5100 2500 2    60   ~ 0
+in_2
+Text Label 5100 3300 2    60   ~ 0
+in_3
+Text Label 5100 4100 2    60   ~ 0
+in_4
+$Comp
+L CONN_02X10 P1
+U 1 1 55BF4604
+P 2800 2825
+F 0 "P1" H 2800 3375 50  0000 C CNN
+F 1 "CONN_02X10" V 2800 2825 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Angled_2x10" H 2800 1625 60  0000 C CNN
+F 3 "" H 2800 1625 60  0000 C CNN
+	1    2800 2825
+	1    0    0    -1  
+$EndComp
+Text Label 3050 3275 0    60   ~ 0
+in_1
+Text Label 3050 3175 0    60   ~ 0
+in_2
+Text Label 3050 3075 0    60   ~ 0
+in_3
+Text Label 3050 2975 0    60   ~ 0
+in_4
+Text Label 3050 2375 0    60   ~ 0
+GND
+Text Label 3050 2475 0    60   ~ 0
+3.3V
+Text Label 3050 2575 0    60   ~ 0
+GND12V
+Text Label 3050 2675 0    60   ~ 0
++12VDC
+$Comp
+L CONN_01X12 P2
+U 1 1 55BFBF70
+P 9300 2750
+F 0 "P2" H 9300 3400 50  0000 C CNN
+F 1 "CONN_01X12" V 9400 2750 50  0000 C CNN
+F 2 "w_conn_screw:mstba_2,5%2f12-g-5,08" H 9300 2750 60  0000 C CNN
+F 3 "" H 9300 2750 60  0000 C CNN
+	1    9300 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L RELAY_HJR-3FF_Z RLY1
+U 1 1 55BFCB47
+P 7550 1750
+F 0 "RLY1" H 7550 2000 60  0000 C CNN
+F 1 "RELAY_HJR-3FF_Z" H 7550 1515 60  0000 C CNN
+F 2 "Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C" H 7550 1750 60  0000 C CNN
+F 3 "" H 7550 1750 60  0000 C CNN
+	1    7550 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L RELAY_HJR-3FF_Z RLY2
+U 1 1 55BFCE9D
+P 7550 2500
+F 0 "RLY2" H 7550 2750 60  0000 C CNN
+F 1 "RELAY_HJR-3FF_Z" H 7550 2265 60  0000 C CNN
+F 2 "Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C" H 7550 2500 60  0000 C CNN
+F 3 "" H 7550 2500 60  0000 C CNN
+	1    7550 2500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L RELAY_HJR-3FF_Z RLY3
+U 1 1 55BFCEDB
+P 7550 3300
+F 0 "RLY3" H 7550 3550 60  0000 C CNN
+F 1 "RELAY_HJR-3FF_Z" H 7550 3065 60  0000 C CNN
+F 2 "Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C" H 7550 3300 60  0000 C CNN
+F 3 "" H 7550 3300 60  0000 C CNN
+	1    7550 3300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L RELAY_HJR-3FF_Z RLY4
+U 1 1 55BFCF26
+P 7550 4100
+F 0 "RLY4" H 7550 4350 60  0000 C CNN
+F 1 "RELAY_HJR-3FF_Z" H 7550 3865 60  0000 C CNN
+F 2 "Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C" H 7550 4100 60  0000 C CNN
+F 3 "" H 7550 4100 60  0000 C CNN
+	1    7550 4100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5100 1750 5150 1750
+Wire Wire Line
+	5100 3300 5150 3300
+Wire Wire Line
+	5100 2500 5150 2500
+Wire Wire Line
+	5100 4100 5150 4100
+Wire Wire Line
+	2550 2375 3050 2375
+Wire Wire Line
+	2550 2475 3050 2475
+Wire Wire Line
+	2550 2575 3050 2575
+Wire Wire Line
+	2550 2675 3050 2675
+Wire Wire Line
+	2550 2775 3050 2775
+Wire Wire Line
+	2550 2875 3050 2875
+Wire Wire Line
+	2550 2975 3050 2975
+Wire Wire Line
+	2550 3075 3050 3075
+Wire Wire Line
+	2550 3175 3050 3175
+Wire Wire Line
+	2550 3275 3050 3275
+Wire Wire Line
+	7650 1950 8950 1950
+Wire Wire Line
+	8950 1950 8950 2300
+Wire Wire Line
+	8950 2300 9100 2300
+Wire Wire Line
+	9100 2200 9100 1400
+Wire Wire Line
+	9100 1400 7600 1400
+Wire Wire Line
+	7600 1400 7600 1550
+Wire Wire Line
+	7700 1550 8750 1550
+Wire Wire Line
+	8750 1550 8750 2400
+Wire Wire Line
+	8750 2400 9100 2400
+Wire Wire Line
+	7650 2700 7850 2700
+Wire Wire Line
+	7850 2700 7850 2600
+Wire Wire Line
+	7850 2600 9100 2600
+Wire Wire Line
+	7700 2300 8500 2300
+Wire Wire Line
+	8500 2300 8500 2700
+Wire Wire Line
+	8500 2700 9100 2700
+Wire Wire Line
+	7600 2300 7600 2200
+Wire Wire Line
+	7600 2200 8650 2200
+Wire Wire Line
+	8650 2200 8650 2500
+Wire Wire Line
+	8650 2500 9100 2500
+Wire Wire Line
+	7650 3500 8350 3500
+Wire Wire Line
+	8350 3500 8350 2900
+Wire Wire Line
+	8350 2900 9100 2900
+Wire Wire Line
+	7600 3100 7600 2800
+Wire Wire Line
+	7600 2800 9100 2800
+Wire Wire Line
+	7700 3100 7700 3000
+Wire Wire Line
+	7700 3000 9100 3000
+Wire Wire Line
+	7650 4300 8650 4300
+Wire Wire Line
+	8650 4300 8650 3200
+Wire Wire Line
+	8650 3200 9100 3200
+Wire Wire Line
+	7600 3900 7600 3700
+Wire Wire Line
+	7600 3700 8450 3700
+Wire Wire Line
+	8450 3700 8450 3100
+Wire Wire Line
+	8450 3100 9100 3100
+Wire Wire Line
+	7700 3900 9100 3900
+Wire Wire Line
+	9100 3900 9100 3300
+$Comp
+L D D1
+U 1 1 55BFE829
+P 7000 1700
+F 0 "D1" H 7000 1800 50  0000 C CNN
+F 1 "1N4001" H 7000 1600 50  0000 C CNN
+F 2 "w_pth_diodes:diode_do41" H 7000 1700 60  0000 C CNN
+F 3 "" H 7000 1700 60  0000 C CNN
+	1    7000 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L D D2
+U 1 1 55BFEEAC
+P 7000 2450
+F 0 "D2" H 7000 2550 50  0000 C CNN
+F 1 "1N4001" H 7000 2350 50  0000 C CNN
+F 2 "w_pth_diodes:diode_do41" H 7000 2450 60  0000 C CNN
+F 3 "" H 7000 2450 60  0000 C CNN
+	1    7000 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L D D3
+U 1 1 55BFEF0E
+P 7000 3250
+F 0 "D3" H 7000 3350 50  0000 C CNN
+F 1 "1N4001" H 7000 3150 50  0000 C CNN
+F 2 "w_pth_diodes:diode_do41" H 7000 3250 60  0000 C CNN
+F 3 "" H 7000 3250 60  0000 C CNN
+	1    7000 3250
+	0    1    1    0   
+$EndComp
+$Comp
+L D D4
+U 1 1 55BFEF74
+P 7000 4050
+F 0 "D4" H 7000 4150 50  0000 C CNN
+F 1 "1N4001" H 7000 3950 50  0000 C CNN
+F 2 "w_pth_diodes:diode_do41" H 7000 4050 60  0000 C CNN
+F 3 "" H 7000 4050 60  0000 C CNN
+	1    7000 4050
+	0    1    1    0   
+$EndComp
+$Comp
+L BC548 Q1
+U 1 1 55BFF16C
+P 6300 2050
+F 0 "Q1" H 6500 2125 50  0000 L CNN
+F 1 "BC548" H 6500 2050 50  0000 L CNN
+F 2 "Housings_TO-92:TO-92_Rugged" H 6500 1975 50  0000 L CIN
+F 3 "" H 6300 2050 50  0000 L CNN
+	1    6300 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L BC548 Q2
+U 1 1 55BFFA03
+P 6300 2850
+F 0 "Q2" H 6500 2925 50  0000 L CNN
+F 1 "BC548" H 6500 2850 50  0000 L CNN
+F 2 "Housings_TO-92:TO-92_Rugged" H 6500 2775 50  0000 L CIN
+F 3 "" H 6300 2850 50  0000 L CNN
+	1    6300 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L BC548 Q3
+U 1 1 55BFFA65
+P 6300 3650
+F 0 "Q3" H 6500 3725 50  0000 L CNN
+F 1 "BC548" H 6500 3650 50  0000 L CNN
+F 2 "Housings_TO-92:TO-92_Rugged" H 6500 3575 50  0000 L CIN
+F 3 "" H 6300 3650 50  0000 L CNN
+	1    6300 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L BC548 Q4
+U 1 1 55BFFAC6
+P 6300 4400
+F 0 "Q4" H 6500 4475 50  0000 L CNN
+F 1 "BC548" H 6500 4400 50  0000 L CNN
+F 2 "Housings_TO-92:TO-92_Rugged" H 6500 4325 50  0000 L CIN
+F 3 "" H 6300 4400 50  0000 L CNN
+	1    6300 4400
+	1    0    0    -1  
+$EndComp
+Text Label 6400 4600 0    60   ~ 0
+GND12V
+Text Label 6400 3850 0    60   ~ 0
+GND12V
+Text Label 6400 3050 0    60   ~ 0
+GND12V
+Text Label 6400 2250 0    60   ~ 0
+GND12V
+Text Label 7000 1600 1    60   ~ 0
++12VDC
+Text Label 7000 2350 2    60   ~ 0
++12VDC
+Text Label 7000 3150 2    60   ~ 0
++12VDC
+Text Label 7000 3950 2    60   ~ 0
++12VDC
+$Comp
+L R R1
+U 1 1 55C008EE
+P 5950 1950
+F 0 "R1" V 6030 1950 50  0000 C CNN
+F 1 "1k2" V 5950 1950 50  0000 C CNN
+F 2 "w_pth_resistors:rc05_vert" V 5880 1950 30  0000 C CNN
+F 3 "" H 5950 1950 30  0000 C CNN
+	1    5950 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L R R2
+U 1 1 55C00A00
+P 5950 2700
+F 0 "R2" V 6030 2700 50  0000 C CNN
+F 1 "1k2" V 5950 2700 50  0000 C CNN
+F 2 "w_pth_resistors:rc05_vert" V 5880 2700 30  0000 C CNN
+F 3 "" H 5950 2700 30  0000 C CNN
+	1    5950 2700
+	0    1    1    0   
+$EndComp
+$Comp
+L R R3
+U 1 1 55C00A80
+P 5950 3500
+F 0 "R3" V 6030 3500 50  0000 C CNN
+F 1 "1k2" V 5950 3500 50  0000 C CNN
+F 2 "w_pth_resistors:rc05_vert" V 5880 3500 30  0000 C CNN
+F 3 "" H 5950 3500 30  0000 C CNN
+	1    5950 3500
+	0    1    1    0   
+$EndComp
+$Comp
+L R R4
+U 1 1 55C00B22
+P 5950 4300
+F 0 "R4" V 6030 4300 50  0000 C CNN
+F 1 "1k2" V 5950 4300 50  0000 C CNN
+F 2 "w_pth_resistors:rc05_vert" V 5880 4300 30  0000 C CNN
+F 3 "" H 5950 4300 30  0000 C CNN
+	1    5950 4300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5750 1950 5800 1950
+Wire Wire Line
+	6100 1950 6100 2050
+Wire Wire Line
+	6400 1850 7000 1850
+Wire Wire Line
+	7000 1850 7000 1950
+Wire Wire Line
+	7000 1950 7400 1950
+Wire Wire Line
+	5750 1550 7400 1550
+Wire Wire Line
+	7000 2350 7000 2300
+Wire Wire Line
+	7000 2300 7400 2300
+Wire Wire Line
+	7400 2700 7000 2700
+Wire Wire Line
+	7000 2700 7000 2600
+Wire Wire Line
+	7000 2600 6400 2600
+Wire Wire Line
+	6400 2600 6400 2650
+Wire Wire Line
+	6100 2700 6100 2850
+Wire Wire Line
+	5800 2700 5750 2700
+Wire Wire Line
+	5750 3500 5800 3500
+Wire Wire Line
+	7400 3100 7000 3100
+Wire Wire Line
+	7400 3500 7000 3500
+Wire Wire Line
+	7000 3500 7000 3400
+Wire Wire Line
+	7000 3400 6400 3400
+Wire Wire Line
+	6400 3400 6400 3450
+Wire Wire Line
+	6100 3650 6100 3500
+Wire Wire Line
+	5750 4300 5800 4300
+Wire Wire Line
+	6100 4300 6100 4400
+Wire Wire Line
+	6400 4200 7000 4200
+Wire Wire Line
+	7000 4200 7000 4300
+Wire Wire Line
+	7000 4300 7400 4300
+Wire Wire Line
+	7400 3900 7000 3900
+Wire Wire Line
+	5750 1550 5750 4100
+Connection ~ 5750 3300
+Connection ~ 5750 2500
+Connection ~ 7000 1550
+Connection ~ 5750 1750
+$EndSCHEMATC

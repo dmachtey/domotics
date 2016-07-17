@@ -1,0 +1,97 @@
+
+(rules PCB power-supply2
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 891)
+    (layer_rule F.Cu
+      (active off)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.1)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.9)
+    )
+  )
+  (rule
+    (width 500.0)
+    (clear 600.2)
+    (clear 250.0 (type smd_to_turn_gap))
+    (clear 150.0 (type smd_smd))
+    (clear 200.2 (type mini_mini))
+  )
+  (padstack "Via[0-1]_600:400_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:400_um" "Via[0-1]_600:400_um" default
+  )
+  (via 
+    "Via[0-1]_600:400_um-kicad_default" "Via[0-1]_600:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:400_um-mini" "Via[0-1]_600:400_um" mini
+  )
+  (via_rule
+    default "Via[0-1]_600:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:400_um-kicad_default"
+  )
+  (via_rule
+    mini "Via[0-1]_600:400_um-mini"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    /GND "/DC_3.3V" "/VDD_5V" /GND12V /12V+ "Net-(P5-Pad11)" "Net-(P5-Pad13)" "Net-(P5-Pad15)"
+    "Net-(P5-Pad17)" "Net-(P5-Pad19)" "Net-(P6-Pad11)" "Net-(P6-Pad13)" "Net-(P6-Pad15)" "Net-(P6-Pad17)" "Net-(P6-Pad3)" "Net-(P6-Pad5)"
+    "Net-(P6-Pad7)" "Net-(D1-Pad1)" "Net-(D1-Pad2)" /12V+Mains "Net-(D2-Pad2)" "Net-(D3-Pad2)" "Net-(K1-Pad4)" "Net-(LED1-Pad2)"
+    "Net-(LED2-Pad2)" "/GPIO0_7" "Net-(Q1-Pad2)" "Net-(Q2-Pad2)" "Net-(R1-Pad1)" "Net-(R2-Pad1)" "/VDD_5V-SD" /12V+B
+    "Net-(R9-Pad2)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class mini
+    (clearance_class mini)
+    (via_rule mini)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

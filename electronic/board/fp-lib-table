@@ -1,0 +1,11 @@
+(fp_lib_table
+  (lib (name lib)(type KiCad)(uri "$(KIPRJMOD)/lib")(options "")(descr ""))
+  (lib (name custom)(type KiCad)(uri "$(KIPRJMOD)/libs.pretty")(options "")(descr ""))
+  (lib (name w_conn_mkds)(type KiCad)(uri "$(KIPRJMOD)/w_conn_mkds.pretty")(options "")(descr ""))
+  (lib (name w_conn_screw)(type KiCad)(uri "$(KIPRJMOD)/w_conn_screw.pretty")(options "")(descr ""))
+  (lib (name w_pth_diodes)(type KiCad)(uri "$(KIPRJMOD)/w_pth_diodes.pretty")(options "")(descr ""))
+  (lib (name w_pth_resistors)(type KiCad)(uri "$(KIPRJMOD)/w_pth_resistors.pretty")(options "")(descr ""))
+  (lib (name w_relay)(type KiCad)(uri "$(KIPRJMOD)/w_relay.pretty")(options "")(descr ""))
+  (lib (name libs)(type KiCad)(uri "$(KIPRJMOD)/libs.pretty")(options "")(descr ""))
+  (lib (name w_conn_misc)(type KiCad)(uri "$(KIPRJMOD)/w_conn_misc.pretty")(options "")(descr ""))
+)

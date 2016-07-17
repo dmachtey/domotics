@@ -1,0 +1,285 @@
+// Copyright 2013
+// Charles Steinkuehler <charles@steinkuehler.net>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+//
+// Modified by Damian Machtey 2015-07-02 Thu
+// For home automation with Beaglebone black
+
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+    /* identification */
+    part-number = "half-in-half-pru";
+    version = "00A0";
+
+    /* state the resources this cape uses */
+    exclusive-use =
+    /*      "P8.1",     GND     */
+    /*      "P8.2",     GND     */
+    "P8.3",     /* emmc    */
+    "P8.4",     /* emmc    */
+    "P8.5",     /* emmc    */
+    "P8.6",     /* emmc    */
+    "P8.7",
+    "P8.8",
+    "P8.9",
+    "P8.10",
+    "P8.11",
+    "P8.12",
+    "P8.13",
+    "P8.14",
+    "P8.15",
+    "P8.16",
+    "P8.17",
+    "P8.18",
+    "P8.19",
+    "P8.20",    /* emmc    */
+    "P8.21",    /* emmc    */
+    "P8.22",    /* emmc    */
+    "P8.23",    /* emmc    */
+    "P8.24",    /* emmc    */
+    "P8.25",    /* emmc    */
+    "P8.26",
+    "P8.27",    /* hdmi    */
+    "P8.28",    /* hdmi    */
+    "P8.29",    /* hdmi    */
+    "P8.30",    /* hdmi    */
+    "P8.31",    /* hdmi    */
+    "P8.32",    /* hdmi    */
+    "P8.33",    /* hdmi    */
+    "P8.34",    /* hdmi    */
+    "P8.35",    /* hdmi    */
+    "P8.36",    /* hdmi    */
+    "P8.37",    /* hdmi    */
+    "P8.38",    /* hdmi    */
+    "P8.39",    /* hdmi    */
+    "P8.40",    /* hdmi    */
+    "P8.41",    /* hdmi    */
+    "P8.42",    /* hdmi    */
+    "P8.43",    /* hdmi    */
+    "P8.44",    /* hdmi    */
+    "P8.45",    /* hdmi    */
+    "P8.46",    /* hdmi    */
+    /*
+    * "uart5",    /\* hdmi    *\/
+    * "epwmss0",  /\* hdmi    *\/
+    * "ehrpwm0",  /\* hdmi    *\/
+    * "ecap0",    /\* hdmi    *\/
+    * "epwmss1",  /\* hdmi    *\/
+    * "ehrpwm1",  /\* hdmi    *\/
+    * "epwmss2",  /\* hdmi    *\/
+    * "ehrpwm2",  /\* hdmi    *\/
+    * "ecap2",    /\* hdmi    *\/
+    */
+
+    /*      "P9.1",     GND     */
+    /*      "P9.2",     GND     */
+    /*      "P9.3",     3.3V    */
+    /*      "P9.4",     3.3V    */
+    /*      "P9.5",     VDD_5V  */
+    /*      "P9.6",     VDD_5V  */
+    /*      "P9.7",     SYS_5V  */
+    /*      "P9.8",     SYS_5V  */
+    /*      "P9.9",     PWR_BUT */
+    /*      "P9.10",    RESETn  */
+    "P9.11",
+    "P9.12",
+    "P9.13",
+    "P9.14",
+    "P9.15",
+    "P9.16",
+    "P9.17",
+    "P9.18",
+    /*      "P9.19",    I2C     */
+    /*      "P9.20",    I2C     */
+    "P9.21",
+    "P9.22",
+    "P9.23",
+    "P9.24",
+    "P9.25",
+    "P9.26",
+    "P9.27",
+    "P9.28",
+    "P9.29",
+    "P9.30",
+    "P9.31",
+    /*      "P9.32",    VADC    */
+    /*      "P9.33",    AIN4    */
+    /*      "P9.34",    AGND    */
+    /*      "P9.35",    AIN6    */
+    /*      "P9.36",    AIN5    */
+    /*      "P9.37",    AIN2    */
+    /*      "P9.38",    AIN3    */
+    /*      "P9.39",    AIN0    */
+    /*      "P9.40",    AIN1    */
+    "P9.41",
+    "P9.41.1",
+    "P9.42",
+    "P9.42.1",
+    /*      "P9.43",    GND     */
+    /*      "P9.44",    GND     */
+    /*      "P9.45",    GND     */
+    /*      "P9.46",    GND     */
+
+    /*
+    * "uart1",
+    * "uart2",
+    * "uart4",
+    */
+    //      "uart5",    /* Conflicts with HDMI  */
+
+    /*
+    * "ehrpwm0A",
+    * "ehrpwm0B",
+    * "ehrpwm1A",
+    * "ehrpwm1B",
+    * "ehrpwm2A",
+    * "ehrpwm2B",
+    */
+
+    //        "epwmss0",
+    //        "ehrpwm0",
+    //        "ecap0",
+    //        "epwmss1",
+    //        "ehrpwm1",
+    //        "epwmss2",
+    //        "ehrpwm2",
+    //        "ecap2",
+
+    /*
+    * "i2c1",
+    * "spi1",
+    * "spi0",
+    * "dcan0",
+    * "dcan1",
+    */
+
+    "pru0",
+    "pru1",
+    "pruss";
+
+    fragment@0 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            gpio_pins: pinmux_gpio_pins {         // The GPIO pins
+                pinctrl-single,pins = <
+                0x018  0x07        // P8_03 MODE7 | OUTPUT | GPIO pull-down GPIO_38
+                0x01c  0x07        // P8_04 MODE7 | OUTPUT | GPIO pull-down GPIO_39
+                0x008  0x07        // P8_05 MODE7 | OUTPUT | GPIO pull-down GPIO_34
+                0x00c  0x07        // P8_06 MODE7 | OUTPUT | GPIO pull-down GPIO_35
+                0x090  0x07        // P8_07 MODE7 | OUTPUT | GPIO pull-down GPIO_66
+                0x094  0x07        // P8_08 MODE7 | OUTPUT | GPIO pull-down GPIO_67
+                0x09c  0x07        // P8_09 MODE7 | OUTPUT | GPIO pull-down GPIO_69
+                0x098  0x07        // P8_10 MODE7 | OUTPUT | GPIO pull-down GPIO_68
+                0x034  0x07        // P8_11 MODE7 | OUTPUT | GPIO pull-down GPIO_45
+                0x030  0x07        // P8_12 MODE7 | OUTPUT | GPIO pull-down GPIO_44
+                0x024  0x07        // P8_13 MODE7 | OUTPUT | GPIO pull-down GPIO_23
+                0x028  0x07        // P8_14 MODE7 | OUTPUT | GPIO pull-down GPIO_26
+                0x03c  0x07        // P8_15 MODE7 | OUTPUT | GPIO pull-down GPIO_47
+                0x038  0x07        // P8_16 MODE7 | OUTPUT | GPIO pull-down GPIO_46
+                0x02c  0x07        // P8_17 MODE7 | OUTPUT | GPIO pull-down GPIO_27
+                0x08c  0x07        // P8_18 MODE7 | OUTPUT | GPIO pull-down GPIO_65
+                0x020  0x07        // P8_19 MODE7 | OUTPUT | GPIO pull-down GPIO_22
+                0x084  0x07        // P8_20 MODE7 | OUTPUT | GPIO pull-down GPIO_63
+                0x080  0x07        // P8_21 MODE7 | OUTPUT | GPIO pull-down GPIO_62
+                0x014  0x07        // P8_22 MODE7 | OUTPUT | GPIO pull-down GPIO_37
+                0x010  0x07        // P8_23 MODE7 | OUTPUT | GPIO pull-down GPIO_36
+                0x004  0x07        // P8_24 MODE7 | OUTPUT | GPIO pull-down GPIO_33
+                0x000  0x07        // P8_25 MODE7 | OUTPUT | GPIO pull-down GPIO_32
+                0x07c  0x07        // P8_26 MODE7 | OUTPUT | GPIO pull-down GPIO_61
+                0x0E0  0x07        // P8_27 MODE7 | OUTPUT | GPIO pull-down GPIO_86
+                0x0E8  0x07        // P8_28 MODE7 | OUTPUT | GPIO pull-down GPIO_88
+                0x0E4  0x07        // P8_29 MODE7 | OUTPUT | GPIO pull-down GPIO_87
+                0x0EC  0x07        // P8_30 MODE7 | OUTPUT | GPIO pull-down GPIO_89
+                0x0D8  0x07        // P8_31 MODE7 | OUTPUT | GPIO pull-down GPIO_10
+                0x0DC  0x07        // P8_32 MODE7 | OUTPUT | GPIO pull-down GPIO_11
+                0x0D4  0x07        // P8_33 MODE7 | OUTPUT | GPIO pull-down GPIO_9
+                0x0CC  0x07        // P8_34 MODE7 | OUTPUT | GPIO pull-down GPIO_81
+                0x0D0  0x07        // P8_35 MODE7 | OUTPUT | GPIO pull-down GPIO_8
+
+                0x0C8  0x07        // P8_36 MODE7 | INPUT | GPIO pull-down GPIO_80
+                0x0C0  0x07        // P8_37 MODE7 | INPUT | GPIO pull-down GPIO_78
+                0x0C4  0x07        // P8_38 MODE7 | INPUT | GPIO pull-down GPIO_79
+                0x0B8  0x07        // P8_39 MODE7 | INPUT | GPIO pull-down GPIO_76
+                0x0BC  0x07        // P8_40 MODE7 | INPUT | GPIO pull-down GPIO_77
+                0x0B0  0x07        // P8_41 MODE7 | INPUT | GPIO pull-down GPIO_74
+                0x0B4  0x07        // P8_42 MODE7 | INPUT | GPIO pull-down GPIO_75
+                0x0A8  0x07        // P8_43 MODE7 | INPUT | GPIO pull-down GPIO_72
+                0x0AC  0x07        // P8_44 MODE7 | INPUT | GPIO pull-down GPIO_73
+                0x0A0  0x07        // P8_45 MODE7 | INPUT | GPIO pull-down GPIO_70
+                0x0A4  0x07        // P8_46 MODE7 | INPUT | GPIO pull-down GPIO_71
+                0x070  0x07        // P9_11 MODE7 | INPUT | GPIO pull-down GPIO_30
+                0x078  0x07        // P9_12 MODE7 | INPUT | GPIO pull-down GPIO_60
+                0x074  0x07        // P9_13 MODE7 | INPUT | GPIO pull-down GPIO_31
+                0x048  0x07        // P9_14 MODE7 | INPUT | GPIO pull-down GPIO_50
+                0x040  0x07        // P9_15 MODE7 | INPUT | GPIO pull-down GPIO_48
+                0x04c  0x07        // P9_16 MODE7 | INPUT | GPIO pull-down GPIO_51
+                0x15c  0x07        // P9_17 MODE7 | INPUT | GPIO pull-down GPIO_5
+                0x158  0x07        // P9_18 MODE7 | INPUT | GPIO pull-down GPIO_4
+                0x154  0x07        // P9_21 MODE7 | INPUT | GPIO pull-down GPIO_3
+                0x150  0x07        // P9_22 MODE7 | INPUT | GPIO pull-down GPIO_2
+                0x044  0x07        // P9_23 MODE7 | INPUT | GPIO pull-down GPIO_49
+                0x184  0x07        // P9_24 MODE7 | INPUT | GPIO pull-down GPIO_15
+                0x1ac  0x07        // P9_25 MODE7 | INPUT | GPIO pull-down GPIO_117
+                0x180  0x07        // P9_26 MODE7 | INPUT | GPIO pull-down GPIO_14
+                0x1a4  0x07        // P9_27 MODE7 | INPUT | GPIO pull-down GPIO_115
+                0x19c  0x07        // P9_28 MODE7 | INPUT | GPIO pull-down GPIO_113
+                0x194  0x07        // P9_29 MODE7 | INPUT | GPIO pull-down GPIO_111
+                0x198  0x07        // P9_30 MODE7 | INPUT | GPIO pull-down GPIO_112
+                0x190  0x07        // P9_31 MODE7 | INPUT | GPIO pull-down GPIO_110
+                0x1b4  0x07        // P9_41 MODE7 | INPUT | GPIO pull-down GPIO_20
+                //                                0x1a8  0x07        // P9_91 MODE7 | INPUT | GPIO pull-down GPIO_?
+                0x164  0x07        // P9_42 MODE7 | INPUT | GPIO pull-down GPIO_7
+                //                                0x1a0  0x27        // P9_92 MODE7 | INPUT | GPIO pull-down GPIO_?
+                >;
+            };
+            pru_pru_pins: pinmux_pru_pru_pins {   // The PRU pin modes
+                pinctrl-single,pins = <
+                /*
+                * 0x1a4 0x05  // P9_27 pr1_pru0_pru_r30_5, MODE5 | OUTPUT | PRU
+                * 0x19c 0x26  // P9_28 pr1_pru0_pru_r31_3, MODE6 | INPUT | PRU
+                */
+         //       0x1A4 0x05 // P9_27 pr1_pru0_pru_r30_5, MODE5 | OUTPUT | PRU
+                >;
+            };
+        };
+    };
+
+
+    fragment@1 {         // Enable the PRUSS
+        target = <&pruss>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&pru_pru_pins>;
+        };
+    };
+
+    fragment@2 {         // Enable the GPIOs
+        target = <&ocp>;
+        __overlay__ {
+            gpio_helper {
+                compatible = "gpio-of-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&gpio_pins>;
+            };
+        };
+    };
+};

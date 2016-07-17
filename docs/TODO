@@ -1,0 +1,26 @@
+-*- mode: org -*-
+
+
+* License
+  - [ ] Select a sharing license
+* Electronics
+  - [ ] Disconnect GND from the sockets until the board has booted, to
+    Avoid booting problems and lights outputs to go on during booting.
+  - [ ] Design electronics and boards for connecting *one-wire*
+    temperature sensors (very simple)
+  - [ ] Design electronics and board to measure battery voltage
+  - [ ] Design electronics and board to measure solar light intensity
+    (very simple)
+* Mechanics
+  - [ ] Design a good enclosed, that allow to change boards easily
+* Cape
+  - [ ] left the sockets from 7 to 15 as outputs
+* Clean and organize
+  - [ ] Software
+  - [ ] Boards
+  - [ ] etc
+* Software
+  - [ ] Implement a kernel module to manage "Infra red leds" to use as
+    remote control for air conditioners or other devices thought lirc
+  - [ ] Improve and comment libraries
+  - [ ] Add an standard comment headers to all software files
