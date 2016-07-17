@@ -1,12 +1,12 @@
 # Ignore the build and lib dirs
-build/*
+# build/*
 # lib/*
+
+
+# Ignore my personal stuf
 private-notes
 
 
 
 # Ignore any executables
-bin/*
-
-# Ignore Mac specific files
-.DS_Store
+# bin/*
