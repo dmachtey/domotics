@@ -7,54 +7,44 @@
 using std::string;
 
 namespace lighting{
-  typedef unsigned int uint;
+
+  unsigned int positive_edge(unsigned int value, unsigned int *mem);
+  unsigned int negative_edge(unsigned int value, unsigned int *mem);
+
 
 
   class DIMMER : public mosqpp::mosquittopp{
+   private:
+    unsigned int on; // the light is on
+    unsigned int off_enable; // we may switch it off (on switch release)
+    unsigned int duty; // actual duty
+    unsigned int old_duty; // for fadeout
+    unsigned int old_dutyMQ;
+    unsigned int up_down;  // dimmering up and down
+    unsigned int mem_rise; // switch rising edge
+    unsigned int mem_fall; // switch falling edge
+    unsigned int ms; // switch pressed milliseconds
+    unsigned int ms_g;
+    unsigned int time_slots; // to count how many slots is the sw pressed
+    unsigned int going_on;
+    unsigned int going_off;
+    unsigned int ringing;
+    unsigned int ringing_latch;
+    char *mqtt_name;
+    unsigned int recon_counter;
+  public:
+    DIMMER(const char *id, const char *host, int port, char *name);
+    void dloop(unsigned int sw, unsigned int last_loop_ms, unsigned int ring);
+    unsigned int getDuty() {return duty;}
+    ~DIMMER();
   private:
-    bool on; // the light is on
-    uint duty; // actual duty
-    uint old_dutyMQ;
-    bool up_down;  // dimmering up and down
-    uint ms; // switch pressed milliseconds
-    uint ms_g;
-    uint ms_going_on_off; // for going on and off
-    uint publish_ms;
-    uint time_slots; // to count how many slots is the sw pressed
-    bool going_on;
-    bool going_off;
-    bool ringing;
-    bool ringing_latch;
-    uint ms_timeout; // off after not been used, if 0 not timeout
-    uint ms_timeoutC; //time off counter
-    uint max_level;
-    string mqtt_name;
-
-    void goingON();
-    void goingOFF();
-    //void fadeIN();
+    void goingON(unsigned int last_loop_ms);
+    void goingOFF(unsigned int last_loop_ms);
+    void fadeIN();
     void fadeOUT();
     void on_connect(int rc);
     void on_message(const struct mosquitto_message *message);
     void on_subscribe(int mid, int qos_count, const int *granted_qos);
-    void publishnow();
-
-  public:
-    DIMMER(const char *id, const char *host, int port, char *name,
-           uint mstimeout);
-    void Dloop(bool sw, uint last_loop_ms, bool ring);
-    uint getDuty() {return duty;}
-    bool isOn() {return on;}
-    void goOffNow();
-    void goOnNow();
-    void goOff(); // fadding
-    void goOn(); // fadding
-    void setMaxLevel(uint maxLevel) {max_level = maxLevel;}
-    void setTimeOut(uint mstimeout) {ms_timeout = mstimeout;}
-    uint getTimeOut() {return ms_timeout;}
-    uint getMaxLevel() {return max_level;}
-    void setDuty(uint dutY) {duty = dutY;}
-    ~DIMMER();
 
   };
 } /* namespace lighting */

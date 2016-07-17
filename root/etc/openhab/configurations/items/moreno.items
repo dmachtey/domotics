@@ -1,0 +1,42 @@
+Group Gral
+Group gT    (Gral)
+Group System (Gral)
+
+/* active groups */
+
+
+/* Quincho */
+Dimmer Dimmed_1           		"Patio"         (gT, Lights) {mqtt=">[broker1:LT1/get/duty:command:*:default],<[broker1:LT1/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT1           		"Patio [%d %%]" (gT, Lights) {mqtt="<[broker1:LT1/send/duty:state:REGEX(.*,(.*),.*)]"}
+
+Dimmer Dimmed_2           		"Salon"         (gT, Lights) {mqtt=">[broker1:LT2/get/duty:command:*:default],<[broker1:LT2/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT2           		"Salon [%d %%]" (gT, Lights) {mqtt="<[broker1:LT2/send/duty:state:REGEX(.*,(.*),.*)]"}
+
+Dimmer Dimmed_3           		"Ingreso"         (gT, Lights) {mqtt=">[broker1:LT3/get/duty:command:*:default],<[broker1:LT3/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT3           		"Ingreso [%d %%]" (gT, Lights) {mqtt="<[broker1:LT3/send/duty:state:REGEX(.*,(.*),.*)]"}
+
+Dimmer Dimmed_4           		"Baño"         (gT, Lights) {mqtt=">[broker1:LT4/get/duty:command:*:default],<[broker1:LT4/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT4           		"Baño [%d %%]" (gT, Lights) {mqtt="<[broker1:LT4/send/duty:state:REGEX(.*,(.*),.*)]"}
+
+
+
+Dimmer Dimmed_5           		"Cocina"         (gT, Lights) {mqtt=">[broker1:LT5/get/duty:command:*:default],<[broker1:LT4/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT5           		"Baño [%d %%]" (gT, Lights) {mqtt="<[broker1:LT5/send/duty:state:REGEX(.*,(.*),.*)]"}
+
+
+
+Switch mySwitch                 "Random"      (gT, Lights)
+
+
+
+
+
+/* System */
+Number loadAverage1min  "Load avg. 1min [%.1f]" (System) { systeminfo="LoadAverage1Min:5000" }
+Number loadAverage5min  "Load avg. 5min [%.1f]" (System) { systeminfo="LoadAverage5Min:5000" }
+Number loadAverage15min "Load avg. 15min [%.1f]"    (System) { systeminfo="LoadAverage15Min:5000" }
+
+String uptimeFormatted  "Uptime [%s]" (System) { systeminfo="UptimeFormatted:5000" }
+Number cpuCombined  "CPU combined [%.1f]"   (System) { systeminfo="CpuCombined:5000" }
+
+Number memFreePercent   "Mem free [%.1f%%]" (System) { systeminfo="MemFreePercent:5000" }

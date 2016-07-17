@@ -18,3 +18,4 @@
 - *test*: All test code files. You do write tests, no?
 - *electronic*: All the hardware boards and related
 - *pictures* project photos
+- *root* configuration files that can be copied to "/" on BBB

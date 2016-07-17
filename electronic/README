@@ -3,3 +3,10 @@
    Use kitcad to open the files
 
 * files structure and comments (should be here)
+
+
+* Scripts
+  - headers-cloner.py :: was used to automatically arrange the socket
+       connectors
+  - FreeRouting :: was used to help ruting
+    - http://www.freerouting.net/fen/viewtopic.php?f=4&t=255

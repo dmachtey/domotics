@@ -1,16 +1,5 @@
 -*- mode: org -*-
 
-* This is my first project to be published
-  I'm trying to sort thins out to make them easier to understan
-
-  Will re-write the c++ objects to make them clear to understand
-
-* What is now running
-  - A full functional project is in production at my home
-  - Now I'm controlling 5 PWM circuits for lights
-  - I've also 5 inputs
-  - All outputs are controlled by Openhab web application from LAN/WAN
-
 * This is another domotics project
     - it is based on Beaglebone Black
     - Its able to control up to 64 Inputs or Outputs in blocks of 4
@@ -31,6 +20,48 @@
       to 10 can be connected to one gpio) to sense the rooms
       temperatures.
 
+* This is my first project to be published
+  I'm trying to sort thins out to make them easier to understan
+
+  Will re-write some of c++ objects to make them clear to understand
+
+* What is now running
+  - A full functional project is in production at my home
+  - Now I'm controlling 5 PWM circuits for lights
+  - I've also 5 inputs
+  - All outputs are controlled by Openhab web application from LAN/WAN
+
+* What is still to be done
+
+** Electronics
+
+** Software
+
+** General/Project
+
+
+* How to test this project
+  - Get a Beagle bone black with Linux running
+  - do :: apt-get install build-essential
+  - do :: apt-get install linux-image-3.8.13-bone68 device-tree-compiler
+    - to be able to compile new capes, they are needed to manage GPIOs
+  - compile the cape /domotics/capes/half-in-half-pru.dts
+    - copy the compiled code to /lib/firmware/
+  - get yours electronics ready and connected to one of the gpio used
+    on "on-production/test-pwm.cpp" like "GPIO 27"
+  - Connect and input switch at "GPIO 4"
+  - copy the contemns of "/domotics/on-production" to /pru2 at BBB
+  - run /pru2/start.sh
+  - Your led should get PWM controlled with the switch
+
+  - Optional:
+    If you want to run it with openhab for remote controll
+    - Install libc-ares-dev uuid-dev libwrap0-dev libssl-dev needed by
+      mosquitto library
+    - Install mosquitto it can be downloaded here: http://mosquitto.org/download/
+  - Install openhab, instructions at it's site: http://openhab.org/
+    - copy /domotics/root/* to "/" at BBB
+  - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
 
 * Project files
   - [[file:docs/files-strucure.org][structure]]

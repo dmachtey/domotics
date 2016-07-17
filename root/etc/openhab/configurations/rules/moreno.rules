@@ -1,0 +1,78 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+
+var Timer timer = null
+var Number oldvalue1 = 0
+var Number oldvalue2 = 0
+var Number oldvalue3 = 0
+var Number oldvalue4 = 0
+
+
+rule "Initialize Dimmer states"
+	when
+		System started
+	then
+		postUpdate(Dimmed_1, 0)
+        postUpdate(dp_LT1, 0)
+		postUpdate(Dimmed_2, 0)
+        postUpdate(dp_LT2, 0)
+		postUpdate(Dimmed_3, 0)
+        postUpdate(dp_LT3, 0)
+		postUpdate(Dimmed_4, 0)
+        postUpdate(dp_LT4, 0)
+end
+
+
+
+rule "Quincho Random Timer"
+    when
+        Item mySwitch received command
+    then
+        if(receivedCommand==ON) {
+            if(timer==null) {
+            // first ON command, so create a timer to turn the light off again
+                timer = createTimer(now.plusSeconds(10)) [|
+                    sendCommand(mySwitch, OFF)
+                    postUpdate(mySwitch, OFF)
+                ]
+            } else {
+                // subsequent ON command, so reschedule the existing timer
+                timer.reschedule(now.plusSeconds(10))
+            }
+        } else if(receivedCommand==OFF) {
+        // remove any previously scheduled timer
+            if(timer!=null) {
+                    timer.cancel
+                    timer = null
+            }
+        }
+end
+
+rule "Quincho Random Values"
+when
+Item mySwitch  changed from OFF to ON
+oldvalue1 = Dimmed_1.state
+oldvalue2 = Dimmed_2.state
+oldvalue3 = Dimmed_3.state
+oldvalue4 = Dimmed_4.state
+
+
+    while(mySwitch.state==ON){
+            sendCommand(Dimmed_1, (new java.util.Random).nextInt(20))
+            sendCommand(Dimmed_2, (new java.util.Random).nextInt(20))
+            sendCommand(Dimmed_3, (new java.util.Random).nextInt(20))
+            sendCommand(Dimmed_4, (new java.util.Random).nextInt(20))
+             Thread::sleep(500)
+     }
+end
+
+rule "Quincho Restore Values"
+when
+Item mySwitch  changed from ON to OFF
+   sendCommand(Dimmed_1, oldvalue1)
+   sendCommand(Dimmed_2, oldvalue2)
+   sendCommand(Dimmed_3, oldvalue3)
+   sendCommand(Dimmed_4, oldvalue4)
+
+end

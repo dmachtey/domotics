@@ -1,0 +1,29 @@
+sitemap moreno label="Moreno 2630"
+{
+	Frame {
+        Group item=gT label="Quincho" icon="cellar"
+	}
+
+
+   Frame {
+       Group item=System label="System Info" icon="computer" {
+           Frame label="cpu"{
+               Text item=uptimeFormatted
+               Text item=cpuCombined icon="computer"
+           }
+
+           Frame label="Load" {
+               Text item=loadAverage1min
+               Text item=loadAverage5min
+               Text item=loadAverage15min
+           }
+           Frame label="Memory" {
+              Text item=memFreePercent
+          }
+       }
+   }
+
+
+
+
+}

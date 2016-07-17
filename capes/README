@@ -1,0 +1,36 @@
+-*- mode: org -*-
+
+* To be able to use all the 65 gpio you need to:
+
+** Disable some capes
+
+edit /boot/uEnv.txt and add:
+#+BEGIN_EXAMPLE
+         optargs=quietcapemgr.disable_partno=BB-BONELT-HDMI,BB-BONELT-HDMIN,BB-BONE-EMMC-2G
+#+END_EXAMPLE
+
+Reboot, and
+
+if it works: you should see some thing like this:
+
+#+BEGIN_EXAMPLE
+   root@beaglebone:~# SLOTS=/sys/devices/bone_capemgr.9/slots
+   root@beaglebone:~# cat $SLOTS
+    0: 54:PF---
+    1: 55:PF---
+    2: 56:PF---
+    3: 57:PF---
+    4: ff:P-O-- Bone-LT-eMMC-2G,00A0,Texas Instrument,BB-BONE-EMMC-2G
+    5: ff:P-O-- Bone-Black-HDMI,00A0,Texas Instrument,BB-BONELT-HDMI
+    6: ff:P-O-- Bone-Black-HDMIN,00A0,Texas Instrument,BB-BONELT-HDMIN
+#+END_EXAMPLE
+and ther should be no "L"  before the capes lines
+
+
+** Load the new cape
+As an example
+
+#+BEGIN_SRC sh
+    SLOTS=/sys/devices/bone_capemgr.9/slots
+    echo half-in-half-pru > $SLOTS
+#+END_SRC
