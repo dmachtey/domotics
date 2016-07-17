@@ -1,5 +1,5 @@
 # Ignore the build and lib dirs
-# build/*
+build/*
 # lib/*
 private-notes
 

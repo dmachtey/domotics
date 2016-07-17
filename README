@@ -1,5 +1,16 @@
 -*- mode: org -*-
 
+* This is my first project to be published
+  I'm trying to sort thins out to make them easier to understan
+
+  Will re-write the c++ objects to make them clear to understand
+
+* What is now running
+  - A full functional project is in production at my home
+  - Now I'm controlling 5 PWM circuits for lights
+  - I've also 5 inputs
+  - All outputs are controlled by Openhab web application from LAN/WAN
+
 * This is another domotics project
     - it is based on Beaglebone Black
     - Its able to control up to 64 Inputs or Outputs in blocks of 4
@@ -24,5 +35,9 @@
 * Project files
   - [[file:docs/files-strucure.org][structure]]
 
+* Contact information
+  - Damian Machtey
+  - dmachtey at gmail com
+
 * License
-  GNU GPLv3
+  The code and hardware is being released under GPL v3.
