@@ -32,11 +32,11 @@
 
 * How to test this project
   - Get a Beagle bone black with Linux running
-  - do :: apt-get install build-essential
-  - do :: apt-get install linux-image-3.8.13-bone68 device-tree-compiler
-    - to be able to compile new capes, they are needed to manage GPIOs
-  - compile the cape /domotics/capes/half-in-half-pru.dts
-    - copy the compiled code to /lib/firmware/
+  - to be able to compile c++ and new capes, they are needed to manage GPIOs
+    - do :: apt-get install build-essential
+    - do :: apt-get install linux-image-3.8.13-bone68 device-tree-compiler
+  - compile the cape /domotics/capes/half-in-half-pru.dts by =make=
+    - install by =make install=
   - get yours electronics ready and connected to one of the gpio used
     on "on-production/test-pwm.cpp" like "GPIO 27"
   - Connect and input switch at "GPIO 4"
