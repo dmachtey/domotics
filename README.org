@@ -45,7 +45,7 @@
   - Your led should get PWM controlled with the switch
 
   - Optional:
-    If you want to run it with openhab for remote controll
+    If you want to run it with openhab for remote control
     - do =apt-get install libc-ares-dev uuid-dev libwrap0-dev
       libssl-dev= needed by mosquitto library
     - Install mosquitto it can be downloaded here: http://mosquitto.org/download/
