@@ -19,9 +19,9 @@
       temperatures.
 
 * This is my first project to be published
-  I'm trying to sort thins out to make them easier to understan
+  I'm trying to sort thins out to make them easier to understand
 
-  I will re-write some of c++ objects to make them clear to understand
+  I will re-write some of c++ objects to make them more clear to understand
 
 * This is what is now running
   - A full functional project is in production at my home have a look
