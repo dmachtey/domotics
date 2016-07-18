@@ -1,5 +1,3 @@
--*- mode: org -*-
-
 * This is another domotics project
     - it is based on Beaglebone Black
     - Its able to control up to 64 Inputs or Outputs in blocks of 4
