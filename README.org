@@ -54,7 +54,7 @@
   - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
 
 * Project files
-  - /domotics/docs/files-strucure.org
+  - file:/domotics/docs/files-strucure.org
 
 * Contact information
   - Damian Machtey
