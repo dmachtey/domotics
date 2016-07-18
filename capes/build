@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "Compiling the overlay from .dts to .dtbo"
-
-dtc -O dtb -o half-in-half-pru-00A0.dtbo -b 0 -@ half-in-half-pru.dts

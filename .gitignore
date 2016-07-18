@@ -3,6 +3,11 @@
 # lib/*
 
 
+# ede
+.deps
+Project.ede
+
+
 # Ignore my personal stuf
 private-notes
 

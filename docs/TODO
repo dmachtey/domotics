@@ -2,7 +2,7 @@
 
 
 * License
-  - [ ] Select a sharing license
+  - [X] Select a sharing license
 * Electronics
   - [ ] Disconnect GND from the sockets until the board has booted, to
     Avoid booting problems and lights outputs to go on during booting.
@@ -11,10 +11,12 @@
   - [ ] Design electronics and board to measure battery voltage
   - [ ] Design electronics and board to measure solar light intensity
     (very simple)
+  - [ ] External circuits need to be draws
 * Mechanics
   - [ ] Design a good enclosed, that allow to change boards easily
 * Cape
   - [ ] left the sockets from 7 to 15 as outputs
+  - [ ] Do Makefileo
 * Clean and organize
   - [ ] Software
   - [ ] Boards

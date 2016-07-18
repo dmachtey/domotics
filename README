@@ -32,16 +32,6 @@
   - I've also 5 inputs
   - All outputs are controlled by Openhab web application from LAN/WAN
 
-* To be done.
-
-** Electronics
-   - External circuits need to be draws
-
-** Software
-
-** General/Project
-
-
 * How to test this project
   - Get a Beagle bone black with Linux running
   - do :: apt-get install build-essential
