@@ -13,13 +13,13 @@
   - [ ] Design a good enclosed, that allow to change boards easily
 * Cape
   - [ ] left the sockets from 7 to 15 as outputs
-  - [ ] Do Makefileo
+  - [X] Do Makefile
 * Clean and organize
   - [ ] Software
   - [ ] Boards
   - [ ] etc
 * Software
-  - [ ] Implement a kernel module to manage "Infra red leds" to use as
+  - [ ] Implement/test a kernel module to manage "Infra red leds" to use as
     remote control for air conditioners or other devices thought lirc
   - [ ] Improve and comment libraries
   - [ ] Add an standard comment headers to all software files

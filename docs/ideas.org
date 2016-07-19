@@ -1,0 +1,7 @@
+* Some ideas to add to the system
+  - Voip, can be easily added with asterisk
+    - door phone to answer at cellphones
+    - Gateway land line to cellphones
+  - Curtain control
+  - Infra red to control air conditioners & others devices
+  - Temperature sensors, to measure rooms temperature

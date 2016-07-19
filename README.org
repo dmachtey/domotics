@@ -1,5 +1,4 @@
-* This is another domotics project
-
+* This is another domotics project (or general controller)
     - The goals of this project are:
       - to be affordable (price/(outputs + inputs)), every thing is
         hardwired (not for every one)
@@ -19,15 +18,15 @@
     - It's already able to communicate with Openhab, an android and ios
       application, or whatever can communicate thought MQTT protocol
     - It's in production now since April 8th 2016 in my home
-    - There is also 2 more slots with 3 and 4 analogs inputs, I'm
+    - There are also 2 more slots with 3 and 4 analogs inputs, I'm
       planing to sense the battery level and natural light level.
     - Into one of the 16 slots I'm planing to connect some DS18B20 (up
       to 10 can be connected to one gpio) to sense the rooms
       temperatures.
 * This is my first project to be published
-  I'm trying to sort thins out to make them easier to understand
-
-  I will re-write some of c++ objects to make them more clear to understand
+  - I'm trying to sort thins out to make them easier to understand
+  - I will re-write some of c++ objects to make them more clear to understand
+  - Many directories still need to be populated,
 
 * This is what is now running
   - A full functional project is in production at my home. Have a look
@@ -66,5 +65,35 @@
   - Damian Machtey
   - dmachtey at gmail com
 
+* Contributors
+  - Every one willing to contribute with this project is welcome
+
+** Software
+   - none yet
+
+** Electronics
+libssl-dev= needed by mosquitto library
+    - Install mosquitto it can be downloaded here: http://mosquitto.org/download/
+  - Install openhab, instructions at it's site: http://openhab.org/
+    - copy /domotics/root/* to "/" at BBB
+  - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
+
+* Project files
+  - [[./docs/files-strucure.org]]
+
+* Contact information
+  - Damian Machtey
+  - dmachtey at gmail com
+
+* Contributors
+  - Every one willing to contribute with this project is welcome
+** Software
+   - none yet
+** Electronics
+   - none yet
+** Linux SO
+   - none yet
+** Others
+   - none yet
 * License
   The code and hardware is being released under GPL v3.

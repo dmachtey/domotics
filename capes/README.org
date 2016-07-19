@@ -1,5 +1,3 @@
--*- mode: org -*-
-
 * To be able to use all the 65 gpio you need to:
 
 ** Disable some capes
