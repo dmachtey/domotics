@@ -17,7 +17,7 @@
     - The power board can be connected to a battery and detect a mains
       failure
     - It's already able to comunicate with Openhab, an android and ios
-      application
+      application, or whatever can communicate thought MQTT protocol
     - It's in production now since April 8th 2016 in my home
     - There is also 2 more slots with 3 and 4 analogs inputs, I'm
       planing to sense the battery level and natural light level.
