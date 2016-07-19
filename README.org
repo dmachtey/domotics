@@ -30,10 +30,10 @@
   I will re-write some of c++ objects to make them more clear to understand
 
 * This is what is now running
-  - A full functional project is in production at my home have a look
-    at the pictures folder
+  - A full functional project is in production at my home. Have a look
+    at the pictures folder for images
   - Now I'm controlling 5 PWM circuits for lights
-  - I've also 5 inputs
+  - I've also 6 inputs
   - All outputs are controlled by Openhab web application from LAN/WAN
 
 * How to test this project
