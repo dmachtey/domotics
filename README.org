@@ -61,26 +61,6 @@
 * Project files
   - [[./docs/files-strucure.org]]
 
-* Contact information
-  - Damian Machtey
-  - dmachtey at gmail com
-
-* Contributors
-  - Every one willing to contribute with this project is welcome
-
-** Software
-   - none yet
-
-** Electronic
-   - none yet
-
-* Project files
-  - [[./docs/files-strucure.org]]
-
-* Contact information
-  - Damian Machtey
-  - dmachtey at gmail com
-
 * Contributors
   - Every one willing to contribute with this project is welcome
 ** Software
@@ -91,5 +71,10 @@
    - none yet
 ** Others
    - none yet
+
+* Contact information
+  - Damian Machtey
+  - dmachtey at gmail com
+
 * License
   The code and hardware is being released under GPL v3.
