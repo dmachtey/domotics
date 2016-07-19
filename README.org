@@ -1,4 +1,10 @@
 * This is another domotics project
+
+    - The goals of this project are:
+      - to be affordable (price/(outputs + inputs))
+      - reliability (every thing have to be easy to replace, my wife
+        has to be able to do it)
+      - flexibility (gotten by division of GPIOs in groups of 4)
     - it is based on Beaglebone Black
     - Its able to control up to 64 Inputs or Outputs in blocks of 4
     - I've developed a main board were is possible to plug up to 16
@@ -17,7 +23,6 @@
     - Into one of the 16 slots I'm planing to connect some DS18B20 (up
       to 10 can be connected to one gpio) to sense the rooms
       temperatures.
-
 * This is my first project to be published
   I'm trying to sort thins out to make them easier to understand
 
