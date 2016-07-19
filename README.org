@@ -71,12 +71,8 @@
 ** Software
    - none yet
 
-** Electronics
-libssl-dev= needed by mosquitto library
-    - Install mosquitto it can be downloaded here: http://mosquitto.org/download/
-  - Install openhab, instructions at it's site: http://openhab.org/
-    - copy /domotics/root/* to "/" at BBB
-  - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
+** Electronic
+   - none yet
 
 * Project files
   - [[./docs/files-strucure.org]]
