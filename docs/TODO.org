@@ -1,6 +1,3 @@
--*- mode: org -*-
-
-
 * License
   - [X] Select a sharing license
 * Electronics

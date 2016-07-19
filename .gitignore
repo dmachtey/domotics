@@ -1,11 +1,13 @@
-# Ignore the build and lib dirs
-# build/*
-# lib/*
+# Ignore the build and lib but not directories
+!/build
+build/*
+!/lib
+lib/*
 
 
 # ede
 .deps
-Project.ede
+\Project.ede
 
 
 # Ignore my personal stuf
@@ -13,5 +15,6 @@ private-notes
 
 
 
-# Ignore any executables
-# bin/*
+# Ignore any executables but not directories
+!/bin
+bin/*
