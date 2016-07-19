@@ -1,7 +1,8 @@
 * This is another domotics project
 
     - The goals of this project are:
-      - to be affordable (price/(outputs + inputs))
+      - to be affordable (price/(outputs + inputs)), every thing is
+        hardwired (not for every one)
       - reliability (every thing have to be easy to replace, my wife
         has to be able to do it)
       - flexibility (gotten by division of GPIOs in groups of 4)
