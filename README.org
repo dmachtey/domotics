@@ -16,7 +16,7 @@
     - The power board can be connected to a battery and detect a mains
       failure
     - It's already able to communicate with Openhab, an android and ios
-      application, or whatever can communicate thought MQTT protocol
+      application, or whatever application that implement MQTT protocol
     - It's in production now since April 8th 2016 in my home
     - There are also 2 more slots with 3 and 4 analogs inputs, I'm
       planing to sense the battery level and natural light level.
@@ -25,7 +25,7 @@
       temperatures.
 * This is my first project to be published
   - I'm trying to sort thins out to make them easier to understand
-  - I will re-write some of c++ objects to make them more clear to understand
+  - I will re-write some of c++ objects to make them more clear
   - Many directories still need to be populated,
 
 * This is what is now running
