@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2016-07-20T16:27:08" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
+<XMI verified="false" xmi.version="1.2" timestamp="2016-07-20T16:54:10" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -67,7 +67,7 @@
           <UML:Attribute visibility="protected" isSpecification="false" xmi.id="pmcVRcawKAo7" type="0kGEUG6vxKUd" comment="Actual consumption [W/h]" initialValue="0.0" name="actual_power"/>
           <UML:Attribute visibility="protected" isSpecification="false" xmi.id="FXdxyt1oSrUj" type="0kGEUG6vxKUd" comment="Acumulative power consumed by this coil [W]" initialValue="0.0" name="total_power"/>
           <UML:Attribute visibility="private" isSpecification="false" ownerScope="classifier" xmi.id="0XICQBnavxBu" type="iYNLSMfG6IjV" comment="Agregated consumption of all clases [W/h], need to be initialized once, need also to decide what to do with the collected info" initialValue="0.0" name="total_power_all_clases"/>
-          <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="vMcbVGk9hp7W" name="COIL">
+          <UML:Operation visibility="private" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="vMcbVGk9hp7W" comment="Constructor" name="COIL">
            <UML:BehavioralFeature.parameter>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="lOvkdZ4XhbuB" type="duwFcJ4cOIod" value="" comment="mosquittopp" name="id"/>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="w9ZMUeEhmZ6c" type="duwFcJ4cOIod" value="" comment="mosquittopp" name="host"/>
@@ -77,27 +77,33 @@
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="CmAaznPUeu1M" type="tOjqiBSzL3GC" value="" comment="Controlled power [W]" name="power"/>
            </UML:BehavioralFeature.parameter>
           </UML:Operation>
-          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="BvT8g23HalJy" name="on_connect">
+          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="BvT8g23HalJy" comment="Implemet mosquitto::on_connect()" name="on_connect">
            <UML:BehavioralFeature.parameter>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="w1G9nSI9VGVr" type="J6z08wQH5Gsq" value="" name="rc"/>
            </UML:BehavioralFeature.parameter>
           </UML:Operation>
-          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ZQ1y8nnIjFOP" name="on_message">
+          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ZQ1y8nnIjFOP" comment="Implemet mosquitto::on_message()" name="on_message">
            <UML:BehavioralFeature.parameter>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="RqT08C5YBkGM" type="6Emsbu70hUdL" value="" name="message"/>
            </UML:BehavioralFeature.parameter>
           </UML:Operation>
-          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="a18JGWgUwII5" name="on_subscribe">
+          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="a18JGWgUwII5" comment="Implemet mosquitto::on_subcribe()" name="on_subscribe">
            <UML:BehavioralFeature.parameter>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="Q1fkDv0Znm8N" type="J6z08wQH5Gsq" value="" comment="mosquittopp" name="mid"/>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="OsoYabzk2trl" type="J6z08wQH5Gsq" value="" comment="mosquittopp" name="qos_count"/>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="CTu7jCCvEL2H" type="Xt1kifpxEJgJ" value="" comment="mosquittopp" name="granted_qos"/>
            </UML:BehavioralFeature.parameter>
           </UML:Operation>
-          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fEuS00nJ5te3" name="publish_now"/>
-          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="iRkbNtU3SrMs" name="power">
+          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fEuS00nJ5te3" comment="publish the class status to mosquitto" name="publish_now"/>
+          <UML:Operation visibility="protected" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="iRkbNtU3SrMs" comment="compute power consumption" name="power">
            <UML:BehavioralFeature.parameter>
             <UML:Parameter visibility="private" isSpecification="false" xmi.id="B28HIqm89BJd" type="tOjqiBSzL3GC" value="" comment="Last scan time [ms]" name="scan_time"/>
+           </UML:BehavioralFeature.parameter>
+          </UML:Operation>
+          <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Na596hJo63OT" comment="main loop" name="looop">
+           <UML:BehavioralFeature.parameter>
+            <UML:Parameter visibility="private" isSpecification="false" xmi.id="ErGL0ZyO71XD" type="tOjqiBSzL3GC" value="" comment="scan time [ms]" name="scan_time"/>
+            <UML:Parameter visibility="private" isSpecification="false" xmi.id="xsVPhrHsrO79" type="ThFaiwiz0f09" value="" comment="imput signal form switch" name="sw"/>
            </UML:BehavioralFeature.parameter>
           </UML:Operation>
          </UML:Classifier.feature>
@@ -464,17 +470,17 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="785" canvaswidth="803" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="RCOOQf61yp5D" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="class diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="796" canvaswidth="803" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="RCOOQf61yp5D" documentation="" showscope="1" snapgrid="0" showatts="1" type="1">
         <widgets>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="1" showpackage="1" x="-155" showattsigs="601" showstereotype="1" y="-265" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" localid="ixNaM0wsgc4n" width="766" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="8RqpEZKIo4AN" showscope="1" height="455" showopsigs="601"/>
-         <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-192" showattsigs="601" showstereotype="1" y="350" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" localid="ADSgowAD9WbX" width="564" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="V12sHmnv8Om1" showscope="1" height="170" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-156" showattsigs="601" showstereotype="1" y="351" showattributes="1" font="Sans Serif,9,-1,0,75,0,0,0,0,0" localid="ADSgowAD9WbX" width="564" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="V12sHmnv8Om1" showscope="1" height="180" showopsigs="601"/>
         </widgets>
         <messages/>
         <associations>
          <assocwidget indexa="1" indexb="1" usesdiagramusefillcolor="0" widgetaid="V12sHmnv8Om1" usesdiagramfillcolor="0" fillcolor="#ffff00" linecolor="none" seqnum="" totalcounta="2" xmi.id="56l3k0eXThwg" widgetbid="8RqpEZKIo4AN" totalcountb="2" type="500" textcolor="none" usefillcolor="1" linewidth="none" font="Sans Serif,9,-1,0,50,0,0,0,0,0">
           <linepath layout="Polyline">
-           <startpoint startx="-155" starty="350"/>
-           <endpoint endx="-155" endy="190"/>
+           <startpoint startx="-147" starty="351"/>
+           <endpoint endx="-147" endy="190"/>
           </linepath>
          </assocwidget>
         </associations>
@@ -512,7 +518,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="RCOOQf61yp5D" uniqueid="B28HIqm89BJd" documentation=""/>
+  <docsettings viewid="RCOOQf61yp5D" uniqueid="ErGL0ZyO71XD" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component View">
@@ -551,6 +557,7 @@
       <listitem open="1" type="813" id="V12sHmnv8Om1">
        <listitem open="0" type="814" id="pmcVRcawKAo7"/>
        <listitem open="0" type="815" id="vMcbVGk9hp7W"/>
+       <listitem open="0" type="815" id="Na596hJo63OT"/>
        <listitem open="0" type="814" id="uTQYWWlGsKfT"/>
        <listitem open="0" type="814" id="oU3BhR5oiBgB"/>
        <listitem open="0" type="815" id="BvT8g23HalJy"/>

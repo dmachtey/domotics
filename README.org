@@ -1,4 +1,4 @@
-* This is another domotics project (or general controller)
+* This is another domotics project sw&hw (or general controller)
     - The goals of this project are:
       - to be affordable (price/(outputs + inputs)), every thing is
         hardwired (not for every one)
@@ -16,7 +16,7 @@
     - The power board can be connected to a battery and detect a mains
       failure
     - It's already able to communicate with Openhab, an android and ios
-      application, or whatever application that implement MQTT protocol
+      application, or whatever application that support MQTT protocol
     - It's in production now since April 8th 2016 in my home
     - There are also 2 more slots with 3 and 4 analogs inputs, I'm
       planing to sense the battery level and natural light level.
