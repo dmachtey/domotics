@@ -1,5 +1,8 @@
 // PRUSS program to output a simple PWM signal at variable rate
 // Writen by Damian Machtey 2015-06-22 Mon
+// to compile this; pasm -b pwm.p
+
+
 
 
 .origin 0               // offset of start of program in PRU memory
@@ -93,14 +96,21 @@
 #define INS_PER_DELAY_LOOP 2     // two instructions per delay loop
 
 #define INS_PER_GPIO 12
-#define TARGET_HZ 300
+
+//
+// At frequencies above 1250 Hz, no restrictions on the percent
+//  flicker. (Note: this is the minimum allowable frequency for basic
+//  pulse-width modulation (PWM)-based dimming.)
+//
+#define TARGET_HZ 777
 #define N_GPIOS 33
 #define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
 #define INS_OVERHEAD 4
 
-// (TARGET_LOOP_TIME * (INS_PER_US / INS_PER_DELAY_LOOP)) = number of instructions needed to achive the delay
-// (INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) are the instructions we need to run per program scan
-#define DELAY_INS (((TARGET_LOOP_TIME * (INS_PER_US / INS_PER_DELAY_LOOP)) - (INS_PER_GPIO * N_GPIOS + INS_OVERHEAD))/LOOPCOUNTER)
+
+#define DELAY_T_USED ((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER)/INS_PER_US // time us consumed by program
+#define DELAY_T  (TARGET_LOOP_TIME - DELAY_T_USED)
+#define DELAY_INS ((DELAY_T * INS_PER_US) / (LOOPCOUNTER * INS_PER_DELAY_LOOP))
 
 #define PRU0_R31_VEC_VALID 32
 #define EVENTOUT0 3

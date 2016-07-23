@@ -1,11 +1,48 @@
+// Filename: test-pwm.cpp
+// 
+// Description: 
+// Author: Damian Machtey
+// Maintainer: 
+// 
+// Created: 2015-06-22 Mon
+// 
+// Last-Updated: Sat Jul 23 12:44:57 2016 (-0500)
+//           By: Damian Machtey
+//     Update #: 2
+
+// Change Log:
+// 
+// 
+// Copyright (C) 2016 Damian Machtey
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+// 
+// 
+
+// Code:
+
+
 #include "dimmer_ctl.h"
+#include "temperature.h"
 #include <time.h>
 #include <iostream>
-//#include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h> //for usleep
+//#include <stdio.h>
+//#include <stdlib.h>
+
+#include <unistd.h> //for usleep, getuid
 #include "GPIO.h"
+#include <csignal>
 
 
 #include <prussdrv.h>
@@ -33,16 +70,26 @@ unsigned int diff(timespec start, timespec end)
   return temp;
 }
 
+int finish_signal = 0;
+
+void signal_handler(int signal)
+{
+ finish_signal = 1;
+}
+
 
 int main(int argc, char *argv[])
 {
   if(getuid()!=0){
-    printf("You must run this program as root. Exiting.\n");
+    cerr << "Error on Main. You must run this program as root. Exiting "
+         << endl;
     exit(EXIT_FAILURE);
   }
 
-  mosqpp::lib_init();
+  /* initialize random seed: */
+  srand (time(NULL));
 
+  mosqpp::lib_init();
 
   GPIO SW1(4); //gpio1[28] | P9_12
   GPIO SW2(51);
@@ -51,7 +98,6 @@ int main(int argc, char *argv[])
   GPIO SW5(115); // Cocina quincho
   GPIO BELL(14); // Timbre
 
-
   SW1.setDirection(INPUT);
   SW2.setDirection(INPUT);
   SW3.setDirection(INPUT);
@@ -59,15 +105,14 @@ int main(int argc, char *argv[])
   SW5.setDirection(INPUT);
   BELL.setDirection(INPUT);
 
-
-  DIMMER LT1((char *)"autohome", (char *)"localhost", 1883, (char *)"LT1"); // Patio
+  DIMMER LT1((char *)"aut1", (char *)"localhost", 1883, (char *)"LT1"); // Patio
   DIMMER LT2((char *)"aut2", (char *)"localhost", 1883, (char *)"LT2");  // Salon quincho
   DIMMER LT3((char *)"aut3", (char *)"localhost", 1883, (char *)"LT3");  // Ingreso quincho
   DIMMER LT4((char *)"aut4", (char *)"localhost", 1883, (char *)"LT4");  // Baño
   DIMMER LT5((char *)"aut5", (char *)"localhost", 1883, (char *)"LT5"); // Cocina quincho
 
-  unsigned int previus_scan;
-  timespec prevt, actualt;
+  TEMPERATURE T1((char *)"cputemp", (char *)"localhost", 1883, (char *)"CPUTemp",
+                 (char *)"/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
 
 
   // Initialize structure used by prussdrv_pruintc_intc
@@ -86,20 +131,30 @@ int main(int argc, char *argv[])
   pru0DataMemory_int = (unsigned int *) pru0DataMemory;
 
   // Load and execute binary on PRU
-  prussdrv_exec_program (PRU_NUM, "/pru2/pwm.bin");
+  if (prussdrv_exec_program (PRU_NUM, "/pru2/pwm.bin")){
+    cerr << "\nError on Main: Pru file not loaded " << endl;
+    exit(EXIT_FAILURE);
+  }
 
 
-
-
+  // just in case, clear the exchange memory
   for (int r = 0; r<32; r++)
     *(pru0DataMemory_int+r) = 0;
 
+
+  unsigned int previus_scan;
+  timespec prevt, actualt;
+  clock_gettime(CLOCK_MONOTONIC, &actualt);
+  prevt = actualt;
   do{
+
     clock_gettime(CLOCK_MONOTONIC, &actualt);
     previus_scan = diff(prevt, actualt);
     prevt = actualt;
 
-    int bell = BELL.getValue();
+
+    unsigned int bell = BELL.getValue();
+
     LT1.dloop(SW1.getValue(), previus_scan, bell); // Patio
     LT2.dloop(SW2.getValue(), previus_scan, bell); // Salon quincho
     LT3.dloop(SW3.getValue(), previus_scan, bell); // Ingreso quincho
@@ -108,7 +163,6 @@ int main(int argc, char *argv[])
 
 
     //    cout << SW1.getValue() << endl;
-
 
     // SLOT 10 {47, 27, 22, 62}
     // GPIO 27
@@ -127,21 +181,27 @@ int main(int argc, char *argv[])
     LTDuty = LT4.getDuty(); // Baño quincho
     *(pru0DataMemory_int+17) = LTDuty;
 
-
     // SLOT 9 {36, 32, 86, 87}
     // GPIO 36  Cocina Quincho
     LTDuty = LT5.getDuty();
     *(pru0DataMemory_int+19) = LTDuty;
 
+    T1.tloop(previus_scan);
 
 
     usleep(50);      // sleep for ten millisecond
-
-
-
+    signal(SIGINT, signal_handler);
+    if (finish_signal)
+      break;
   }while(1);
 
 
-  mosqpp::lib_cleanup();
+
+  // Cleanup every thing
+  mosqpp::lib_cleanup(); // DIMMERS and TEMPERATURES get destroyed here
+  cout << "We've cleaned up all" << endl;
   return 0;
 }
+
+// 
+// test-pwm.cpp ends here
