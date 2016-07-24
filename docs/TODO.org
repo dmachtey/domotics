@@ -28,4 +28,5 @@
     programs and multiple times per day
   - [ ] Need to add conscientious to objects. what are them
     controlling, what power, where are them located, how many
-    circuits, ecc.
+    circuits, to what power supply is it connected, ecc.
+  - [ ] Group objects, so they can be globally controlled
