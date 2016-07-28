@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 11:44:05 2016 (-0500)
+// Last-Updated: Thu Jul 28 14:49:52 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 59
+//     Update #: 82
 
 // Change Log:
 //
@@ -34,7 +34,7 @@
 
 
 #include <iostream>
-#include <time.h>
+//#include <time.h>
 #include <unistd.h> //for usleep
 
 //kbhit()
@@ -48,32 +48,9 @@
 
 using namespace lighting;
 
-unsigned int diff(timespec start, timespec end)
-{ // returns milliseconds
-  unsigned int temp;
-  if ((end.tv_nsec-start.tv_nsec)<0) {
-    temp = end.tv_sec-start.tv_sec-1;
-    temp = (1000000000+end.tv_nsec-start.tv_nsec)/1000000 + temp*1000;
-  } else {
-    temp = end.tv_sec-start.tv_sec;
-    temp = (end.tv_nsec-start.tv_nsec)/1000000 + temp*1000;
-  }
-  return temp;
-}
-
 
 int main(int argc, char *argv[])
 {
-
-  LAPSE lapse;
-  usleep(2000000);
-
-  std::cout << "the delay was: " << lapse.get_lapse() << std::endl;
-  return 0;
-
-
-
-  std::cout.setf(std::ios::boolalpha);
 
   /* initialize random seed: */
   srand (time(NULL));
@@ -81,14 +58,10 @@ int main(int argc, char *argv[])
   mosqpp::lib_init();
 
 
-   COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
-  DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
+  COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
+  //DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18);
 
   lighting::time_t scan_time;
-  timespec prevt, actualt;
-  clock_gettime(CLOCK_MONOTONIC, &actualt);
-  prevt = actualt;
-
 
   // get keyboard value
   WINDOW *win;
@@ -101,20 +74,12 @@ int main(int argc, char *argv[])
   bool key;
   // end keyboard value
 
-  powered LL1;
-  LL1.name = "techo del quincho";
-  LL1.power = 18*4;
-  LL1.n_circuits = 4;
-  LL1.type = LED;
-  LL1.voltage = 60;
 
+  LAPSE lapse;
   do
     {
-      clock_gettime(CLOCK_MONOTONIC, &actualt);
-      scan_time = diff(prevt, actualt);
-      prevt = actualt;
-
-
+      scan_time = lapse.get_lapse();
+      //   key = false;
       unsigned int ch = getch();
       if (ch == 'a') //a
         key = true;
@@ -123,16 +88,16 @@ int main(int argc, char *argv[])
       if (ch == 'q')
         break;
 
-      D1.looop(scan_time, key);
-      //   key = false;
-
+      C1.looop(scan_time, key);
       usleep(10000);
+
     }while(true);
 
   endwin();
 
   std::cout << "finish" << std::endl;
-  std::cout <<  D1.get_on() << std::endl;
+  std::cout.setf(std::ios::boolalpha);
+  std::cout <<  C1.get_on() << std::endl;
 
 
   return 0;

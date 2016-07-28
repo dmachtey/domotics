@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 11:07:16 2016 (-0500)
+// Last-Updated: Thu Jul 28 14:44:16 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 49
+//     Update #: 54
 
 // Change Log:
 //
@@ -74,9 +74,6 @@ namespace lighting{
     if(loop(15,1)) reconnect();
 
     actual_power = on ? power : 0.0;
-
-    if(sw) std::cout << sw_press_acc << std::endl;
-
     return on;
   }
 

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 11:35:45 2016 (-0500)
+// Last-Updated: Thu Jul 28 14:31:06 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 31
+//     Update #: 33
 
 // Change Log:
 //
@@ -40,7 +40,6 @@
 
 namespace lighting {
 
-
   /**
    * class COIL
    * Implement a coil control class
@@ -59,7 +58,6 @@ namespace lighting {
      */
     COIL(const char* id, const char* host, int port, const char* name, uint auto_off_time, double power);
 
-
     /**
      * This function must be called in an infinite loop
      * It take care of all the functionality of the class
@@ -69,7 +67,6 @@ namespace lighting {
      * @param  sw is the physical switch
      */
     bool looop(uint scan_time, bool sw);
-
 
     bool get_on() const{
       return on;
@@ -105,7 +102,7 @@ namespace lighting {
     // track how long the sw has been pressed [ms]
     time_t sw_press_acc = 0;
     // MQTT connection name
-    std::string mqtt_name = 0;
+    std::string mqtt_name;
     // Re-publish accumulator [ms]
     time_t republish_acc = 0;
     // Power controlled by this coil [W]
@@ -123,7 +120,6 @@ namespace lighting {
      */
     void on_connect(int rc);
 
-
     /**
      * This function is the implementation of mosquittopp
      * is called every time a message is received
@@ -131,7 +127,6 @@ namespace lighting {
      * @param  message
      */
     void on_message(const struct mosquitto_message *message);
-
 
     /**
      * This function is the implementation of mosquittopp
@@ -143,12 +138,10 @@ namespace lighting {
      */
     void on_subscribe(int mid, int qos_count, const int* granted_qos);
 
-
     /**
      * Publish object status to moquitto server
      */
     void publish_now();
-
 
     /**
      * Compute the consumed power

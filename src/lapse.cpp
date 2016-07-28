@@ -1,14 +1,14 @@
 // Filename: lapse.cpp
 //
-// Description: Compute the time lapse between calls in nanosecond
+// Description: Compute the time lapse between calls in milliseconds
 // Author: Damian Machtey
 // Maintainer:
 //
 // Created: Thu Jul 28 11:03:14 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 11:44:54 2016 (-0500)
+// Last-Updated: Thu Jul 28 14:47:00 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 14
+//     Update #: 16
 
 // Change Log:
 //
@@ -39,10 +39,10 @@ namespace lighting{
     previus_tick = std::chrono::steady_clock::now();
   }
 
-  uint LAPSE::get_lapse(){
+  lighting::time_t LAPSE::get_lapse(){
       std::chrono::steady_clock::time_point now =
         std::chrono::steady_clock::now();
-      uint rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
+      uint rtn = std::chrono::duration_cast<std::chrono::milliseconds>(now - previus_tick).count();
       previus_tick = now;
       return rtn;
     }

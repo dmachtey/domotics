@@ -1,14 +1,14 @@
 // Filename: lapse.h
 //
-// Description: Compute the time lapse between calls in nanosecond
+// Description: Compute the time lapse between calls in milliseconds
 // Author: Damian Machtey
 // Maintainer:
 //
 // Created: Thu Jul 28 10:48:16 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 11:35:24 2016 (-0500)
+// Last-Updated: Thu Jul 28 14:46:46 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 17
+//     Update #: 19
 
 // Change Log:
 //
@@ -53,7 +53,7 @@ namespace lighting{
   public:
 
     LAPSE();
-    uint get_lapse();
+    lighting::time_t get_lapse();
   };
 
 
