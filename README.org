@@ -45,7 +45,8 @@
   - get yours electronics ready and connected to one of the gpio used
     on "running/test-pwm.cpp" like "GPIO 27"
   - Connect and input switch at "GPIO 4"
-  - copy the contemns of "/domotics/running" to /pru2 at BBB
+  - copy the contents of "/domotics/running" to /pru2 at BBB
+  - run =make=
   - run =/pru2/start.sh=
   - Your led should get PWM controlled with the switch
 
