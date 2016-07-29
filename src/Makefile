@@ -10,9 +10,9 @@
 top="$(CURDIR)"/
 ede_FILES=Project.ede Makefile
 
-main_SOURCES=main.cpp COIL.cpp DIMMER.cpp lapse.cpp
-CFLAGS=-std=c++11
-main_OBJ= main.o COIL.o DIMMER.o lapse.o
+__/bin/main_SOURCES=main.cpp coil.cpp dimmer.cpp lapse.cpp
+CFLAGS=-std=c++11 -Wall
+../bin/main_OBJ= main.o coil.o dimmer.o lapse.o
 CXX= g++
 CXX_COMPILE=$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 CXX_DEPENDENCIES=-Wp,-MD,.deps/$(*F).P
@@ -22,9 +22,9 @@ VERSION=1.0
 DISTDIR=$(top)Domotics-$(VERSION)
 top_builddir =
 
-DEP_FILES=.deps/main.P .deps/COIL.P .deps/DIMMER.P .deps/lapse.P .deps/COIL.P .deps/DIMMER.P .deps/lapse.P .deps/DOMTYPES.P
+DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/domtypes.P
 
-all: main
+all: ../bin/main
 
 DEPS_MAGIC := $(shell mkdir .deps > /dev/null 2>&1 || :)
 -include $(DEP_FILES)
@@ -33,7 +33,7 @@ DEPS_MAGIC := $(shell mkdir .deps > /dev/null 2>&1 || :)
 	@echo '$(CXX_COMPILE) -c $<'; \
 	$(CXX_COMPILE) $(CXX_DEPENDENCIES) -o $@ -c $<
 
-main: $(main_OBJ)
+../bin/main: $(../bin/main_OBJ)
 	$(CXX_LINK) -o $@ $^ $(LDDEPS)
 
 tags:
@@ -47,7 +47,7 @@ clean:
 dist:
 	rm -rf $(DISTDIR)
 	mkdir $(DISTDIR)
-	cp $(main_SOURCES) $(ede_FILES) $(DISTDIR)
+	cp $(__/bin/main_SOURCES) $(ede_FILES) $(DISTDIR)
 	tar -cvzf $(DISTDIR).tar.gz $(DISTDIR)
 	rm -rf $(DISTDIR)
 

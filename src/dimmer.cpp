@@ -1,4 +1,4 @@
-// Filename: DIMMER.cpp
+// Filename: dimmer.cpp
 //
 // Description: implement the DIMMER class. aims to control a light intensity
 // Author: Damian Machtey
@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Mon Jul 25 23:55:44 2016 (-0500)
+// Last-Updated: Thu Jul 28 21:32:18 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 14
+//     Update #: 15
 
 // Change Log:
 //
@@ -32,7 +32,7 @@
 
 // Code:
 
-#include "DIMMER.h"
+#include "dimmer.h"
 
 namespace lighting
 {

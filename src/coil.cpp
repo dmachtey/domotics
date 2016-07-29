@@ -1,4 +1,4 @@
-// Filename: COIL.cpp
+// Filename: coil.cpp
 //
 // Description: Implement the COIL class
 // Author: Damian Machtey
@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 14:44:16 2016 (-0500)
+// Last-Updated: Thu Jul 28 21:31:47 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 54
+//     Update #: 57
 
 // Change Log:
 //
@@ -34,7 +34,7 @@
 
 #include <iostream> //cin cout cerr(for errors) clog(for logs)
 #include <cstring> // memcpy, strcmp, strlen...
-#include "COIL.h"
+#include "coil.h"
 
 
 namespace lighting{
@@ -52,9 +52,10 @@ namespace lighting{
 
   bool COIL::looop(unsigned int scan_time, bool sw)
   {
-    if((sw_press_acc==0) && sw)
+    if((sw_press_acc==0) && sw){
       if(on) goOff();
       else goOn();
+    }
 
     sw_press_acc += scan_time;
     sw_press_acc *= (sw==true);

@@ -6,9 +6,9 @@
 //
 // Created: Thu Jul 28 10:48:16 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 14:46:46 2016 (-0500)
+// Last-Updated: Thu Jul 28 21:35:11 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 19
+//     Update #: 20
 
 // Change Log:
 //
@@ -36,7 +36,7 @@
 #define LAPSE_H
 
 #include <chrono>
-#include "DOMTYPES.h"
+#include "domtypes.h"
 
 
 namespace lighting{

@@ -1,4 +1,4 @@
-// Filename: COIL.h
+// Filename: coil.h
 //
 // Description: Implement a COIL control class
 // Author: Damian Machtey
@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 14:31:06 2016 (-0500)
+// Last-Updated: Thu Jul 28 21:32:06 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 33
+//     Update #: 34
 
 // Change Log:
 //
@@ -35,7 +35,7 @@
 #ifndef COIL_H
 #define COIL_H
 #include "mosquittopp.h"
-#include "DOMTYPES.h"
+#include "domtypes.h"
 #include <string>
 
 namespace lighting {

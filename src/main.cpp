@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 14:49:52 2016 (-0500)
+// Last-Updated: Thu Jul 28 21:33:10 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 82
+//     Update #: 83
 
 // Change Log:
 //
@@ -41,9 +41,9 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
-#include "COIL.h"
-#include "DIMMER.h"
-#include "DOMTYPES.h"
+#include "coil.h"
+#include "dimmer.h"
+#include "domtypes.h"
 #include "lapse.h"
 
 using namespace lighting;
