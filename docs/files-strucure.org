@@ -6,6 +6,7 @@
   here. I decided to create the development and production config files
   in here instead of in a separate =config= folder as they “document”
   the configuration.
+- *electronic*: All the hardware boards and related
 - *include*: All project header files. All necessary third-party header
   files that do not exist under =/usr/local/include= are also placed
   here.
@@ -14,8 +15,8 @@
   moved to =/usr/local/lib= where they belong, leaving the project
   clean enough to compile on our Linux deployment servers. I really use
   this to test different library versions than the standard.
-- *src*: The application and only the application's source files.
-- *test*: All test code files. You do write tests, no?
-- *electronic*: All the hardware boards and related
 - *pictures* project photos
 - *root* configuration files that can be copied to "/" on BBB
+- *running* a version that's actually running a my place
+- *src*: The application and only the application's source files.
+- *test*: All test code files. You do write tests, no?

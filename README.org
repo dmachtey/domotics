@@ -43,9 +43,9 @@
   - compile the cape /domotics/capes/half-in-half-pru.dts by =make=
     - install by =make install=
   - get yours electronics ready and connected to one of the gpio used
-    on "on-production/test-pwm.cpp" like "GPIO 27"
+    on "running/test-pwm.cpp" like "GPIO 27"
   - Connect and input switch at "GPIO 4"
-  - copy the contemns of "/domotics/on-production" to /pru2 at BBB
+  - copy the contemns of "/domotics/running" to /pru2 at BBB
   - run =/pru2/start.sh=
   - Your led should get PWM controlled with the switch
 

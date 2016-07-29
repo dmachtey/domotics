@@ -13,8 +13,10 @@ lib/*
 # Ignore my personal stuf
 private-notes
 
-
-
 # Ignore any executables but not directories
 !/bin
 bin/*
+
+
+# Object files
+*.o
