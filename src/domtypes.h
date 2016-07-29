@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 21:32:51 2016 (-0500)
+// Last-Updated: Fri Jul 29 16:00:37 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 30
+//     Update #: 31
 
 // Change Log:
 //
@@ -37,6 +37,9 @@
 #include <string>
 
 #define REPUBLISH_TIME 2*60*1000 // 2 minutes
+#define MIN_SCALING_TIME 1000 // ms to start dimming (less shortpress)
+#define SCALING_TIME 500 // ms for each dimming step
+#define DIMMING_STEPS 20 // number of dimming steps
 
 namespace lighting {
 

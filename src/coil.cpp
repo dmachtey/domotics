@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 21:31:47 2016 (-0500)
+// Last-Updated: Fri Jul 29 18:05:16 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 57
+//     Update #: 58
 
 // Change Log:
 //
@@ -62,8 +62,10 @@ namespace lighting{
 
     // auto publish
     republish_acc += scan_time;
-    if(republish_acc > REPUBLISH_TIME)
+    if(republish_acc > REPUBLISH_TIME){
       publish_now();
+      republish_acc = 0;
+    }
 
     // timeout, turn it off
     time_off_acc += scan_time * (time_off_sp>0);

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 21:32:40 2016 (-0500)
+// Last-Updated: Fri Jul 29 18:33:42 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 7
+//     Update #: 15
 
 // Change Log:
 //
@@ -54,7 +54,8 @@ namespace lighting {
      * @param  auto_off_time
      * @param  power
      */
-    DIMMER (const char* id, const char* host, int port, const char* name, uint auto_off_time, double power);
+    DIMMER (const char* id, const char* host, int port, const char* name,
+            lighting::time_t auto_off_time, double power, int max_level);
 
     /**
      * @name loop -
@@ -66,7 +67,7 @@ namespace lighting {
     uint loop (time_t scan_time, bool sw, bool door_bell_sw);
 
 
-    /**
+   /**
      */
     void goOffNow ();
 
@@ -93,7 +94,7 @@ namespace lighting {
 
     /**
      */
-    void GoingON ();
+    void goingOn ();
 
 
     /**
@@ -106,38 +107,38 @@ namespace lighting {
     //
 
     // duty of PWM
-    unsigned int duty;
+    lighting::time_t duty = 0;
     // Publish only on changes
-    unsigned int old_duty;
+    lighting::time_t old_duty = 0;
     // When you keep press the sw it start fadding
     // first it goes down until a minimum is eached
     // them it change up
-    bool up_down;
+    bool up_down = false;
     // PWM levels
-    unsigned int max_level;
+    uint max_level = 100;
     // keep track of fadding steps
-    unsigned int sw_slots;
+    uint sw_slots = 0;
     // when ring command is gotten
     // it control the lenght of ringging sequence
-    unsigned int ringing_acc;
+    lighting::time_t ringing_acc = 0;
     // lenght of fading steps
-    unsigned int fading_acc;
+    lighting::time_t fading_acc = 0;
     // Active when ringing sequence is active
     // together with ringing_latch are used to
     // return to old_duty when ringing sequece is over
-    bool ringing;
+    bool ringing = false;  //< could be local! TODO
     // Active when ringing sequence is active
     // together with ringing_latch are used to
     // return to old_duty when ringing sequece is over
-    bool ringing_latch;
+    bool ringing_latch = false;
     // A short pressed was detected and we were "!on"
     // we are turning the lights on
     //
-    bool going_on;
+    bool going_on = false;
     // A short pressed was detected and we were "on"
-    // we are turning the lights off
-    bool going_off;
-
+    // wee are turning the lights off
+    bool going_off = false;
+    lighting::time_t going_on_off_acc = 0;
   };
 }; // end of package namespace
 #endif // DIMMER_H
