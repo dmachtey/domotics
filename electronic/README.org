@@ -1,11 +1,10 @@
--*- mode: org -*-
 
-   Use kitcad to open the files
+   *Use kitcad to open the files*
 
 * files structure and comments (should be here)
 
 
-* Scripts
+* Scripts/other programs
   - headers-cloner.py :: was used to automatically arrange the socket
        connectors
   - FreeRouting :: was used to help ruting
