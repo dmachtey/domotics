@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 16:20:20 2016 (-0500)
+// Last-Updated: Sat Jul 30 17:01:27 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 82
+//     Update #: 87
 
 // Change Log:
 //
@@ -38,9 +38,9 @@
 
 namespace lighting{
 
-  DIMMER::DIMMER(const char* id, const char* host, int port, const char* name,
-                  uint auto_off_time, double power, int max_level) :
-    COIL (id, host, port, name, auto_off_time, power){
+  DIMMER::DIMMER(std::string id, std::string host, int port,
+                 double power, int max_level) :
+    COIL (id, host, port, power){
     this->max_level = max_level;
   }
 

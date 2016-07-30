@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 16:29:58 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:57:29 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 52
+//     Update #: 60
 
 // Change Log:
 //
@@ -61,7 +61,7 @@ namespace lighting {
      * @param  auto_off_time
      * @param  power
      */
-    COIL(const char* id, const char* host, int port, const char* name, uint auto_off_time, double power);
+    COIL(std::string id, std::string host, int port, double power);
 
     /**
      * This function must be called in an infinite loop
@@ -86,15 +86,13 @@ namespace lighting {
     }
 
 
-  protected:
-    // Static Protected attributes
-    //
-
     // Aggregated consumption of all objects [W/h]
     // need to be initialized once,
     // need also to decide what to do with the collected info
     static double total_power_all_clases;
+    static bool master_set;
 
+  protected:
     // Protected attributes
     //
 
@@ -117,7 +115,7 @@ namespace lighting {
     double actual_power = 0.0;
     // Acumulative power consumed by this coil [W]
     double total_power = 0.0;
-
+    bool this_is_master = false;/**< Master class takes care of computing total power */
     /**
      * This function is the implementation of mosquittopp
      * Its call when connections is stablished

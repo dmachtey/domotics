@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 16:24:17 2016 (-0500)
+// Last-Updated: Sat Jul 30 17:02:19 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 100
+//     Update #: 111
 
 // Change Log:
 //
@@ -48,18 +48,17 @@
 
 using namespace lighting;
 
+bool COIL::master_set = false;
 
 int main(int argc, char *argv[])
 {
 
   /* initialize random seed: */
   srand (time(NULL));
-
   mosqpp::lib_init();
 
-
-   COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
-   DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
+  DIMMER D1("Dim1", "localhost", 1883, 18, 100);
+  COIL C1("Coil1", "localhost", 1883, 18);
 
   lighting::time_t scan_time;
 
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
   //   return 0;
   // }
   // noecho();
-   bool key;
+  bool key;
   // end keyboard value
 
 

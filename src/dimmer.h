@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 16:18:19 2016 (-0500)
+// Last-Updated: Sat Jul 30 17:01:01 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 26
+//     Update #: 28
 
 // Change Log:
 //
@@ -54,8 +54,8 @@ namespace lighting {
      * @param  auto_off_time
      * @param  power
      */
-    DIMMER (const char* id, const char* host, int port, const char* name,
-            lighting::time_t auto_off_time, double power, int max_level);
+    DIMMER (std::string id, std::string host, int port,
+            double power, int max_level);
 
     /**
      * @name loop -

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 16:19:44 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:58:29 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 131
+//     Update #: 143
 
 // Change Log:
 //
@@ -38,16 +38,20 @@
 
 
 namespace lighting{
-  COIL::COIL(const char* id, const char* host, int port, const char* name,
-             uint auto_off_time, double power) : mosquittopp(id)
+  COIL::COIL(std::string id, std::string host, int port,
+             double power) : mosquittopp((const char *)id.c_str())
   {
-    time_off_sp = auto_off_time;
-    mqtt_name = name;
+    mqtt_name = id;
     int keepalive = 60;
-    connect(host, port, keepalive);
+    connect((const char *)host.c_str(), port, keepalive);
     republish_acc = rand()%(REPUBLISH_TIME);
     this->power = power;
     read_conf();
+    if (!master_set){
+      this_is_master = true;
+      master_set = true;
+      D("master is: " << mqtt_name << std::endl);
+    }
   }
 
   bool COIL::looop(unsigned int scan_time, bool sw)
