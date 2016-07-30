@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Fri Jul 29 21:16:38 2016 (-0500)
+// Last-Updated: Sat Jul 30 15:37:02 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 59
+//     Update #: 122
 
 // Change Log:
 //
@@ -32,8 +32,8 @@
 
 // Code:
 
-#include <iostream> //cin cout cerr(for errors) clog(for logs)
-#include <cstring> // memcpy, strcmp, strlen...
+
+//#include <cstring> // memcpy, strcmp, strlen...
 #include "coil.h"
 
 
@@ -45,9 +45,9 @@ namespace lighting{
     mqtt_name = name;
     int keepalive = 60;
     connect(host, port, keepalive);
-    // publish_now();
     republish_acc = rand()%(REPUBLISH_TIME);
     this->power = power;
+    read_conf();
   }
 
   bool COIL::looop(unsigned int scan_time, bool sw)
@@ -99,25 +99,33 @@ namespace lighting{
   }
 
   void COIL::on_connect(int rc){
-    std::cout << "Connected with code: " << rc << " from COIL::" << mqtt_name << std::endl;
+    std::cout << "Connected with code: " << rc << " from::" << typeid(this).name() << mqtt_name << std::endl;
     if(rc == 0){
       /* Only attempt to subscribe on a successful connect. */
-      std::string sub = mqtt_name + "/get/#";
+      std::string sub = mqtt_name + "/#";
       subscribe(NULL, sub.c_str());
     }
   }
 
   void COIL::on_message(const struct  mosquitto_message *message){
     std::string search_msg = mqtt_name + "/get/status";
-    if(!strcmp(message->topic, search_msg.c_str())){
-      if(atoi((char *)message->payload)>0) goOn();
+    if(!search_msg.compare(message->topic)){
+      if(!(std::string("on")).compare((char *)message->payload)) goOn();
       else goOff();
+
+      std::cout << "COIL is " << on << std::endl;
+    }
+
+    search_msg = mqtt_name + "/set/time_off_sp";
+    if(!search_msg.compare(message->topic)){
+      std::stringstream((char *)message->payload) >> time_off_sp;
+      write_conf();
     }
   }
 
   void COIL::on_subscribe(int mid, int qos_count, const int* granted_qos)
   {
-    std::cout << "Subscription succeeded from COIL::" << mqtt_name << std::endl;
+    std::cout << "Subscription succeeded from: " << typeid(*this).name() << "::" << mqtt_name << std::endl;
   }
 
   void COIL::publish_now()
@@ -136,6 +144,37 @@ namespace lighting{
     std::cout << "to be implemented" << std::endl;
     // total_power
     // total_power_all_clases
+  }
+
+
+  void COIL::write_conf(){
+    nlohmann::json config;
+    config["time_off_sp"] = time_off_sp;
+    std::ofstream configfile;
+    std::string configfile_name = CONF_LOCATION + mqtt_name + ".json";
+
+    configfile.open(configfile_name);
+    if (configfile.is_open()){
+      configfile << config.dump(4);
+      configfile.close();
+    }else{
+      std::cerr << "file opening error on write at: " << configfile_name << std::endl;
+    }
+  }
+
+
+  void COIL::read_conf(){
+    nlohmann::json config;
+    std::ifstream configfile;
+    std::string configfile_name = CONF_LOCATION + mqtt_name + ".json";
+    configfile.open(configfile_name, std::ofstream::in);
+    if (configfile.is_open()){
+      config << configfile;
+      configfile.close();
+      time_off_sp = config["time_off_sp"];
+    }else{
+      std::cerr << "file opening error on read from: " << configfile_name << std::endl;
+    }
   }
 
 } //namespace lighting

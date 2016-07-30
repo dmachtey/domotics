@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 21:17:38 2016 (-0500)
+// Last-Updated: Sat Jul 30 15:40:03 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 20
+//     Update #: 23
 
 // Change Log:
 //
@@ -109,13 +109,21 @@ namespace lighting {
     void publish_now();
 
 
-    // void on_subscribe();
-
-
     void on_message(const struct mosquitto_message *message);
 
 
+    /**
+     * @name write_conf - Writes config file
+     * @return void
+     */
+    void write_conf();
 
+
+    /**
+     * @name read_conf - Reads config file
+     * @return void
+     */
+    void read_conf();
 
     // Private attributes
     //
@@ -156,6 +164,5 @@ namespace lighting {
   };
 }; // end of package namespace
 #endif // DIMMER_H
-
 //
 // DIMMER.h ends here

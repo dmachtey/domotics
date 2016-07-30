@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 16:00:37 2016 (-0500)
+// Last-Updated: Sat Jul 30 14:45:48 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 31
+//     Update #: 34
 
 // Change Log:
 //
@@ -40,6 +40,8 @@
 #define MIN_SCALING_TIME 1000 // ms to start dimming (less shortpress)
 #define SCALING_TIME 500 // ms for each dimming step
 #define DIMMING_STEPS 20 // number of dimming steps
+#define CONF_LOCATION "/home/damian/tmp/dom/"
+
 
 namespace lighting {
 

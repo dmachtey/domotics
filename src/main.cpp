@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 21:12:45 2016 (-0500)
+// Last-Updated: Sat Jul 30 14:57:22 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 91
+//     Update #: 95
 
 // Change Log:
 //
@@ -58,8 +58,8 @@ int main(int argc, char *argv[])
   mosqpp::lib_init();
 
 
-  // COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
-  DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
+   COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
+   //DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
 
   lighting::time_t scan_time;
 
@@ -88,7 +88,8 @@ int main(int argc, char *argv[])
       if (ch == 'q')
         break;
 
-      D1.looop(scan_time, key, false);
+      //D1.looop(scan_time, key, false);
+      C1.looop(scan_time, key);
       usleep(10000);
 
     }while(true);
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
 
   std::cout << "finish" << std::endl;
   std::cout.setf(std::ios::boolalpha);
-  std::cout <<  D1.get_on() << std::endl;
+  std::cout <<  C1.get_on() << std::endl;
 
 
   return 0;

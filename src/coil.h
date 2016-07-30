@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Thu Jul 28 21:32:06 2016 (-0500)
+// Last-Updated: Sat Jul 30 15:39:56 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 34
+//     Update #: 46
 
 // Change Log:
 //
@@ -34,9 +34,16 @@
 
 #ifndef COIL_H
 #define COIL_H
+#include <string>
+#include <typeinfo>
+#include <fstream>
+#include <iostream> //cin cout cerr(for errors) clog(for logs)
+#include <cstring> // memcpy, strcmp, strlen...
+#include <sstream>
+
 #include "mosquittopp.h"
 #include "domtypes.h"
-#include <string>
+#include "../lib/json.hpp"
 
 namespace lighting {
 
@@ -80,6 +87,7 @@ namespace lighting {
       this->time_off_sp = time_off_sp;
     }
 
+
   protected:
     // Static Protected attributes
     //
@@ -112,6 +120,7 @@ namespace lighting {
     // Acumulative power consumed by this coil [W]
     double total_power = 0.0;
 
+
     /**
      * This function is the implementation of mosquittopp
      * Its call when connections is stablished
@@ -120,6 +129,7 @@ namespace lighting {
      */
     void on_connect(int rc);
 
+
     /**
      * This function is the implementation of mosquittopp
      * is called every time a message is received
@@ -127,6 +137,7 @@ namespace lighting {
      * @param  message
      */
     void on_message(const struct mosquitto_message *message);
+
 
     /**
      * This function is the implementation of mosquittopp
@@ -138,10 +149,12 @@ namespace lighting {
      */
     void on_subscribe(int mid, int qos_count, const int* granted_qos);
 
+
     /**
      * Publish object status to moquitto server
      */
     void publish_now();
+
 
     /**
      * Compute the consumed power
@@ -149,12 +162,22 @@ namespace lighting {
      * @param  scan_time
      */
     void compute_power(time_t scan_time);
+
+
+    /**
+     * @name write_conf - Writes config file
+     * @return void
+     */
+    void write_conf();
+
+
+    /**
+     * @name read_conf - Reads config file
+     * @return void
+     */
+    void read_conf();
   };
-
-
 }; // end of package namespace
-
 #endif // COIL_H
-
 //
 // COIL.h ends here

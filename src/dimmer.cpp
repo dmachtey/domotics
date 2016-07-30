@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 21:40:03 2016 (-0500)
+// Last-Updated: Sat Jul 30 15:37:24 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 67
+//     Update #: 75
 
 // Change Log:
 //
@@ -198,7 +198,7 @@ namespace lighting{
       std::cout << "Connected with code: " << rc << " from DIMMER::" << mqtt_name << std::endl;
       if(rc == 0){
         /* Only attempt to subscribe on a successful connect. */
-        std::string sub = mqtt_name + "/get/#";
+        std::string sub = mqtt_name + "/#";
         subscribe(NULL, sub.c_str());
     }
   }
@@ -212,21 +212,53 @@ namespace lighting{
     std::cout << mqtt_name << " is now at: " << duty << std::endl;
     std::cout << "payload: "  << payload << std::endl;
     std::cout << "topic: " << topic << std::endl;
+
   }
 
 
   void DIMMER::on_message(const struct mosquitto_message *message){
     std::string search_msg = mqtt_name + "/get/duty";
-    if(!strcmp(message->topic, search_msg.c_str())){
-      duty = atof((char *)message->payload);
+    if(!search_msg.compare(message->topic)){
+      std::stringstream((char *)message->payload) >> duty;
       time_off_acc = 0;
     }
-    search_msg = mqtt_name + "/get/ringing";
-    if(!strcmp(message->topic, search_msg.c_str())){
+
+    search_msg = mqtt_name + "/set/ringing";
+    if(!search_msg.compare(message->topic)){
       ringing_latch = true;
     }
   }
 
+
+  void DIMMER::write_conf(){
+    nlohmann::json config;
+    config["time_off_sp"] = time_off_sp;
+    std::ofstream configfile;
+    std::string configfile_name = CONF_LOCATION + mqtt_name + ".json";
+
+    configfile.open(configfile_name);
+    if (configfile.is_open()){
+      configfile << config.dump(4);
+      configfile.close();
+    }else{
+      std::cerr << "file opening error on write at: " << configfile_name << std::endl;
+    }
+  }
+
+
+  void DIMMER::read_conf(){
+    nlohmann::json config;
+    std::ifstream configfile;
+    std::string configfile_name = CONF_LOCATION + mqtt_name + ".json";
+    configfile.open(configfile_name, std::ofstream::in);
+    if (configfile.is_open()){
+      config << configfile;
+      configfile.close();
+      time_off_sp = config["time_off_sp"];
+    }else{
+      std::cerr << "file opening error on read from: " << configfile_name << std::endl;
+    }
+  }
 }//namespace
 //
 // DIMMER.cpp ends here

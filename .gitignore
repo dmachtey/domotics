@@ -1,8 +1,8 @@
 # Ignore the build and lib but not directories
 !/build
 build/*
-!/lib
-lib/*
+#!/lib
+#lib/*
 
 
 # ede
