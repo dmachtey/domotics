@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 15:39:56 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:27:30 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 46
+//     Update #: 50
 
 // Change Log:
 //
@@ -35,7 +35,6 @@
 #ifndef COIL_H
 #define COIL_H
 #include <string>
-#include <typeinfo>
 #include <fstream>
 #include <iostream> //cin cout cerr(for errors) clog(for logs)
 #include <cstring> // memcpy, strcmp, strlen...
@@ -119,7 +118,6 @@ namespace lighting {
     double actual_power = 0.0;
     // Acumulative power consumed by this coil [W]
     double total_power = 0.0;
-
 
     /**
      * This function is the implementation of mosquittopp

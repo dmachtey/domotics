@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 14:57:22 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:24:17 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 95
+//     Update #: 100
 
 // Change Log:
 //
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
 
    COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
-   //DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
+   DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
 
   lighting::time_t scan_time;
 
@@ -88,9 +88,9 @@ int main(int argc, char *argv[])
       if (ch == 'q')
         break;
 
-      //D1.looop(scan_time, key, false);
+      D1.looop(scan_time, key, false);
       C1.looop(scan_time, key);
-      usleep(10000);
+      usleep(1000);
 
     }while(true);
 

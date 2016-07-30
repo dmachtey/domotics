@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 15:37:02 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:19:44 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 122
+//     Update #: 131
 
 // Change Log:
 //
@@ -99,7 +99,7 @@ namespace lighting{
   }
 
   void COIL::on_connect(int rc){
-    std::cout << "Connected with code: " << rc << " from::" << typeid(this).name() << mqtt_name << std::endl;
+    std::cout << "Connected with code: " << rc << " from: " << mqtt_name << std::endl;
     if(rc == 0){
       /* Only attempt to subscribe on a successful connect. */
       std::string sub = mqtt_name + "/#";
@@ -113,19 +113,21 @@ namespace lighting{
       if(!(std::string("on")).compare((char *)message->payload)) goOn();
       else goOff();
 
-      std::cout << "COIL is " << on << std::endl;
+      D("COIL is " << on << std::endl);
+      return;
     }
 
     search_msg = mqtt_name + "/set/time_off_sp";
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> time_off_sp;
       write_conf();
+      return;
     }
   }
 
   void COIL::on_subscribe(int mid, int qos_count, const int* granted_qos)
   {
-    std::cout << "Subscription succeeded from: " << typeid(*this).name() << "::" << mqtt_name << std::endl;
+    std::cout << "Subscription succeeded from: " << mqtt_name << std::endl;
   }
 
   void COIL::publish_now()
@@ -134,14 +136,14 @@ namespace lighting{
     std::string payload = on ? "on" : "off";  // CFLAGS=-std=c++11 on Makefile
     publish(NULL, topic.c_str(), payload.length() , payload.c_str());
 
-    std::cout << mqtt_name << " is now " << std::boolalpha << on << std::endl;
-    std::cout << "payload: "  << payload << std::endl;
-    std::cout << "topic: " << topic << std::endl;
+    D(mqtt_name << " is now " << std::boolalpha << on << std::endl);
+    D("payload: "  << payload << std::endl);
+    D("topic: " << topic << std::endl);
   }
 
   void COIL::compute_power(time_t scan_time)
   {
-    std::cout << "to be implemented" << std::endl;
+    D("to be implemented" << std::endl);
     // total_power
     // total_power_all_clases
   }

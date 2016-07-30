@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 14:45:48 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:00:44 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 34
+//     Update #: 38
 
 // Change Log:
 //
@@ -35,6 +35,13 @@
 #define _MODTYPES_H_
 
 #include <string>
+
+#define DEBUG
+#ifdef DEBUG
+#define D(x) do {std::cout << x;} while(0)
+#else
+#define D(x)
+#endif
 
 #define REPUBLISH_TIME 2*60*1000 // 2 minutes
 #define MIN_SCALING_TIME 1000 // ms to start dimming (less shortpress)

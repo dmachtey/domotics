@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 15:37:24 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:20:20 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 75
+//     Update #: 82
 
 // Change Log:
 //
@@ -110,7 +110,7 @@ namespace lighting{
       ringing = true;
       ringing_latch = true;
       if (ringing_acc > 3000) ringing_latch = false;
-      std::cout <<  "ringing at: " << duty << std::endl;
+      D("ringing at: " << duty << std::endl);
     }
     if (ringing && !ringing_latch) { // go back to the start value
       duty = old_duty;
@@ -162,7 +162,7 @@ namespace lighting{
       duty = 0;
       going_off = 0;
     }
-    std::cout << "goingOff, duty at: " << duty << std::endl;
+    D("goingOff, duty at: " << duty << std::endl);
   }
 
 
@@ -195,7 +195,7 @@ namespace lighting{
 
 
     void DIMMER::on_connect(int rc){
-      std::cout << "Connected with code: " << rc << " from DIMMER::" << mqtt_name << std::endl;
+      std::cout << "Connected with code: " << rc << " from: " << mqtt_name << std::endl;
       if(rc == 0){
         /* Only attempt to subscribe on a successful connect. */
         std::string sub = mqtt_name + "/#";
@@ -209,9 +209,9 @@ namespace lighting{
     std::string payload = std::to_string(duty);
     publish(NULL, topic.c_str(), payload.length() , payload.c_str());
 
-    std::cout << mqtt_name << " is now at: " << duty << std::endl;
-    std::cout << "payload: "  << payload << std::endl;
-    std::cout << "topic: " << topic << std::endl;
+    D(mqtt_name << " is now at: " << duty << std::endl);
+    D("payload: "  << payload << std::endl);
+    D("topic: " << topic << std::endl);
 
   }
 
@@ -221,11 +221,27 @@ namespace lighting{
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> duty;
       time_off_acc = 0;
+      return;
     }
 
     search_msg = mqtt_name + "/set/ringing";
     if(!search_msg.compare(message->topic)){
       ringing_latch = true;
+      return;
+    }
+
+    search_msg = mqtt_name + "/set/time_off_sp";
+    if(!search_msg.compare(message->topic)){
+      std::stringstream((char *)message->payload) >> time_off_sp;
+      write_conf();
+      return;
+    }
+
+    search_msg = mqtt_name + "/set/max_level";
+    if(!search_msg.compare(message->topic)){
+      std::stringstream((char *)message->payload) >> max_level;
+      write_conf();
+      return;
     }
   }
 
@@ -233,6 +249,7 @@ namespace lighting{
   void DIMMER::write_conf(){
     nlohmann::json config;
     config["time_off_sp"] = time_off_sp;
+    config["max_level"] = max_level;
     std::ofstream configfile;
     std::string configfile_name = CONF_LOCATION + mqtt_name + ".json";
 
@@ -255,6 +272,7 @@ namespace lighting{
       config << configfile;
       configfile.close();
       time_off_sp = config["time_off_sp"];
+      max_level = config["max_level"];
     }else{
       std::cerr << "file opening error on read from: " << configfile_name << std::endl;
     }
