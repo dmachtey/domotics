@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 18:32:35 2016 (-0500)
+// Last-Updated: Fri Jul 29 21:40:03 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 29
+//     Update #: 67
 
 // Change Log:
 //
@@ -32,6 +32,8 @@
 
 // Code:
 
+#include <cstring>
+#include <iostream>
 #include "dimmer.h"
 
 namespace lighting{
@@ -43,12 +45,11 @@ namespace lighting{
   }
 
 
-  uint DIMMER::loop(unsigned int scan_time, bool sw, bool door_bell_sw){
+  uint DIMMER::looop(unsigned int scan_time, bool sw, bool door_bell_sw){
     bool longpress = false;
     bool shortpress = false;
     uint next_slot = 0;
 
-    /*******************************************************************/
     longpress = (sw_press_acc > MIN_SCALING_TIME);
     shortpress = ((sw_press_acc > 0) && !sw && !longpress);
 
@@ -61,8 +62,7 @@ namespace lighting{
     // timeout, turn it off
     time_off_acc += scan_time * (time_off_sp>0);
     time_off_acc *=(on==true);
-    if(time_off_acc > time_off_sp)
-      goingOff();
+    if(time_off_acc > time_off_sp) going_off = true;
 
     // auto publish
     republish_acc += scan_time;
@@ -76,13 +76,13 @@ namespace lighting{
     next_slot = (sw_press_acc - MIN_SCALING_TIME)/SCALING_TIME; //for scaling on long press
 
     if (shortpress && ((going_on || going_off))){
-      going_on = 0; //reset
-      going_off = 0; //reset
-      shortpress = 0;
+      going_on = false; //reset
+      going_off = false; //reset
+      shortpress = false;
     }
 
-    if (shortpress && !on) going_on = 1; //set
-    if (shortpress && on) going_off = 1; //set
+    if (shortpress && !on) going_on = true; //set
+    if (shortpress && on) going_off = true; //set
 
 
     if (going_on_off_acc > 12){
@@ -108,49 +108,45 @@ namespace lighting{
     if (door_bell_sw || ringing_latch){
       duty = (((ringing_acc / 350) % 2) == 0)*70+15;
       ringing = true;
-
       ringing_latch = true;
       if (ringing_acc > 3000) ringing_latch = false;
+      std::cout <<  "ringing at: " << duty << std::endl;
     }
     if (ringing && !ringing_latch) { // go back to the start value
       duty = old_duty;
       ringing = false;
     }
 
-    if (((duty != old_duty) || republish_acc > REPUBLISH_TIME) && !going_on && !going_off && !ringing_latch){
+    if (((duty != old_duty) || (republish_acc > REPUBLISH_TIME)) && !going_on && !going_off && !ringing_latch){
       old_duty = duty;
       republish_acc *= (republish_acc < REPUBLISH_TIME); //Reset the counter when published was forced
       publish_now();
     }
 
-    if (duty >= max_level) {
-      duty = max_level;
-      on = true;
-        }
-    if (duty <= 0) {
-      duty = 0;
-      on = false;
-        }
-    /*******************************************************************/
+    if (duty >= max_level) duty = max_level;
+    if (duty <= 0) duty = 0;
+
+    on = (duty > 0);
+
     return duty;
   }
 
 
-  void DIMMER::goOffNow(){
+  void DIMMER::swOffNow(){
     duty = 0;
-    on = false;
+    publish_now();
   }
 
 
-  void DIMMER::goOnNow(){
+  void DIMMER::swOnNow(){
     duty = max_level;
-    on = true;
+    publish_now();
   }
 
 
   void DIMMER::goOn(){
-    going_on = true;
     going_off = false;
+    on = going_on = true;
   }
 
 
@@ -161,16 +157,75 @@ namespace lighting{
 
 
   void DIMMER::goingOff(){
+   duty -= (6*max_level)/100;
+    if (duty <= ((5*max_level)/100)){
+      duty = 0;
+      going_off = 0;
+    }
+    std::cout << "goingOff, duty at: " << duty << std::endl;
   }
 
 
   void DIMMER::goingOn(){
+   duty += (6*max_level)/100;
+   if (duty >= max_level){
+     duty = max_level;
+     going_on = 0;
+   }
   }
 
 
   void DIMMER::fading(){
+       sw_slots += 1;
+    if (up_down){ //up
+      duty += max_level/DIMMING_STEPS;
+      if (duty >= max_level){
+        duty = max_level;
+        up_down = 0;
+      }
+    } // up
+    else{ // down
+      duty -= max_level/DIMMING_STEPS;
+      if (duty <= 0){
+        duty = max_level/DIMMING_STEPS;
+        up_down = 1;
+      }
+    } // down
   }
 
+
+    void DIMMER::on_connect(int rc){
+      std::cout << "Connected with code: " << rc << " from DIMMER::" << mqtt_name << std::endl;
+      if(rc == 0){
+        /* Only attempt to subscribe on a successful connect. */
+        std::string sub = mqtt_name + "/get/#";
+        subscribe(NULL, sub.c_str());
+    }
+  }
+
+
+  void DIMMER::publish_now(){
+    std::string topic = mqtt_name + "/send/duty";
+    std::string payload = std::to_string(duty);
+    publish(NULL, topic.c_str(), payload.length() , payload.c_str());
+
+    std::cout << mqtt_name << " is now at: " << duty << std::endl;
+    std::cout << "payload: "  << payload << std::endl;
+    std::cout << "topic: " << topic << std::endl;
+  }
+
+
+  void DIMMER::on_message(const struct mosquitto_message *message){
+    std::string search_msg = mqtt_name + "/get/duty";
+    if(!strcmp(message->topic, search_msg.c_str())){
+      duty = atof((char *)message->payload);
+      time_off_acc = 0;
+    }
+    search_msg = mqtt_name + "/get/ringing";
+    if(!strcmp(message->topic, search_msg.c_str())){
+      ringing_latch = true;
+    }
+  }
 
 }//namespace
 //

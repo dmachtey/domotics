@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Fri Jul 29 18:33:42 2016 (-0500)
+// Last-Updated: Fri Jul 29 21:17:38 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 15
+//     Update #: 20
 
 // Change Log:
 //
@@ -64,17 +64,17 @@ namespace lighting {
      * @param door_bell_sw -  door bell sw
      * @return uint
      */
-    uint loop (time_t scan_time, bool sw, bool door_bell_sw);
+    uint looop (time_t scan_time, bool sw, bool door_bell_sw);
 
 
    /**
      */
-    void goOffNow ();
+    void swOffNow ();
 
 
     /**
      */
-    void goOnNow ();
+    void swOnNow ();
 
 
     /**
@@ -87,6 +87,7 @@ namespace lighting {
     void goOff ();
 
 
+  private:
     /**
      */
     void goingOff ();
@@ -101,7 +102,20 @@ namespace lighting {
      */
     void fading ();
 
-  private:
+
+    void on_connect(int rc);
+
+
+    void publish_now();
+
+
+    // void on_subscribe();
+
+
+    void on_message(const struct mosquitto_message *message);
+
+
+
 
     // Private attributes
     //

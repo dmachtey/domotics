@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Fri Jul 29 18:05:16 2016 (-0500)
+// Last-Updated: Fri Jul 29 21:16:38 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 58
+//     Update #: 59
 
 // Change Log:
 //
@@ -98,19 +98,16 @@ namespace lighting{
     publish_now();
   }
 
-  void COIL::on_connect(int rc)
-  {
+  void COIL::on_connect(int rc){
     std::cout << "Connected with code: " << rc << " from COIL::" << mqtt_name << std::endl;
     if(rc == 0){
       /* Only attempt to subscribe on a successful connect. */
       std::string sub = mqtt_name + "/get/#";
       subscribe(NULL, sub.c_str());
     }
-
   }
 
-  void COIL::on_message(const struct  mosquitto_message *message)
-  {
+  void COIL::on_message(const struct  mosquitto_message *message){
     std::string search_msg = mqtt_name + "/get/status";
     if(!strcmp(message->topic, search_msg.c_str())){
       if(atoi((char *)message->payload)>0) goOn();

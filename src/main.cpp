@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 21:33:10 2016 (-0500)
+// Last-Updated: Fri Jul 29 21:12:45 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 83
+//     Update #: 91
 
 // Change Log:
 //
@@ -58,20 +58,20 @@ int main(int argc, char *argv[])
   mosqpp::lib_init();
 
 
-  COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
-  //DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18);
+  // COIL C1((char *)"Coil1", (char *)"localhost", 1883, (char *)"Coil1", 10*1000, 18);
+  DIMMER D1((char *)"DIM1", (char *)"localhost", 1883, (char *)"Dim1", 10*1000, 18, 100);
 
   lighting::time_t scan_time;
 
   // get keyboard value
-  WINDOW *win;
-  win = initscr(); // new screen will be created
-  if (nodelay(win, TRUE)){
-    std::cout << "error\n";
-    return 0;
-  }
-  noecho();
-  bool key;
+  // WINDOW *win;
+  // win = initscr(); // new screen will be created
+  // if (nodelay(win, TRUE)){
+  //   std::cout << "error\n";
+  //   return 0;
+  // }
+  // noecho();
+   bool key;
   // end keyboard value
 
 
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
       if (ch == 'q')
         break;
 
-      C1.looop(scan_time, key);
+      D1.looop(scan_time, key, false);
       usleep(10000);
 
     }while(true);
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 
   std::cout << "finish" << std::endl;
   std::cout.setf(std::ios::boolalpha);
-  std::cout <<  C1.get_on() << std::endl;
+  std::cout <<  D1.get_on() << std::endl;
 
 
   return 0;
