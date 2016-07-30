@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 16:27:30 2016 (-0500)
+// Last-Updated: Sat Jul 30 16:29:58 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 50
+//     Update #: 52
 
 // Change Log:
 //
@@ -37,7 +37,6 @@
 #include <string>
 #include <fstream>
 #include <iostream> //cin cout cerr(for errors) clog(for logs)
-#include <cstring> // memcpy, strcmp, strlen...
 #include <sstream>
 
 #include "mosquittopp.h"
