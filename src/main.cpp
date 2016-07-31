@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 17:02:19 2016 (-0500)
+// Last-Updated: Sat Jul 30 21:22:15 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 111
+//     Update #: 117
 
 // Change Log:
 //
@@ -63,13 +63,13 @@ int main(int argc, char *argv[])
   lighting::time_t scan_time;
 
   // get keyboard value
-  // WINDOW *win;
-  // win = initscr(); // new screen will be created
-  // if (nodelay(win, TRUE)){
-  //   std::cout << "error\n";
-  //   return 0;
-  // }
-  // noecho();
+  WINDOW *win;
+  win = initscr(); // new screen will be created
+  if (nodelay(win, TRUE)){
+    std::cout << "error\n";
+    return 0;
+  }
+  noecho();
   bool key;
   // end keyboard value
 
@@ -102,7 +102,5 @@ int main(int argc, char *argv[])
 
   return 0;
 }
-
-
 //
 // main.cpp ends here

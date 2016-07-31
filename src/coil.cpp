@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 16:58:29 2016 (-0500)
+// Last-Updated: Sat Jul 30 20:47:00 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 143
+//     Update #: 150
 
 // Change Log:
 //
@@ -46,7 +46,6 @@ namespace lighting{
     connect((const char *)host.c_str(), port, keepalive);
     republish_acc = rand()%(REPUBLISH_TIME);
     this->power = power;
-    read_conf();
     if (!master_set){
       this_is_master = true;
       master_set = true;
@@ -56,6 +55,11 @@ namespace lighting{
 
   bool COIL::looop(unsigned int scan_time, bool sw)
   {
+    if (!first_scan){
+      read_conf();
+      first_scan = true;
+    }
+
     if((sw_press_acc==0) && sw){
       if(on) goOff();
       else goOn();
@@ -181,6 +185,7 @@ namespace lighting{
     }else{
       std::cerr << "file opening error on read from: " << configfile_name << std::endl;
     }
+    D(config.dump(4));
   }
 
 } //namespace lighting

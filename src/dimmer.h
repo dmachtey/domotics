@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 17:01:01 2016 (-0500)
+// Last-Updated: Sat Jul 30 19:40:38 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 28
+//     Update #: 32
 
 // Change Log:
 //
@@ -148,18 +148,18 @@ namespace lighting {
     // Active when ringing sequence is active
     // together with ringing_latch are used to
     // return to old_duty when ringing sequece is over
-    bool ringing = false;  //< could be local! TODO
+    // bool ringing = false;  //< could be local! TODO
     // Active when ringing sequence is active
     // together with ringing_latch are used to
     // return to old_duty when ringing sequece is over
     bool ringing_latch = false;
     // A short pressed was detected and we were "!on"
     // we are turning the lights on
-    //
     bool going_on = false;
     // A short pressed was detected and we were "on"
     // wee are turning the lights off
     bool going_off = false;
+    // going_on and off steps accumulator
     lighting::time_t going_on_off_acc = 0;
   };
 }; // end of package namespace

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 17:01:27 2016 (-0500)
+// Last-Updated: Sat Jul 30 21:25:29 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 87
+//     Update #: 109
 
 // Change Log:
 //
@@ -49,6 +49,10 @@ namespace lighting{
     bool longpress = false;
     bool shortpress = false;
     uint next_slot = 0;
+    if (!first_scan){
+      read_conf();
+      first_scan = true;
+    }
 
     longpress = (sw_press_acc > MIN_SCALING_TIME);
     shortpress = ((sw_press_acc > 0) && !sw && !longpress);
@@ -57,7 +61,7 @@ namespace lighting{
     sw_press_acc *= (sw==true);
 
     ringing_acc += scan_time;
-    ringing_acc *= ((ringing||ringing_latch)==true);
+    ringing_acc *= (ringing_latch==true);
 
     // timeout, turn it off
     time_off_acc += scan_time * (time_off_sp>0);
@@ -68,6 +72,10 @@ namespace lighting{
     republish_acc += scan_time;
     if(republish_acc > REPUBLISH_TIME){
       publish_now();
+
+      D("Republish from: " << mqtt_name << " duty at: "
+        << duty << " republish acc: " << republish_acc << std::endl);
+
       republish_acc = 0;
     }
 
@@ -104,6 +112,7 @@ namespace lighting{
       reconnect();
     }
 
+    bool ringing = false;
     // Ring the light
     if (door_bell_sw || ringing_latch){
       duty = (((ringing_acc / 350) % 2) == 0)*70+15;
@@ -112,21 +121,19 @@ namespace lighting{
       if (ringing_acc > 3000) ringing_latch = false;
       D("ringing at: " << duty << std::endl);
     }
-    if (ringing && !ringing_latch) { // go back to the start value
+    if (ringing && !ringing_latch)  // go back to the start value
       duty = old_duty;
-      ringing = false;
-    }
+
+    if (duty >= max_level) duty = max_level;
+    if (duty <= 0) duty = 0;
+
+    on = (duty > 0);
 
     if (((duty != old_duty) || (republish_acc > REPUBLISH_TIME)) && !going_on && !going_off && !ringing_latch){
       old_duty = duty;
       republish_acc *= (republish_acc < REPUBLISH_TIME); //Reset the counter when published was forced
       publish_now();
     }
-
-    if (duty >= max_level) duty = max_level;
-    if (duty <= 0) duty = 0;
-
-    on = (duty > 0);
 
     return duty;
   }
@@ -240,6 +247,7 @@ namespace lighting{
     search_msg = mqtt_name + "/set/max_level";
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> max_level;
+      if (max_level > 100) max_level = 100; //TODO should be the same value as in pwm.p LOOPCOUNTER
       write_conf();
       return;
     }
@@ -276,6 +284,7 @@ namespace lighting{
     }else{
       std::cerr << "file opening error on read from: " << configfile_name << std::endl;
     }
+    D(config.dump(4));
   }
 }//namespace
 //

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:58:39 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 16:57:29 2016 (-0500)
+// Last-Updated: Sat Jul 30 20:47:15 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 60
+//     Update #: 64
 
 // Change Log:
 //
@@ -115,7 +115,12 @@ namespace lighting {
     double actual_power = 0.0;
     // Acumulative power consumed by this coil [W]
     double total_power = 0.0;
-    bool this_is_master = false;/**< Master class takes care of computing total power */
+    // Master class takes care of computing total power
+    bool this_is_master = false;
+    // first scan
+    bool first_scan = false;
+
+
     /**
      * This function is the implementation of mosquittopp
      * Its call when connections is stablished
