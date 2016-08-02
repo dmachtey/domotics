@@ -1,0 +1,143 @@
+// Filename: pru_data.hp -*- mode: asm -*-
+// 
+// Description: 
+// Author: Damian Machtey
+// Maintainer: 
+// 
+// Created: Mon Aug  1 21:21:27 2016 (-0500)
+// 
+// Last-Updated: Mon Aug  1 21:45:50 2016 (-0500)
+//           By: Damian Machtey
+//     Update #: 4
+
+// Change Log:
+// 
+// 
+// Copyright (C) 2016 Damian Machtey
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or (at
+// your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// 
+// 
+
+// Code:
+
+#define GPIO0 0x44e07000         // GPIO Bank 0, See the AM335x TRM
+#define GPIO1 0x4804c000         // GPIO Bank 1, Table 2.2 Peripheral Map
+#define GPIO2 0x481ac000         // GPIO Bank 2,
+#define GPIO3 0x481ae000         // GPIO Bank 3,
+
+#define LOOPCOUNTER  100         // Length of counter, 100 up 0 down/LEVELS
+
+#define GPIO_CLEARDATAOUT 0x190  // for clearing the GPIO registers
+#define GPIO_SETDATAOUT   0x194  // for setting the GPIO registers
+#define GPIO_DATAIN       0x138  // to read the register data read from GPIO pins
+
+//#define GPIO0_30 1<<30           // P9_11 gpio0[30] Output - bit 30
+
+
+#define GPIO0_10 1<<10 //   0x0D8 | gpio0[10] | P8_31 | 10 |  0
+#define GPIO0_11 1<<11 //   0x0DC | gpio0[11] | P8_32 | 11 |  1
+#define GPIO0_22 1<<22 //   0x020 | gpio0[22] | P8_19 | 22 |  2
+#define GPIO0_23 1<<23 //   0x024 | gpio0[23] | P8_13 | 23 |  3
+#define GPIO0_26 1<<26 //   0x028 | gpio0[26] | P8_14 | 26 |  4
+#define GPIO0_27 1<<27 //   0x02C | gpio0[27] | P8_17 | 27 |  5
+#define GPIO0_8  1<<8  //   0x0D0 | gpio0[8]  | P8_35 |  8 |  6
+#define GPIO0_9  1<<0  //   0x0D4 | gpio0[9]  | P8_33 |  9 |  7
+#define GPIO1_0  1<<0  //   0x000 | gpio1[0]  | P8_25 | 32 |  8
+#define GPIO1_1  1<<1  //   0x004 | gpio1[1]  | P8_24 | 33 |  9
+#define GPIO1_12 1<<12 //   0x030 | gpio1[12] | P8_12 | 44 | 10
+#define GPIO1_13 1<<13 //   0x034 | gpio1[13] | P8_11 | 45 | 11
+#define GPIO1_14 1<<14 //   0x038 | gpio1[14] | P8_16 | 46 | 12
+#define GPIO1_15 1<<15 //   0x03C | gpio1[15] | P8_15 | 47 | 13
+#define GPIO1_2  1<<2  //   0x008 | gpio1[2]  | P8_05 | 34 | 14
+#define GPIO1_29 1<<29 //   0x07C | gpio1[29] | P8_26 | 61 | 15
+#define GPIO1_3  1<<3  //   0x00C | gpio1[3]  | P8_06 | 35 | 16
+#define GPIO1_30 1<<30 //   0x080 | gpio1[30] | P8_21 | 62 | 17
+#define GPIO1_31 1<<31 //   0x084 | gpio1[31] | P8_20 | 63 | 18
+#define GPIO1_4  1<<4  //   0x010 | gpio1[4]  | P8_23 | 36 | 19
+#define GPIO1_5  1<<5  //   0x014 | gpio1[5]  | P8_22 | 37 | 20
+#define GPIO1_6  1<<6  //   0x018 | gpio1[6]  | P8_03 | 38 | 21
+#define GPIO1_7  1<<7  //   0x01C | gpio1[7]  | P8_04 | 39 | 22
+#define GPIO2_1  1<<1  //   0x08C | gpio2[1]  | P8_18 | 65 | 23
+#define GPIO2_17 1<<17 //   0x0CC | gpio2[17] | P8_34 | 81 | 24
+#define GPIO2_2  1<<2  //   0x090 | gpio2[2]  | P8_07 | 66 | 25
+#define GPIO2_22 1<<22 //   0x0E0 | gpio2[22] | P8_27 | 86 | 26
+#define GPIO2_23 1<<23 //   0x0E4 | gpio2[23] | P8_29 | 87 | 27
+#define GPIO2_24 1<<24 //   0x0E8 | gpio2[24] | P8_28 | 88 | 28
+#define GPIO2_25 1<<25 //   0x0EC | gpio2[25] | P8_30 | 89 | 29
+#define GPIO2_3  1<<3  //   0x094 | gpio2[3]  | P8_08 | 67 | 30
+#define GPIO2_4  1<<4  //   0x098 | gpio2[4]  | P8_10 | 68 | 31
+#define GPIO2_5  1<<5  //   0x09C | gpio2[5]  | P8_09 | 69 | 32
+
+// Set Point Address
+#define GPIO0_10_SP 0x00000000   //   0x0D8 | gpio0[10] | P8_31 | 10 |  0
+#define GPIO0_11_SP 0x00000004   //   0x0DC | gpio0[11] | P8_32 | 11 |  1
+#define GPIO0_22_SP 0x00000008   //   0x020 | gpio0[22] | P8_19 | 22 |  2
+#define GPIO0_23_SP 0x0000000c   //   0x024 | gpio0[23] | P8_13 | 23 |  3
+#define GPIO0_26_SP 0x00000010   //   0x028 | gpio0[26] | P8_14 | 26 |  4
+#define GPIO0_27_SP 0x00000014   //   0x02C | gpio0[27] | P8_17 | 27 |  5
+#define GPIO0_8_SP  0x00000018   //   0x0D0 | gpio0[8]  | P8_35 |  8 |  6
+#define GPIO0_9_SP  0x0000001c   //   0x0D4 | gpio0[9]  | P8_33 |  9 |  7
+#define GPIO1_0_SP  0x00000020   //   0x000 | gpio1[0]  | P8_25 | 32 |  8
+#define GPIO1_1_SP  0x00000024   //   0x004 | gpio1[1]  | P8_24 | 33 |  9
+#define GPIO1_12_SP 0x00000028   //   0x030 | gpio1[12] | P8_12 | 44 | 10
+#define GPIO1_13_SP 0x0000002c   //   0x034 | gpio1[13] | P8_11 | 45 | 11
+#define GPIO1_14_SP 0x00000030   //   0x038 | gpio1[14] | P8_16 | 46 | 12
+#define GPIO1_15_SP 0x00000034   //   0x03C | gpio1[15] | P8_15 | 47 | 13
+#define GPIO1_2_SP  0x00000038   //   0x008 | gpio1[2]  | P8_05 | 34 | 14
+#define GPIO1_29_SP 0x0000003c   //   0x07C | gpio1[29] | P8_26 | 61 | 15
+#define GPIO1_3_SP  0x00000040   //   0x00C | gpio1[3]  | P8_06 | 35 | 16
+#define GPIO1_30_SP 0x00000044   //   0x080 | gpio1[30] | P8_21 | 62 | 17
+#define GPIO1_31_SP 0x00000048   //   0x084 | gpio1[31] | P8_20 | 63 | 18
+#define GPIO1_4_SP  0x0000004c   //   0x010 | gpio1[4]  | P8_23 | 36 | 19
+#define GPIO1_5_SP  0x00000050   //   0x014 | gpio1[5]  | P8_22 | 37 | 20
+#define GPIO1_6_SP  0x00000054   //   0x018 | gpio1[6]  | P8_03 | 38 | 21
+#define GPIO1_7_SP  0x00000058   //   0x01C | gpio1[7]  | P8_04 | 39 | 22
+#define GPIO2_1_SP  0x0000005c   //   0x08C | gpio2[1]  | P8_18 | 65 | 23
+#define GPIO2_17_SP 0x00000060   //   0x0CC | gpio2[17] | P8_34 | 81 | 24
+#define GPIO2_2_SP  0x00000064   //   0x090 | gpio2[2]  | P8_07 | 66 | 25
+#define GPIO2_22_SP 0x00000068   //   0x0E0 | gpio2[22] | P8_27 | 86 | 26
+#define GPIO2_23_SP 0x0000006c   //   0x0E4 | gpio2[23] | P8_29 | 87 | 27
+#define GPIO2_24_SP 0x00000070   //   0x0E8 | gpio2[24] | P8_28 | 88 | 28
+#define GPIO2_25_SP 0x00000074   //   0x0EC | gpio2[25] | P8_30 | 89 | 29
+#define GPIO2_3_SP  0x00000078   //   0x094 | gpio2[3]  | P8_08 | 67 | 30
+#define GPIO2_4_SP  0x0000007c   //   0x098 | gpio2[4]  | P8_10 | 68 | 31
+#define GPIO2_5_SP  0x00000080   //   0x09C | gpio2[5]  | P8_09 | 69 | 32
+
+
+#define INS_PER_US   200         // 5ns per instruction
+#define INS_PER_DELAY_LOOP 2     // two instructions per delay loop
+
+#define INS_PER_GPIO 12
+
+//
+// At frequencies above 1250 Hz, no restrictions on the percent
+//  flicker. (Note: this is the minimum allowable frequency for basic
+//  pulse-width modulation (PWM)-based dimming.)
+//
+#define TARGET_HZ 777
+#define N_GPIOS 5
+#define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
+#define INS_OVERHEAD 4
+
+
+#define DELAY_T_USED ((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER)/INS_PER_US // time [us] consumed by program
+#define DELAY_T  (TARGET_LOOP_TIME - DELAY_T_USED)
+#define DELAY_INS ((DELAY_T * INS_PER_US) / (LOOPCOUNTER * INS_PER_DELAY_LOOP))
+
+#define PRU0_R31_VEC_VALID 32
+#define EVENTOUT0 3
+
+// 
+// pru_data.hp ends here
