@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 20:46:41 2016 (-0500)
+// Last-Updated: Mon Aug  1 22:27:59 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 42
+//     Update #: 46
 
 // Change Log:
 //
@@ -38,7 +38,7 @@
 
 #define DEBUG
 #ifdef DEBUG
-#define D(x) do {std::cout << x;} while(0)
+#define D(x) std::cout << x
 #else
 #define D(x)
 #endif
@@ -47,7 +47,8 @@
 #define MIN_SCALING_TIME 1000 // ms to start dimming (less shortpress)
 #define SCALING_TIME 500 // ms for each dimming step
 #define DIMMING_STEPS 20 // number of dimming steps
-#define CONF_LOCATION "/home/damian/tmp/dom/"
+// where the configurations files are stored
+#define CONF_LOCATION "/home/damian/tmp/dom/" 
 
 
 namespace lighting {

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 21:25:29 2016 (-0500)
+// Last-Updated: Mon Aug  1 22:29:45 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 109
+//     Update #: 113
 
 // Change Log:
 //
@@ -36,12 +36,13 @@
 #include <iostream>
 #include "dimmer.h"
 
+
 namespace lighting{
 
   DIMMER::DIMMER(std::string id, std::string host, int port,
                  double power, int max_level) :
     COIL (id, host, port, power){
-    this->max_level = max_level;
+    this->max_level = max_level; //LOOPCOUNTER
   }
 
 
@@ -247,7 +248,7 @@ namespace lighting{
     search_msg = mqtt_name + "/set/max_level";
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> max_level;
-      if (max_level > 100) max_level = 100; //TODO should be the same value as in pwm.p LOOPCOUNTER
+      if (max_level > LOOPCOUNTER) max_level = LOOPCOUNTER; 
       write_conf();
       return;
     }

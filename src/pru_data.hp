@@ -1,34 +1,34 @@
 // Filename: pru_data.hp -*- mode: asm -*-
-// 
-// Description: 
+//
+// Description:
 // Author: Damian Machtey
-// Maintainer: 
-// 
+// Maintainer:
+//
 // Created: Mon Aug  1 21:21:27 2016 (-0500)
-// 
-// Last-Updated: Mon Aug  1 21:45:50 2016 (-0500)
+//
+// Last-Updated: Tue Aug  2 19:29:00 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 4
+//     Update #: 5
 
 // Change Log:
-// 
-// 
+//
+//
 // Copyright (C) 2016 Damian Machtey
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or (at
 // your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-// 
-// 
+//
+//
 
 // Code:
 
@@ -118,26 +118,18 @@
 
 #define INS_PER_US   200         // 5ns per instruction
 #define INS_PER_DELAY_LOOP 2     // two instructions per delay loop
-
 #define INS_PER_GPIO 12
-
-//
-// At frequencies above 1250 Hz, no restrictions on the percent
-//  flicker. (Note: this is the minimum allowable frequency for basic
-//  pulse-width modulation (PWM)-based dimming.)
-//
-#define TARGET_HZ 777
 #define N_GPIOS 5
-#define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
 #define INS_OVERHEAD 4
+#define TARGET_HZ 777
+#define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
 
-
-#define DELAY_T_USED ((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER)/INS_PER_US // time [us] consumed by program
-#define DELAY_T  (TARGET_LOOP_TIME - DELAY_T_USED)
+#define T_USED ((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER)/INS_PER_US // time [us] consumed by program
+#define DELAY_T  (TARGET_LOOP_TIME - T_USED)
 #define DELAY_INS ((DELAY_T * INS_PER_US) / (LOOPCOUNTER * INS_PER_DELAY_LOOP))
 
 #define PRU0_R31_VEC_VALID 32
 #define EVENTOUT0 3
 
-// 
+//
 // pru_data.hp ends here

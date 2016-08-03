@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Sat Jul 30 20:47:00 2016 (-0500)
+// Last-Updated: Tue Aug  2 20:02:00 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 150
+//     Update #: 151
 
 // Change Log:
 //
@@ -39,8 +39,7 @@
 
 namespace lighting{
   COIL::COIL(std::string id, std::string host, int port,
-             double power) : mosquittopp((const char *)id.c_str())
-  {
+             double power) : mosquittopp((const char *)id.c_str()){
     mqtt_name = id;
     int keepalive = 60;
     connect((const char *)host.c_str(), port, keepalive);
@@ -53,8 +52,8 @@ namespace lighting{
     }
   }
 
-  bool COIL::looop(unsigned int scan_time, bool sw)
-  {
+
+  bool COIL::looop(unsigned int scan_time, bool sw){
     if (!first_scan){
       read_conf();
       first_scan = true;
@@ -88,23 +87,24 @@ namespace lighting{
     return on;
   }
 
+
   /**
    */
-  void COIL::goOn()
-  {
+  void COIL::goOn(){
     on = true;
     time_off_acc = 0;
     publish_now();
   }
 
+
   /**
    */
-  void COIL::goOff()
-  {
+  void COIL::goOff(){
     on = false;
     time_off_acc = 0;
     publish_now();
   }
+
 
   void COIL::on_connect(int rc){
     std::cout << "Connected with code: " << rc << " from: " << mqtt_name << std::endl;
@@ -114,6 +114,7 @@ namespace lighting{
       subscribe(NULL, sub.c_str());
     }
   }
+
 
   void COIL::on_message(const struct  mosquitto_message *message){
     std::string search_msg = mqtt_name + "/get/status";
@@ -133,13 +134,13 @@ namespace lighting{
     }
   }
 
-  void COIL::on_subscribe(int mid, int qos_count, const int* granted_qos)
-  {
+
+  void COIL::on_subscribe(int mid, int qos_count, const int* granted_qos){
     std::cout << "Subscription succeeded from: " << mqtt_name << std::endl;
   }
 
-  void COIL::publish_now()
-  {
+
+  void COIL::publish_now(){
     std::string topic = mqtt_name + "/send/status" ;
     std::string payload = on ? "on" : "off";  // CFLAGS=-std=c++11 on Makefile
     publish(NULL, topic.c_str(), payload.length() , payload.c_str());

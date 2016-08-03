@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 21:22:15 2016 (-0500)
+// Last-Updated: Tue Aug  2 20:03:51 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 117
+//     Update #: 133
 
 // Change Log:
 //
@@ -44,7 +44,9 @@
 #include "coil.h"
 #include "dimmer.h"
 #include "domtypes.h"
+#include "pru_data.hp"
 #include "lapse.h"
+#include "temperature.h"
 
 using namespace lighting;
 
@@ -53,12 +55,20 @@ bool COIL::master_set = false;
 int main(int argc, char *argv[])
 {
 
+  // check pru configuration
+  D("DELAY_INS = " << DELAY_INS << std::endl;)
+  if(DELAY_INS < 0){
+    std::cerr << "Error: there is a miss configuration on PRUS DELAY_INS, its < 0\n";
+    exit(EXIT_FAILURE);
+  }
+
   /* initialize random seed: */
   srand (time(NULL));
   mosqpp::lib_init();
 
   DIMMER D1("Dim1", "localhost", 1883, 18, 100);
   COIL C1("Coil1", "localhost", 1883, 18);
+  TEMPERATURE Tmicro("micro", "localhost", 1883, "/some/where/", 2*60*1000);
 
   lighting::time_t scan_time;
 

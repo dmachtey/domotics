@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Sat Jul 30 19:40:38 2016 (-0500)
+// Last-Updated: Mon Aug  1 22:12:44 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 32
+//     Update #: 33
 
 // Change Log:
 //
@@ -38,6 +38,7 @@
 #include <string>
 #include "coil.h"
 #include "domtypes.h"
+#include "pru_data.hp"
 
 namespace lighting {
 

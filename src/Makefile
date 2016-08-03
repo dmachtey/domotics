@@ -10,9 +10,9 @@
 top="$(CURDIR)"/
 ede_FILES=Project.ede Makefile
 
-__/bin/main_SOURCES=main.cpp coil.cpp dimmer.cpp lapse.cpp
+__/bin/main_SOURCES=main.cpp coil.cpp dimmer.cpp lapse.cpp temperature.cpp
 CFLAGS=-std=c++11 -Wall
-../bin/main_OBJ= main.o coil.o dimmer.o lapse.o
+../bin/main_OBJ= main.o coil.o dimmer.o lapse.o temperature.o
 CXX= g++
 CXX_COMPILE=$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 CXX_DEPENDENCIES=-Wp,-MD,.deps/$(*F).P
@@ -22,7 +22,7 @@ VERSION=1.0
 DISTDIR=$(top)Domotics-$(VERSION)
 top_builddir =
 
-DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/domtypes.P
+DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/temperature.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/domtypes.P .deps/pru_data.P .deps/temperature.P
 
 all: ../bin/main
 
