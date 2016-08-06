@@ -1,34 +1,34 @@
 // Filename: pwm_macros.hp -*- mode: asm -*-
-// 
-// Description: 
+//
+// Description:
 // Author: Damian Machtey
-// Maintainer: 
-// 
+// Maintainer:
+//
 // Created: Mon Aug  1 21:20:01 2016 (-0500)
-// 
-// Last-Updated: Mon Aug  1 21:46:12 2016 (-0500)
+//
+// Last-Updated: Sat Aug  6 09:40:16 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 3
+//     Update #: 7
 
 // Change Log:
-// 
-// 
+//
+//
 // Copyright (C) 2016 Damian Machtey
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or (at
 // your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 // General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-// 
-// 
+//
+//
 
 // Code:
 
@@ -75,5 +75,75 @@ LOOPDELAY:
     qbne LOOPDELAY, r4, 0
 .endm
 
-// 
+
+    // copy the set points to a memory+0x100
+    // TODO need to be reprogrammed with a loop
+.macro CPY_SP
+     mov 0x00000100, 0x00000000
+     mov 0x00000104, 0x00000004
+     mov 0x00000108, 0x00000008
+     mov 0x0000010c, 0x0000000c
+     mov 0x00000110, 0x00000010
+     mov 0x00000114, 0x00000014
+     mov 0x00000118, 0x00000018
+     mov 0x0000011c, 0x0000001c
+     mov 0x00000120, 0x00000020
+     mov 0x00000124, 0x00000024
+     mov 0x00000128, 0x00000028
+     mov 0x0000012c, 0x0000002c
+     mov 0x00000130, 0x00000030
+     mov 0x00000134, 0x00000034
+     mov 0x00000138, 0x00000038
+     mov 0x0000013c, 0x0000003c
+     mov 0x00000140, 0x00000040
+     mov 0x00000144, 0x00000044
+     mov 0x00000148, 0x00000048
+     mov 0x0000014c, 0x0000004c
+     mov 0x00000150, 0x00000050
+     mov 0x00000154, 0x00000054
+     mov 0x00000158, 0x00000058
+     mov 0x0000015c, 0x0000005c
+     mov 0x00000160, 0x00000060
+     mov 0x00000164, 0x00000064
+     mov 0x00000168, 0x00000068
+     mov 0x0000016c, 0x0000006c
+     mov 0x00000170, 0x00000070
+     mov 0x00000174, 0x00000074
+     mov 0x00000178, 0x00000078
+     mov 0x0000017c, 0x0000007c
+     mov 0x0000017c, 0x0000007c
+     mov 0x00000180, 0x00000080
+     mov 0x00000184, 0x00000084
+     mov 0x00000188, 0x00000088
+     mov 0x0000018c, 0x0000008c
+     mov 0x00000190, 0x00000090
+     mov 0x00000194, 0x00000094
+     mov 0x00000198, 0x00000098
+     mov 0x0000019c, 0x0000009c
+     mov 0x000001a0, 0x000000a0
+     mov 0x000001a4, 0x000000a4
+     mov 0x000001a8, 0x000000a8
+     mov 0x000001ac, 0x000000ac
+     mov 0x000001b0, 0x000000b0
+     mov 0x000001b4, 0x000000b4
+     mov 0x000001b8, 0x000000b8
+     mov 0x000001bc, 0x000000bc
+     mov 0x000001c0, 0x000000c0
+     mov 0x000001c4, 0x000000c4
+     mov 0x000001c8, 0x000000c8
+     mov 0x000001cc, 0x000000cc
+     mov 0x000001d0, 0x000000d0
+     mov 0x000001d4, 0x000000d4
+     mov 0x000001d8, 0x000000d8
+     mov 0x000001dc, 0x000000dc
+     mov 0x000001e0, 0x000000e0
+     mov 0x000001e4, 0x000000e4
+     mov 0x000001e8, 0x000000e8
+     mov 0x000001ec, 0x000000ec
+     mov 0x000001f0, 0x000000f0
+     mov 0x000001f4, 0x000000f4
+     mov 0x000001f8, 0x000000f8
+     mov 0x000001fc, 0x000000fc
+.endm
+//
 // pwm_macros.hp ends here

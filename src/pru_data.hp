@@ -6,9 +6,9 @@
 //
 // Created: Mon Aug  1 21:21:27 2016 (-0500)
 //
-// Last-Updated: Tue Aug  2 19:29:00 2016 (-0500)
+// Last-Updated: Sat Aug  6 09:34:34 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 5
+//     Update #: 15
 
 // Change Log:
 //
@@ -37,84 +37,146 @@
 #define GPIO2 0x481ac000         // GPIO Bank 2,
 #define GPIO3 0x481ae000         // GPIO Bank 3,
 
-#define LOOPCOUNTER  100         // Length of counter, 100 up 0 down/LEVELS
-
 #define GPIO_CLEARDATAOUT 0x190  // for clearing the GPIO registers
 #define GPIO_SETDATAOUT   0x194  // for setting the GPIO registers
 #define GPIO_DATAIN       0x138  // to read the register data read from GPIO pins
 
-//#define GPIO0_30 1<<30           // P9_11 gpio0[30] Output - bit 30
+
+                            //| Slot # | Order | GPIO#    | General/Analog | G1 | G2 | GPIO_NUM |
+                            //|--------+-------+----------+----------------+----+----+----------+
+#define GPIO2_14  1<<14     //|      0 |     4 | GPIO2_14 |              1 |  2 | 14 |       78 |
+#define GPIO0_8   1<< 8     //|      0 |     3 | GPIO0_8  |              1 |  0 |  8 |        8 |
+#define GPIO0_9   1<< 9     //|      0 |     2 | GPIO0_9  |              1 |  0 |  9 |        9 |
+#define GPIO0_10  1<<10     //|      0 |     1 | GPIO0_10 |              1 |  0 | 10 |       10 |
+#define GPIO2_6   1<< 6     //|      1 |     4 | GPIO2_6  |              1 |  2 |  6 |       70 |
+#define GPIO2_8   1<< 8     //|      1 |     3 | GPIO2_8  |              1 |  2 |  8 |       72 |
+#define GPIO2_10  1<<10     //|      1 |     2 | GPIO2_10 |              1 |  2 | 10 |       74 |
+#define GPIO2_12  1<<12     //|      1 |     1 | GPIO2_12 |              1 |  2 | 12 |       76 |
+#define GPIO2_13  1<<13     //|      2 |     4 | GPIO2_13 |              1 |  2 | 13 |       77 |
+#define GPIO2_11  1<<11     //|      2 |     3 | GPIO2_11 |              1 |  2 | 11 |       75 |
+#define GPIO2_9   1<< 9     //|      2 |     2 | GPIO2_9  |              1 |  2 |  9 |       73 |
+#define GPIO2_7   1<< 7     //|      2 |     1 | GPIO2_7  |              1 |  2 |  7 |       71 |
+#define GPIO0_11  1<<11     //|      3 |     4 | GPIO0_11 |              1 |  0 | 11 |       11 |
+#define GPIO2_17  1<<17     //|      3 |     3 | GPIO2_17 |              1 |  2 | 17 |       81 |
+#define GPIO2_16  1<<16     //|      3 |     2 | GPIO2_16 |              1 |  2 | 16 |       80 |
+#define GPIO2_15  1<<15     //|      3 |     1 | GPIO2_15 |              1 |  2 | 15 |       79 |
+#define GPIO0_23  1<<23     //|      4 |     4 | GPIO0_23 |              1 |  0 | 23 |       23 |
+#define GPIO1_13  1<<13     //|      4 |     3 | GPIO1_13 |              1 |  1 | 13 |       45 |
+#define GPIO2_5   1<< 5     //|      4 |     2 | GPIO2_5  |              1 |  2 |  5 |       69 |
+#define GPIO2_2   1<< 2     //|      4 |     1 | GPIO2_2  |              1 |  2 |  2 |       66 |
+#define GPIO1_2   1<< 2     //|      5 |     4 | GPIO1_2  |              1 |  1 |  2 |       34 |
+#define GPIO1_6   1<< 6     //|      5 |     3 | GPIO1_6  |              1 |  1 |  6 |       38 |
+#define GPIO1_7   1<< 7     //|      5 |     2 | GPIO1_7  |              1 |  1 |  7 |       39 |
+#define GPIO1_3   1<< 3     //|      5 |     1 | GPIO1_3  |              1 |  1 |  3 |       35 |
+#define GPIO2_3   1<< 3     //|      6 |     4 | GPIO2_3  |              1 |  2 |  3 |       67 |
+#define GPIO2_4   1<< 4     //|      6 |     3 | GPIO2_4  |              1 |  2 |  4 |       68 |
+#define GPIO1_12  1<<12     //|      6 |     2 | GPIO1_12 |              1 |  1 | 12 |       44 |
+#define GPIO0_26  1<<26     //|      6 |     1 | GPIO0_26 |              1 |  0 | 26 |       26 |
+#define GPIO1_14  1<<14     //|      7 |     4 | GPIO1_14 |              1 |  1 | 14 |       46 |
+#define GPIO2_1   1<< 1     //|      7 |     3 | GPIO2_1  |              1 |  2 |  1 |       65 |
+#define GPIO1_31  1<<31     //|      7 |     2 | GPIO1_31 |              1 |  1 | 31 |       63 |
+#define GPIO1_5   1<< 5     //|      7 |     1 | GPIO1_5  |              1 |  1 |  5 |       37 |
+#define GPIO1_1   1<< 1     //|      8 |     4 | GPIO1_1  |              1 |  1 |  1 |       33 |
+#define GPIO1_29  1<<29     //|      8 |     3 | GPIO1_29 |              1 |  1 | 29 |       61 |
+#define GPIO2_24  1<<24     //|      8 |     2 | GPIO2_24 |              1 |  2 | 24 |       88 |
+#define GPIO2_25  1<<25     //|      8 |     1 | GPIO2_25 |              1 |  2 | 25 |       89 |
+#define GPIO2_23  1<<23     //|      9 |     4 | GPIO2_23 |              1 |  2 | 23 |       87 |
+#define GPIO2_22  1<<22     //|      9 |     3 | GPIO2_22 |              1 |  2 | 22 |       86 |
+#define GPIO1_0   1<< 0     //|      9 |     2 | GPIO1_0  |              1 |  1 |  0 |       32 |
+#define GPIO1_4   1<< 4     //|      9 |     1 | GPIO1_4  |              1 |  1 |  4 |       36 |
+#define GPIO1_30  1<<30     //|     10 |     4 | GPIO1_30 |              1 |  1 | 30 |       62 |
+#define GPIO0_22  1<<22     //|     10 |     3 | GPIO0_22 |              1 |  0 | 22 |       22 |
+#define GPIO0_27  1<<27     //|     10 |     2 | GPIO0_27 |              1 |  0 | 27 |       27 |
+#define GPIO1_15  1<<15     //|     10 |     1 | GPIO1_15 |              1 |  1 | 15 |       47 |
+#define GPIO1_28  1<<28     //|     11 |     4 | GPIO1_28 |              1 |  1 | 28 |       60 |
+#define GPIO1_18  1<<18     //|     11 |     3 | GPIO1_18 |              1 |  1 | 18 |       50 |
+#define GPIO1_19  1<<19     //|     11 |     2 | GPIO1_19 |              1 |  1 | 19 |       51 |
+#define GPIO0_4   1<< 4     //|     11 |     1 | GPIO0_4  |              1 |  0 |  4 |        4 |
+#define GPIO0_2   1<< 2     //|     12 |     4 | GPIO0_2  |              1 |  0 |  2 |        2 |
+#define GPIO0_15  1<<15     //|     12 |     3 | GPIO0_15 |              1 |  0 | 15 |       15 |
+#define GPIO0_14  1<<14     //|     12 |     2 | GPIO0_14 |              1 |  0 | 14 |       14 |
+#define GPIO3_1   1<<19     //|     12 |     1 | GPIO3_1  |              1 |  3 | 19 |      115 |
+#define GPIO1_16  1<<16     //|     13 |     3 | GPIO1_16 |              1 |  1 | 16 |       48 |
+#define GPIO0_31  1<<31     //|     13 |     2 | GPIO0_31 |              1 |  0 | 31 |       31 |
+#define GPIO0_30  1<<30     //|     13 |     1 | GPIO0_30 |              1 |  0 | 30 |       30 |
+#define GPIO0_20  1<<20     //|     13 |     4 | GPIO0_20 |              1 |  0 | 20 |       20 |
+#define GPIO3_21  1<<21     //|     14 |     4 | GPIO3_21 |              1 |  3 | 21 |      117 |
+#define GPIO1_17  1<<17     //|     14 |     3 | GPIO1_17 |              1 |  1 | 17 |       49 |
+#define GPIO0_3   1<< 3     //|     14 |     2 | GPIO0_3  |              1 |  0 |  3 |        3 |
+#define GPIO0_5   1<< 5     //|     14 |     1 | GPIO0_5  |              1 |  0 |  5 |        5 |
+#define GPIO3_17  1<<17     //|     15 |     4 | GPIO3_17 |              1 |  3 | 17 |      113 |
+#define GPIO3_16  1<<16     //|     15 |     3 | GPIO3_16 |              1 |  3 | 16 |      112 |
+#define GPIO3_14  1<<14     //|     15 |     2 | GPIO3_14 |              1 |  3 | 14 |      110 |
+#define GPIO3_15  1<<15     //|     15 |     1 | GPIO3_15 |              1 |  3 | 15 |      1111|
+
+// Set point addresses
+#define GPIO2_14_SP  0x00000000
+#define GPIO0_8_SP   0x00000004
+#define GPIO0_9_SP   0x00000008
+#define GPIO0_10_SP  0x0000000c
+#define GPIO2_6_SP   0x00000010
+#define GPIO2_8_SP   0x00000014
+#define GPIO2_10_SP  0x00000018
+#define GPIO2_12_SP  0x0000001c
+#define GPIO2_13_SP  0x00000020
+#define GPIO2_11_SP  0x00000024
+#define GPIO2_9_SP   0x00000028
+#define GPIO2_7_SP   0x0000002c
+#define GPIO0_11_SP  0x00000030
+#define GPIO2_17_SP  0x00000034
+#define GPIO2_16_SP  0x00000038
+#define GPIO2_15_SP  0x0000003c
+#define GPIO0_23_SP  0x00000040
+#define GPIO1_13_SP  0x00000044
+#define GPIO2_5_SP   0x00000048
+#define GPIO2_2_SP   0x0000004c
+#define GPIO1_2_SP   0x00000050
+#define GPIO1_6_SP   0x00000054
+#define GPIO1_7_SP   0x00000058
+#define GPIO1_3_SP   0x0000005c
+#define GPIO2_3_SP   0x00000060
+#define GPIO2_4_SP   0x00000064
+#define GPIO1_12_SP  0x00000068
+#define GPIO0_26_SP  0x0000006c
+#define GPIO1_14_SP  0x00000070
+#define GPIO2_1_SP   0x00000074
+#define GPIO1_31_SP  0x00000078
+#define GPIO1_5_SP   0x0000007c
+#define GPIO1_1_SP   0x00000080
+#define GPIO1_29_SP  0x00000084
+#define GPIO2_24_SP  0x00000088
+#define GPIO2_25_SP  0x0000008c
+#define GPIO2_23_SP  0x00000090
+#define GPIO2_22_SP  0x00000094
+#define GPIO1_0_SP   0x00000098
+#define GPIO1_4_SP   0x0000009c
+#define GPIO1_30_SP  0x000000a0
+#define GPIO0_22_SP  0x000000a4
+#define GPIO0_27_SP  0x000000a8
+#define GPIO1_15_SP  0x000000ac
+#define GPIO1_28_SP  0x000000b0
+#define GPIO1_18_SP  0x000000b4
+#define GPIO1_19_SP  0x000000b8
+#define GPIO0_4_SP   0x000000bc
+#define GPIO0_2_SP   0x000000c0
+#define GPIO0_15_SP  0x000000c4
+#define GPIO0_14_SP  0x000000c8
+#define GPIO3_1_SP   0x000000cc
+#define GPIO1_16_SP  0x000000d0
+#define GPIO0_31_SP  0x000000d4
+#define GPIO0_30_SP  0x000000d8
+#define GPIO0_20_SP  0x000000dc
+#define GPIO3_21_SP  0x000000e0
+#define GPIO1_17_SP  0x000000e4
+#define GPIO0_3_SP   0x000000e8
+#define GPIO0_5_SP   0x000000ec
+#define GPIO3_17_SP  0x000000f0
+#define GPIO3_16_SP  0x000000f4
+#define GPIO3_14_SP  0x000000f8
+#define GPIO3_15_SP  0x000000fc
 
 
-#define GPIO0_10 1<<10 //   0x0D8 | gpio0[10] | P8_31 | 10 |  0
-#define GPIO0_11 1<<11 //   0x0DC | gpio0[11] | P8_32 | 11 |  1
-#define GPIO0_22 1<<22 //   0x020 | gpio0[22] | P8_19 | 22 |  2
-#define GPIO0_23 1<<23 //   0x024 | gpio0[23] | P8_13 | 23 |  3
-#define GPIO0_26 1<<26 //   0x028 | gpio0[26] | P8_14 | 26 |  4
-#define GPIO0_27 1<<27 //   0x02C | gpio0[27] | P8_17 | 27 |  5
-#define GPIO0_8  1<<8  //   0x0D0 | gpio0[8]  | P8_35 |  8 |  6
-#define GPIO0_9  1<<0  //   0x0D4 | gpio0[9]  | P8_33 |  9 |  7
-#define GPIO1_0  1<<0  //   0x000 | gpio1[0]  | P8_25 | 32 |  8
-#define GPIO1_1  1<<1  //   0x004 | gpio1[1]  | P8_24 | 33 |  9
-#define GPIO1_12 1<<12 //   0x030 | gpio1[12] | P8_12 | 44 | 10
-#define GPIO1_13 1<<13 //   0x034 | gpio1[13] | P8_11 | 45 | 11
-#define GPIO1_14 1<<14 //   0x038 | gpio1[14] | P8_16 | 46 | 12
-#define GPIO1_15 1<<15 //   0x03C | gpio1[15] | P8_15 | 47 | 13
-#define GPIO1_2  1<<2  //   0x008 | gpio1[2]  | P8_05 | 34 | 14
-#define GPIO1_29 1<<29 //   0x07C | gpio1[29] | P8_26 | 61 | 15
-#define GPIO1_3  1<<3  //   0x00C | gpio1[3]  | P8_06 | 35 | 16
-#define GPIO1_30 1<<30 //   0x080 | gpio1[30] | P8_21 | 62 | 17
-#define GPIO1_31 1<<31 //   0x084 | gpio1[31] | P8_20 | 63 | 18
-#define GPIO1_4  1<<4  //   0x010 | gpio1[4]  | P8_23 | 36 | 19
-#define GPIO1_5  1<<5  //   0x014 | gpio1[5]  | P8_22 | 37 | 20
-#define GPIO1_6  1<<6  //   0x018 | gpio1[6]  | P8_03 | 38 | 21
-#define GPIO1_7  1<<7  //   0x01C | gpio1[7]  | P8_04 | 39 | 22
-#define GPIO2_1  1<<1  //   0x08C | gpio2[1]  | P8_18 | 65 | 23
-#define GPIO2_17 1<<17 //   0x0CC | gpio2[17] | P8_34 | 81 | 24
-#define GPIO2_2  1<<2  //   0x090 | gpio2[2]  | P8_07 | 66 | 25
-#define GPIO2_22 1<<22 //   0x0E0 | gpio2[22] | P8_27 | 86 | 26
-#define GPIO2_23 1<<23 //   0x0E4 | gpio2[23] | P8_29 | 87 | 27
-#define GPIO2_24 1<<24 //   0x0E8 | gpio2[24] | P8_28 | 88 | 28
-#define GPIO2_25 1<<25 //   0x0EC | gpio2[25] | P8_30 | 89 | 29
-#define GPIO2_3  1<<3  //   0x094 | gpio2[3]  | P8_08 | 67 | 30
-#define GPIO2_4  1<<4  //   0x098 | gpio2[4]  | P8_10 | 68 | 31
-#define GPIO2_5  1<<5  //   0x09C | gpio2[5]  | P8_09 | 69 | 32
-
-// Set Point Address
-#define GPIO0_10_SP 0x00000000   //   0x0D8 | gpio0[10] | P8_31 | 10 |  0
-#define GPIO0_11_SP 0x00000004   //   0x0DC | gpio0[11] | P8_32 | 11 |  1
-#define GPIO0_22_SP 0x00000008   //   0x020 | gpio0[22] | P8_19 | 22 |  2
-#define GPIO0_23_SP 0x0000000c   //   0x024 | gpio0[23] | P8_13 | 23 |  3
-#define GPIO0_26_SP 0x00000010   //   0x028 | gpio0[26] | P8_14 | 26 |  4
-#define GPIO0_27_SP 0x00000014   //   0x02C | gpio0[27] | P8_17 | 27 |  5
-#define GPIO0_8_SP  0x00000018   //   0x0D0 | gpio0[8]  | P8_35 |  8 |  6
-#define GPIO0_9_SP  0x0000001c   //   0x0D4 | gpio0[9]  | P8_33 |  9 |  7
-#define GPIO1_0_SP  0x00000020   //   0x000 | gpio1[0]  | P8_25 | 32 |  8
-#define GPIO1_1_SP  0x00000024   //   0x004 | gpio1[1]  | P8_24 | 33 |  9
-#define GPIO1_12_SP 0x00000028   //   0x030 | gpio1[12] | P8_12 | 44 | 10
-#define GPIO1_13_SP 0x0000002c   //   0x034 | gpio1[13] | P8_11 | 45 | 11
-#define GPIO1_14_SP 0x00000030   //   0x038 | gpio1[14] | P8_16 | 46 | 12
-#define GPIO1_15_SP 0x00000034   //   0x03C | gpio1[15] | P8_15 | 47 | 13
-#define GPIO1_2_SP  0x00000038   //   0x008 | gpio1[2]  | P8_05 | 34 | 14
-#define GPIO1_29_SP 0x0000003c   //   0x07C | gpio1[29] | P8_26 | 61 | 15
-#define GPIO1_3_SP  0x00000040   //   0x00C | gpio1[3]  | P8_06 | 35 | 16
-#define GPIO1_30_SP 0x00000044   //   0x080 | gpio1[30] | P8_21 | 62 | 17
-#define GPIO1_31_SP 0x00000048   //   0x084 | gpio1[31] | P8_20 | 63 | 18
-#define GPIO1_4_SP  0x0000004c   //   0x010 | gpio1[4]  | P8_23 | 36 | 19
-#define GPIO1_5_SP  0x00000050   //   0x014 | gpio1[5]  | P8_22 | 37 | 20
-#define GPIO1_6_SP  0x00000054   //   0x018 | gpio1[6]  | P8_03 | 38 | 21
-#define GPIO1_7_SP  0x00000058   //   0x01C | gpio1[7]  | P8_04 | 39 | 22
-#define GPIO2_1_SP  0x0000005c   //   0x08C | gpio2[1]  | P8_18 | 65 | 23
-#define GPIO2_17_SP 0x00000060   //   0x0CC | gpio2[17] | P8_34 | 81 | 24
-#define GPIO2_2_SP  0x00000064   //   0x090 | gpio2[2]  | P8_07 | 66 | 25
-#define GPIO2_22_SP 0x00000068   //   0x0E0 | gpio2[22] | P8_27 | 86 | 26
-#define GPIO2_23_SP 0x0000006c   //   0x0E4 | gpio2[23] | P8_29 | 87 | 27
-#define GPIO2_24_SP 0x00000070   //   0x0E8 | gpio2[24] | P8_28 | 88 | 28
-#define GPIO2_25_SP 0x00000074   //   0x0EC | gpio2[25] | P8_30 | 89 | 29
-#define GPIO2_3_SP  0x00000078   //   0x094 | gpio2[3]  | P8_08 | 67 | 30
-#define GPIO2_4_SP  0x0000007c   //   0x098 | gpio2[4]  | P8_10 | 68 | 31
-#define GPIO2_5_SP  0x00000080   //   0x09C | gpio2[5]  | P8_09 | 69 | 32
-
+#define LOOPCOUNTER  100         // Length of counter, 100 up 0 down/LEVELS
 
 #define INS_PER_US   200         // 5ns per instruction
 #define INS_PER_DELAY_LOOP 2     // two instructions per delay loop

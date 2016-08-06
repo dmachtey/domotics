@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Mon Aug  1 22:27:59 2016 (-0500)
+// Last-Updated: Thu Aug  4 22:56:26 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 46
+//     Update #: 48
 
 // Change Log:
 //
@@ -48,13 +48,14 @@
 #define SCALING_TIME 500 // ms for each dimming step
 #define DIMMING_STEPS 20 // number of dimming steps
 // where the configurations files are stored
-#define CONF_LOCATION "/home/damian/tmp/dom/" 
+#define CONF_LOCATION "/home/damian/tmp/dom/"
 
 
 namespace lighting {
 
   typedef unsigned int time_t;
   typedef unsigned int uint;
+
 
   typedef enum {
     LED,
@@ -64,6 +65,7 @@ namespace lighting {
     MOTOR,
     OTHER
   } p_device;
+
 
   class powered {
   public:
@@ -75,6 +77,12 @@ namespace lighting {
     uint n_circuits;
     p_device type;
   };
+
+
+  typedef enum {
+    zero = 0,
+    one = 1
+  } pru_num;
 
 
 }

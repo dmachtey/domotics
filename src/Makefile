@@ -22,7 +22,7 @@ VERSION=1.0
 DISTDIR=$(top)Domotics-$(VERSION)
 top_builddir =
 
-DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/temperature.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/domtypes.P .deps/pru_data.P .deps/temperature.P
+DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/temperature.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/domtypes.P .deps/pru_data.P .deps/temperature.P .deps/pru-loader.P .deps/pru-loader.P
 
 all: ../bin/main
 

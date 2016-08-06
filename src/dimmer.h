@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Mon Aug  1 22:12:44 2016 (-0500)
+// Last-Updated: Thu Aug  4 13:00:46 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 33
+//     Update #: 36
 
 // Change Log:
 //
@@ -42,8 +42,7 @@
 
 namespace lighting {
 
-  class DIMMER : public COIL
-  {
+  class DIMMER : public COIL{
   public:
 
     /**
@@ -55,53 +54,63 @@ namespace lighting {
      * @param  auto_off_time
      * @param  power
      */
-    DIMMER (std::string id, std::string host, int port,
+    DIMMER(std::string id, std::string host, int port,
             double power, int max_level);
 
     /**
-     * @name loop -
+     * @name loop - should be called in an infinite loop
+     * It mean to control a light intensity
+     * by mqtt messages
+     * or by a physical switch following the next table:
+     * | press | is        | start     | on            |
+     * |-------+-----------+-----------+---------------|
+     * | short | off       | going on  | release       |
+     * | short | on        | going_off | release       |
+     * | short | going_on  | stop      | release       |
+     * | short | going_off | stop      | release       |
+     * | long  | x         | fade      | while pressed |
      * @param scan_time -  scan time
      * @param sw -  sw
      * @param door_bell_sw -  door bell sw
      * @return uint
      */
-    uint looop (time_t scan_time, bool sw, bool door_bell_sw);
-
-
-   /**
-     */
-    void swOffNow ();
+    uint looop(time_t scan_time, bool sw, bool door_bell_sw);
 
 
     /**
      */
-    void swOnNow ();
+    void swOffNow();
 
 
     /**
      */
-    void goOn ();
+    void swOnNow();
 
 
     /**
      */
-    void goOff ();
+    void goOn();
+
+
+    /**
+     */
+    void goOff();
 
 
   private:
     /**
      */
-    void goingOff ();
+    void goingOff();
 
 
     /**
      */
-    void goingOn ();
+    void goingOn();
 
 
     /**
      */
-    void fading ();
+    void fading();
 
 
     void on_connect(int rc);
