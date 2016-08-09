@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Tue Aug  9 16:23:23 2016 (-0500)
+// Last-Updated: Tue Aug  9 17:08:39 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 149
+//     Update #: 162
 
 // Change Log:
 //
@@ -35,8 +35,12 @@
 
 #include <iostream>
 //#include <time.h>
-#include <unistd.h> //for usleep
+//#include <unistd.h> //for usleep
+#include <chrono>
+#include <thread>
 #include <csignal>
+
+#include "mosquittopp.h"
 
 #include "coil.h"
 #include "dimmer.h"
@@ -47,10 +51,10 @@
 #include "pru_loader.h"
 #include "gpio.h"
 
+int finish_signal = 0;
 void signal_handler(int signal){
- finish_signal = 1;
+  finish_signal = 1;
 }
-
 
 using namespace lighting;
 bool COIL::master_set = false;
@@ -59,47 +63,48 @@ int main(int argc, char *argv[])
 {
 
   D("DELAY_INS = " << DELAY_INS << std::endl;)
-  if(DELAY_INS < 0){
-    std::cerr << "Error: there is a miss configuration on PRUS DELAY_INS, its < 0\n";
-    exit(EXIT_FAILURE);
-  }
+    if(DELAY_INS < 0){
+      std::cerr << "Error: there is a miss configuration on PRUS DELAY_INS, its < 0\n";
+      exit(EXIT_FAILURE);
+    }
 
   // initialize random seed:
   srand (time(NULL));
+  // initialize mosquittopp
   mosqpp::lib_init();
 
 
-  // Configure and load pruss software
+  // Configure and load pruss program
   PRULOADER pru_0("/usr/lib/domotics/pwm.bin", zero);
 
 
   // Inputs declaration
-  GPIO SW1(4);   // patio
-  GPIO SW2(51);  // salon
-  GPIO SW3(50);  // ingreso
-  GPIO SW4(60);  // baño
-  GPIO SW5(115); // Cocina
-  GPIO BELL(14); // Timbre
+  exploringBB::GPIO SW1(4);   // patio
+  exploringBB::GPIO SW2(51);  // salon
+  exploringBB::GPIO SW3(50);  // ingreso
+  exploringBB::GPIO SW4(60);  // baño
+  exploringBB::GPIO SW5(115); // Cocina
+  exploringBB::GPIO BELL(14); // Timbre
 
-  SW1.setDirection(INPUT);
-  SW2.setDirection(INPUT);
-  SW3.setDirection(INPUT);
-  SW4.setDirection(INPUT);
-  SW5.setDirection(INPUT);
-  BELL.setDirection(INPUT);
+  SW1.setDirection(exploringBB::INPUT);
+  SW2.setDirection(exploringBB::INPUT);
+  SW3.setDirection(exploringBB::INPUT);
+  SW4.setDirection(exploringBB::INPUT);
+  SW5.setDirection(exploringBB::INPUT);
+  BELL.setDirection(exploringBB::INPUT);
 
   // Outputs declaration
-  DIMMER patio  ("localhost", 1883, "LT1", 18*4, 100);  // Patio
-  DIMMER salon  ("localhost", 1883, "LT2", 18*4, 100);  // Salon quincho
-  DIMMER ingreso("localhost", 1883, "LT3", 18,   100);  // Ingreso quincho
-  DIMMER bano   ("localhost", 1883, "LT4", 18,   70 );  // Baño
-  DIMMER cocina ("localhost", 1883, "LT5", 18,   90);   // Cocina quincho
+  DIMMER patio  ("LT1", "localhost", 1883, 18*4, 100);  // Patio
+  DIMMER salon  ("LT2", "localhost", 1883, 18*4, 100);  // Salon quincho
+  DIMMER ingreso("LT3", "localhost", 1883, 18,   100);  // Ingreso quincho
+  DIMMER bano   ("LT4", "localhost", 1883, 18,   70 );  // Baño
+  DIMMER cocina ("LT5", "localhost", 1883, 18,   90);   // Cocina quincho
 
   TEMPERATURE T1("CPUTemp", "localhost", 1883,
                  "/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
 
   lighting::time_t scan_time;
-  uint bell_sw;
+  bool bell_sw;
   LAPSE lapse;
   do
     {
@@ -118,7 +123,7 @@ int main(int argc, char *argv[])
 
       // Ingreso Slot 10.3
       pru_0.set_pwm(GPIO0_22, ingreso.looop(scan_time,
-                                          SW3.getValue(), bell_sw));
+                                            SW3.getValue(), bell_sw));
 
       // baño Slot 10.4
       pru_0.set_pwm(GPIO1_30, bano.looop(scan_time,
@@ -130,7 +135,8 @@ int main(int argc, char *argv[])
 
 
 
-      usleep(1000);
+      //      usleep(1000);
+      std::this_thread::sleep_for(std::chrono::milliseconds(4));
 
       signal(SIGINT, signal_handler);
       if (finish_signal)
@@ -138,8 +144,8 @@ int main(int argc, char *argv[])
     }while(true);
 
   mosqpp::lib_cleanup(); // DIMMERS and TEMPERATURES get destroyed here
-  pru_0.PRULOADER();
- std::cout << "We've cleaned all up" << std::endl;
+  pru_0.~PRULOADER();
+  std::cout << "We've cleaned all up" << std::endl;
   return 0;
 }
 //

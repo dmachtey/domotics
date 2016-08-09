@@ -10,21 +10,27 @@
 top="$(CURDIR)"/
 ede_FILES=Project.ede Makefile
 
-__/bin/main_SOURCES=main.cpp coil.cpp dimmer.cpp lapse.cpp temperature.cpp pru_loader.cpp
+__/bin/main_SOURCES=main.cpp coil.cpp dimmer.cpp lapse.cpp temperature.cpp pru_loader.cpp gpio.cpp
 CFLAGS=-std=c++11 -Wall
-../bin/main_OBJ= main.o coil.o dimmer.o lapse.o temperature.o pru_loader.o
+../bin/main_OBJ= main.o coil.o dimmer.o lapse.o temperature.o pru_loader.o gpio.o
 CXX= g++
 CXX_COMPILE=$(CXX) $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 CXX_DEPENDENCIES=-Wp,-MD,.deps/$(*F).P
 CXX_LINK=$(CXX) $(CFLAGS) $(LDFLAGS) -L.
-LDDEPS=-pthread -lmosquittopp -lncurses
+LDDEPS=-pthread -lmosquittopp -lprussdrv
+pwm_SOURCES=pwm.p
+PASM=pasm
+C_LINK=$(CC) $(CFLAGS) $(LDFLAGS) -L.
+LD=ld
+LD_LINK=$(LD) $(LDFLAGS) -L.
+F90_LINK=$(F90) $(CFLAGS) $(LDFLAGS) -L.
 VERSION=1.0
 DISTDIR=$(top)Domotics-$(VERSION)
 top_builddir =
 
-DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/temperature.P .deps/pru_loader.P .deps/lapse.P .deps/domtypes.P .deps/dimmer.P .deps/pru_data.P .deps/pru_loader.P .deps/temperature.P
+DEP_FILES=.deps/main.P .deps/coil.P .deps/dimmer.P .deps/lapse.P .deps/temperature.P .deps/pru_loader.P .deps/gpio.P .deps/lapse.P .deps/domtypes.P .deps/dimmer.P .deps/pru_data.P .deps/pru_loader.P .deps/temperature.P .deps/coil.P .deps/gpio.P .deps/pwm.P .deps/pru_data.P .deps/pwm_macros.P
 
-all: ../bin/main
+all: ../bin/main pwm
 
 DEPS_MAGIC := $(shell mkdir .deps > /dev/null 2>&1 || :)
 -include $(DEP_FILES)
@@ -35,6 +41,9 @@ DEPS_MAGIC := $(shell mkdir .deps > /dev/null 2>&1 || :)
 
 ../bin/main: $(../bin/main_OBJ)
 	$(CXX_LINK) -o $@ $^ $(LDDEPS)
+
+pwm: $(pwm_SOURCES) pru_data.hp pwm_macros.hp
+	pasm -b $< $(basename .p $@)
 
 tags:
 
@@ -47,7 +56,7 @@ clean:
 dist:
 	rm -rf $(DISTDIR)
 	mkdir $(DISTDIR)
-	cp $(__/bin/main_SOURCES) $(ede_FILES) $(DISTDIR)
+	cp $(__/bin/main_SOURCES) $(pwm_SOURCES) $(ede_FILES) $(DISTDIR)
 	tar -cvzf $(DISTDIR).tar.gz $(DISTDIR)
 	rm -rf $(DISTDIR)
 

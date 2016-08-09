@@ -6,9 +6,9 @@
 //
 // Created: Mon Aug  1 21:20:01 2016 (-0500)
 //
-// Last-Updated: Tue Aug  9 08:53:16 2016 (-0500)
+// Last-Updated: Tue Aug  9 17:34:46 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 18
+//     Update #: 19
 
 // Change Log:
 //
@@ -89,7 +89,7 @@ LOOPDELAY:
 #define temp    r13
 
  // Copy the remote setpoint to a local setpoint
-.macro CPY_mem
+.macro CPY_SP
     mov global.src, 0x00
     mov global.dst, 0x100
     mov global.size, 64
