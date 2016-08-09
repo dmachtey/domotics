@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Aug  4 22:55:24 2016 (-0500)
+// Last-Updated: Tue Aug  9 16:23:23 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 134
+//     Update #: 149
 
 // Change Log:
 //
@@ -36,10 +36,7 @@
 #include <iostream>
 //#include <time.h>
 #include <unistd.h> //for usleep
-
-//kbhit()
-#include <stdlib.h>
-#include <ncurses.h>
+#include <csignal>
 
 #include "coil.h"
 #include "dimmer.h"
@@ -47,69 +44,102 @@
 #include "pru_data.hp"
 #include "lapse.h"
 #include "temperature.h"
+#include "pru_loader.h"
+#include "gpio.h"
+
+void signal_handler(int signal){
+ finish_signal = 1;
+}
+
 
 using namespace lighting;
-
 bool COIL::master_set = false;
 
 int main(int argc, char *argv[])
 {
 
-  // check pru configuration
   D("DELAY_INS = " << DELAY_INS << std::endl;)
   if(DELAY_INS < 0){
     std::cerr << "Error: there is a miss configuration on PRUS DELAY_INS, its < 0\n";
     exit(EXIT_FAILURE);
   }
 
-  /* initialize random seed: */
+  // initialize random seed:
   srand (time(NULL));
   mosqpp::lib_init();
 
-  DIMMER D1("Dim1", "localhost", 1883, 18, 100);
-  COIL C1("Coil1", "localhost", 1883, 18);
-  TEMPERATURE Tmicro("micro", "localhost", 1883, "/some/where/", 2*60*1000);
+
+  // Configure and load pruss software
+  PRULOADER pru_0("/usr/lib/domotics/pwm.bin", zero);
+
+
+  // Inputs declaration
+  GPIO SW1(4);   // patio
+  GPIO SW2(51);  // salon
+  GPIO SW3(50);  // ingreso
+  GPIO SW4(60);  // baño
+  GPIO SW5(115); // Cocina
+  GPIO BELL(14); // Timbre
+
+  SW1.setDirection(INPUT);
+  SW2.setDirection(INPUT);
+  SW3.setDirection(INPUT);
+  SW4.setDirection(INPUT);
+  SW5.setDirection(INPUT);
+  BELL.setDirection(INPUT);
+
+  // Outputs declaration
+  DIMMER patio  ("localhost", 1883, "LT1", 18*4, 100);  // Patio
+  DIMMER salon  ("localhost", 1883, "LT2", 18*4, 100);  // Salon quincho
+  DIMMER ingreso("localhost", 1883, "LT3", 18,   100);  // Ingreso quincho
+  DIMMER bano   ("localhost", 1883, "LT4", 18,   70 );  // Baño
+  DIMMER cocina ("localhost", 1883, "LT5", 18,   90);   // Cocina quincho
+
+  TEMPERATURE T1("CPUTemp", "localhost", 1883,
+                 "/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
 
   lighting::time_t scan_time;
-
-  // get keyboard value
-  WINDOW *win;
-  win = initscr(); // new screen will be created
-  if (nodelay(win, TRUE)){
-    std::cout << "error\n";
-    return 0;
-  }
-  noecho();
-  bool key;
-  // end keyboard value
-
-
+  uint bell_sw;
   LAPSE lapse;
   do
     {
       scan_time = lapse.get_lapse();
-      //   key = false;
-      unsigned int ch = getch();
-      if (ch == 'a') //a
-        key = true;
-      if (ch == 's')
-        key = false;
-      if (ch == 'q')
-        break;
 
-      D1.looop(scan_time, key, false);
-      C1.looop(scan_time, key);
+      bell_sw = BELL.getValue();
+
+
+      // patio, Slot 10.2
+      pru_0.set_pwm(GPIO0_27, patio.looop(scan_time,
+                                          SW1.getValue(), bell_sw));
+
+      // salon Slot 10.1
+      pru_0.set_pwm(GPIO1_15, salon.looop(scan_time,
+                                          SW2.getValue(), bell_sw));
+
+      // Ingreso Slot 10.3
+      pru_0.set_pwm(GPIO0_22, ingreso.looop(scan_time,
+                                          SW3.getValue(), bell_sw));
+
+      // baño Slot 10.4
+      pru_0.set_pwm(GPIO1_30, bano.looop(scan_time,
+                                         SW4.getValue(), bell_sw));
+
+      // cocina Slot 9.1
+      pru_0.set_pwm(GPIO1_4, cocina.looop(scan_time,
+                                          SW5.getValue(), bell_sw));
+
+
+
       usleep(1000);
 
+      signal(SIGINT, signal_handler);
+      if (finish_signal)
+        break;
     }while(true);
 
-  endwin();
-
-  std::cout << "finish" << std::endl;
-  std::cout.setf(std::ios::boolalpha);
-  std::cout <<  C1.get_on() << std::endl;
-
-
+  mosqpp::lib_cleanup(); // DIMMERS and TEMPERATURES get destroyed here
+  pru_0.PRULOADER();
+ std::cout << "We've cleaned all up" << std::endl;
   return 0;
 }
 //

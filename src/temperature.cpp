@@ -6,9 +6,9 @@
 //
 // Created: 2015-06-22 Mon
 //
-// Last-Updated: Tue Aug  2 20:20:42 2016 (-0500)
+// Last-Updated: Tue Aug  9 16:06:25 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 34
+//     Update #: 37
 
 // Change Log:
 //
@@ -43,7 +43,7 @@
 namespace lighting{
 
   TEMPERATURE::TEMPERATURE(std::string id, std::string host, int port,
-                           std::string where, uint publish_every_ms) :
+                           std::string filename, uint publish_every_ms) :
     mosquittopp((const char *)id.c_str()){
 
     int keepalive = 60;
@@ -53,7 +53,7 @@ namespace lighting{
     first_cycle = 0;
     mqtt_name = id;
     topic = id + "/send/temp";
-    location = where;
+    location = filename;
   }
 
 
@@ -83,7 +83,7 @@ namespace lighting{
       inFile.close();
       temp = std::to_string(stof(temp)/1000.0f);
 
-      D( topic << " Said temperature is: " << temp << std::endl);
+      D(topic << " Said temperature is: " << temp << std::endl;)
     }
     else {
       std::cerr << "Error on TEMPERATURE::read(): " << strerror(errno) << std::endl;
