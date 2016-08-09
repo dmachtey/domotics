@@ -1,4 +1,4 @@
-// Filename: pru-loader.h
+// Filename: pru_loader.h
 //
 // Description:
 // Author: Damian Machtey
@@ -6,9 +6,9 @@
 //
 // Created: Thu Aug  4 12:51:43 2016 (-0500)
 //
-// Last-Updated: Fri Aug  5 20:17:30 2016 (-0500)
+// Last-Updated: Tue Aug  9 08:49:14 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 15
+//     Update #: 28
 
 // Change Log:
 //
@@ -31,10 +31,11 @@
 //
 
 // Code:
-#ifndef PRU-LOADER_H
-#define PRU-LOADER_H
+#ifndef PRU_LOADER_H
+#define PRU_LOADER_H
 
 #include <iostream>
+
 #include <string>
 #include <unistd.h> //for usleep, getudi
 #include <prussdrv.h>
@@ -44,16 +45,17 @@
 
 namespace lighting{
   class PRULOADER{
-  prublic:
+  public:
     PRULOADER(std::string prubinary, pru_num pru);
     void set_pwm(uint gpio, uint pwm);
-
+    void print();
+    ~PRULOADER();
   private:
-    static void *pruDataMemory;
-    static unsigned int *pruDataMemory_int;
-    int pru_num = 0;
-  }
+    void *pruDataMemory;
+    unsigned int *pruDataMemory_int;
+    pru_num prunum;
+  };
 } //namespace
 #endif // PRU-LOADER_H
 //
-// pru-loader.h ends here
+// pru_loader.h ends here

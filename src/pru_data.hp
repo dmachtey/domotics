@@ -6,9 +6,9 @@
 //
 // Created: Mon Aug  1 21:21:27 2016 (-0500)
 //
-// Last-Updated: Sat Aug  6 09:34:34 2016 (-0500)
+// Last-Updated: Tue Aug  9 08:55:44 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 15
+//     Update #: 21
 
 // Change Log:
 //
@@ -183,11 +183,15 @@
 #define INS_PER_GPIO 12
 #define N_GPIOS 5
 #define INS_OVERHEAD 4
+#define INS_CPY_SP ((64*6) + 3)
 #define TARGET_HZ 777
 #define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
 
-#define T_USED ((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER)/INS_PER_US // time [us] consumed by program
+// T_USED = time [us] consumed by program
+#define T_USED ((((INS_PER_GPIO * N_GPIOS + INS_OVERHEAD) * LOOPCOUNTER) + INS_CPY_SP)/INS_PER_US)
+// DELAY_T = time to be wasted to achieve the target frequency
 #define DELAY_T  (TARGET_LOOP_TIME - T_USED)
+// DELAY_INS = how many times need to be called DELAY macro
 #define DELAY_INS ((DELAY_T * INS_PER_US) / (LOOPCOUNTER * INS_PER_DELAY_LOOP))
 
 #define PRU0_R31_VEC_VALID 32

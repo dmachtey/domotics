@@ -6,9 +6,9 @@
 //
 // Created: 2015-06-22 Mon
 //
-// Last-Updated: Sat Aug  6 09:41:32 2016 (-0500)
+// Last-Updated: Sat Aug  6 10:00:08 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 4
+//     Update #: 10
 
 // Change Log:
 //
@@ -50,19 +50,19 @@ START:
 MAINLOOP:
     DELAY
 
-//    PWM_MAIN    GPIO0_10, GPIO0_10_SP, GPIO0
-    PWM_MAIN    GPIO0_27, GPIO0_27_SP, GPIO0 // Patio quincho
-    PWM_MAIN    GPIO1_15, GPIO1_15_SP, GPIO1 // Salon quincho
-    PWM_MAIN    GPIO0_22, GPIO0_22_SP, GPIO0 // Ingreso quincho
-    PWM_MAIN    GPIO1_30, GPIO1_30_SP, GPIO1 // Baño quincho
-    PWM_MAIN    GPIO1_4,  GPIO1_4_SP,  GPIO1 // Cocina quincho
+ // PWM_MAIN    gpio,     remote SP   | 0x100, bank[0..3]
+    PWM_MAIN    GPIO0_27, GPIO0_27_SP | 0x100, GPIO0 // Patio quincho
+    PWM_MAIN    GPIO1_15, GPIO1_15_SP | 0x100, GPIO1 // Salon quincho
+    PWM_MAIN    GPIO0_22, GPIO0_22_SP | 0x100, GPIO0 // Ingreso quincho
+    PWM_MAIN    GPIO1_30, GPIO1_30_SP | 0x100, GPIO1 // Baño quincho
+    PWM_MAIN    GPIO1_4,  GPIO1_4_SP  | 0x100, GPIO1 // Cocina quincho
 
 
 
     ADD	r29, r29, 1        // increment REG29 by 1
     QBGE MAINLOOP, r29, LOOPCOUNTER  // if LOOPCOUNTER >= r29 jump (NO RESET R29)
 
-    // call CPY_SP
+    CPY_SP                 // copy remote setpoints to locals
     MOV	r29, 0             // reset r29
     QBA MAINLOOP           // loop forever
 
