@@ -6,9 +6,9 @@
 //
 // Created: Fri Aug  5 19:44:08 2016 (-0500)
 //
-// Last-Updated: Tue Aug  9 08:49:01 2016 (-0500)
+// Last-Updated: Wed Aug 10 08:18:14 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 59
+//     Update #: 65
 
 // Change Log:
 //
@@ -52,10 +52,8 @@ namespace lighting{
     prussdrv_init ();
     prussdrv_open(PRU_EVTOUT_0);
 
-    D("paso\n");
     // Map PRU's INTC
     prussdrv_pruintc_init(&pruss_intc_initdata);
-    D("paso 2\n");
 
 
     // place the samples in memory
@@ -87,7 +85,6 @@ namespace lighting{
     uint local_pwm = pwm;
     if (pwm < 0 ) local_pwm = 0;
     if (pwm > LOOPCOUNTER) local_pwm = LOOPCOUNTER;
-
     *(pruDataMemory_int+(gpio/4)) = local_pwm;
   }
 

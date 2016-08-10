@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Mon Aug  1 22:29:45 2016 (-0500)
+// Last-Updated: Wed Aug 10 08:16:55 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 113
+//     Update #: 120
 
 // Change Log:
 //
@@ -94,7 +94,7 @@ namespace lighting{
     if (shortpress && on) going_off = true; //set
 
 
-    if (going_on_off_acc > 12){
+    if (going_on_off_acc > 0){
     if (going_on) goingOn();
     if (going_off) goingOff();
     going_on_off_acc = 0;
@@ -165,8 +165,8 @@ namespace lighting{
 
 
   void DIMMER::goingOff(){
-   duty -= (6*max_level)/100;
-    if (duty <= ((5*max_level)/100)){
+   duty -= (3*max_level)/100;
+    if (duty <= ((3*max_level)/100)){
       duty = 0;
       going_off = 0;
     }
@@ -175,7 +175,7 @@ namespace lighting{
 
 
   void DIMMER::goingOn(){
-   duty += (6*max_level)/100;
+   duty += (3*max_level)/100;
    if (duty >= max_level){
      duty = max_level;
      going_on = 0;
@@ -248,7 +248,7 @@ namespace lighting{
     search_msg = mqtt_name + "/set/max_level";
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> max_level;
-      if (max_level > LOOPCOUNTER) max_level = LOOPCOUNTER; 
+      if (max_level > LOOPCOUNTER) max_level = LOOPCOUNTER;
       write_conf();
       return;
     }
@@ -282,10 +282,11 @@ namespace lighting{
       configfile.close();
       time_off_sp = config["time_off_sp"];
       max_level = config["max_level"];
+      D(config.dump(4));
     }else{
       std::cerr << "file opening error on read from: " << configfile_name << std::endl;
+      write_conf();
     }
-    D(config.dump(4));
   }
 }//namespace
 //

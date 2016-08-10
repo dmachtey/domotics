@@ -6,9 +6,9 @@
 //
 // Created: 2015-06-22 Mon
 //
-// Last-Updated: Tue Aug  9 16:06:38 2016 (-0500)
+// Last-Updated: Wed Aug 10 08:34:23 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 25
+//     Update #: 26
 
 // Change Log:
 //
@@ -58,7 +58,7 @@ namespace lighting{
   public:
     TEMPERATURE(std::string id, std::string host, int port,
                 std::string filename, uint publish_every_ms);
-    void tooop(uint last_loop_ms);
+    void looop(uint last_loop_ms);
     std::string getTemp() {return temp;}
     double getTempd() {return atof(temp.c_str());}
     virtual ~TEMPERATURE();

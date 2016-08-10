@@ -6,9 +6,9 @@
 //
 // Created: 2015-06-22 Mon
 //
-// Last-Updated: Tue Aug  9 16:06:25 2016 (-0500)
+// Last-Updated: Wed Aug 10 08:34:13 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 37
+//     Update #: 39
 
 // Change Log:
 //
@@ -57,7 +57,7 @@ namespace lighting{
   }
 
 
-  void TEMPERATURE::tooop(unsigned int last_loop_ms){
+  void TEMPERATURE::looop(unsigned int last_loop_ms){
     if (!first_cycle){
       time_ac = rand()%time_at;
       read();
@@ -82,8 +82,6 @@ namespace lighting{
       getline(inFile, temp);
       inFile.close();
       temp = std::to_string(stof(temp)/1000.0f);
-
-      D(topic << " Said temperature is: " << temp << std::endl;)
     }
     else {
       std::cerr << "Error on TEMPERATURE::read(): " << strerror(errno) << std::endl;
@@ -93,6 +91,7 @@ namespace lighting{
 
   void TEMPERATURE::publish_now(){
     publish(NULL, topic.c_str(), temp.length() , temp.c_str());
+    D(topic << " Said temperature is: " << temp << std::endl;)
   }
 
 

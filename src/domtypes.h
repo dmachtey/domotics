@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Thu Aug  4 22:56:26 2016 (-0500)
+// Last-Updated: Wed Aug 10 07:04:56 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 48
+//     Update #: 49
 
 // Change Log:
 //
@@ -48,7 +48,7 @@
 #define SCALING_TIME 500 // ms for each dimming step
 #define DIMMING_STEPS 20 // number of dimming steps
 // where the configurations files are stored
-#define CONF_LOCATION "/home/damian/tmp/dom/"
+#define CONF_LOCATION "/home/dom/"
 
 
 namespace lighting {

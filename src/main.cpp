@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Tue Aug  9 17:08:39 2016 (-0500)
+// Last-Updated: Wed Aug 10 08:33:33 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 162
+//     Update #: 176
 
 // Change Log:
 //
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
                  "/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
 
   lighting::time_t scan_time;
-  bool bell_sw;
+  bool bell_sw = false;
   LAPSE lapse;
   do
     {
@@ -114,28 +114,28 @@ int main(int argc, char *argv[])
 
 
       // patio, Slot 10.2
-      pru_0.set_pwm(GPIO0_27, patio.looop(scan_time,
+      pru_0.set_pwm(GPIO0_27_SP, patio.looop(scan_time,
                                           SW1.getValue(), bell_sw));
 
       // salon Slot 10.1
-      pru_0.set_pwm(GPIO1_15, salon.looop(scan_time,
+      pru_0.set_pwm(GPIO1_15_SP, salon.looop(scan_time,
                                           SW2.getValue(), bell_sw));
 
       // Ingreso Slot 10.3
-      pru_0.set_pwm(GPIO0_22, ingreso.looop(scan_time,
+      pru_0.set_pwm(GPIO0_22_SP, ingreso.looop(scan_time,
                                             SW3.getValue(), bell_sw));
 
       // baño Slot 10.4
-      pru_0.set_pwm(GPIO1_30, bano.looop(scan_time,
+      pru_0.set_pwm(GPIO1_30_SP, bano.looop(scan_time,
                                          SW4.getValue(), bell_sw));
 
       // cocina Slot 9.1
-      pru_0.set_pwm(GPIO1_4, cocina.looop(scan_time,
+      pru_0.set_pwm(GPIO1_4_SP, cocina.looop(scan_time,
                                           SW5.getValue(), bell_sw));
 
 
+      T1.looop(scan_time);
 
-      //      usleep(1000);
       std::this_thread::sleep_for(std::chrono::milliseconds(4));
 
       signal(SIGINT, signal_handler);
