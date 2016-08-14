@@ -6,10 +6,11 @@ sitemap moreno label="Moreno 2630"
 
 
    Frame {
-       Group item=System label="System Info" icon="computer" {
+       Group item=System label="System Info" icon="computer"{
            Frame label="cpu"{
                Text item=uptimeFormatted
-               Text item=cpuCombined icon="computer"
+               Text item=cpuCombined
+               Text item=CPUTemp
            }
 
            Frame label="Load" {
@@ -20,10 +21,11 @@ sitemap moreno label="Moreno 2630"
            Frame label="Memory" {
               Text item=memFreePercent
           }
+
+          Frame label="Wan IP"{
+		        Text item=Network_WAN_IP
+          }
+
        }
    }
-
-
-
-
 }

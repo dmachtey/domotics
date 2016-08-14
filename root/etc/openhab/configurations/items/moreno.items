@@ -20,8 +20,8 @@ Number dp_LT4           		"Baño [%d %%]" (gT, Lights) {mqtt="<[broker1:LT4/send
 
 
 
-Dimmer Dimmed_5           		"Cocina"         (gT, Lights) {mqtt=">[broker1:LT5/get/duty:command:*:default],<[broker1:LT4/send/duty:state:REGEX(.*,(.*),.*)]"}
-Number dp_LT5           		"Baño [%d %%]" (gT, Lights) {mqtt="<[broker1:LT5/send/duty:state:REGEX(.*,(.*),.*)]"}
+Dimmer Dimmed_5           		"Cocina"         (gT, Lights) {mqtt=">[broker1:LT5/get/duty:command:*:default],<[broker1:LT5/send/duty:state:REGEX(.*,(.*),.*)]"}
+Number dp_LT5           		"Cocina [%d %%]" (gT, Lights) {mqtt="<[broker1:LT5/send/duty:state:REGEX(.*,(.*),.*)]"}
 
 
 
@@ -40,3 +40,8 @@ String uptimeFormatted  "Uptime [%s]" (System) { systeminfo="UptimeFormatted:500
 Number cpuCombined  "CPU combined [%.1f]"   (System) { systeminfo="CpuCombined:5000" }
 
 Number memFreePercent   "Mem free [%.1f%%]" (System) { systeminfo="MemFreePercent:5000" }
+
+Number CPUTemp "Temperature [%.2f°C]" (System) {mqtt="<[broker1:CPUTemp/send/temp:state:REGEX(.*,(.*),.*)]"}
+
+// check for WAN IP address changes every 20 mins
+String Network_WAN_IP "WAN IP [%s]" <network> (Network) { http="<[http://icanhazip.com:1200000:REGEX((.*?))]"

@@ -76,3 +76,13 @@ Item mySwitch  changed from ON to OFF
    sendCommand(Dimmed_4, oldvalue4)
 
 end
+
+
+
+rule "Monitor WAN IP"
+when
+	Item Network_WAN_IP changes
+then
+	// perform any action needed
+	logInfo("MonitorWANIP", "WAN IP changed to " + Network_WAN_IP.state)
+end
