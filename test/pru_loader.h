@@ -1,14 +1,14 @@
-// Filename: lapse.cpp
+// Filename: pru_loader.h
 //
-// Description: Compute the time lapse between calls in milliseconds
+// Description:
 // Author: Damian Machtey
 // Maintainer:
 //
-// Created: Thu Jul 28 11:03:14 2016 (-0500)
+// Created: Thu Aug  4 12:51:43 2016 (-0500)
 //
-// Last-Updated: Fri Aug 12 17:19:20 2016 (-0300)
+// Last-Updated: Tue Aug  9 08:49:14 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 18
+//     Update #: 28
 
 // Change Log:
 //
@@ -31,22 +31,31 @@
 //
 
 // Code:
-#include "lapse.h"
+#ifndef PRU_LOADER_H
+#define PRU_LOADER_H
+
+#include <iostream>
+
+#include <string>
+#include <unistd.h> //for usleep, getudi
+#include <prussdrv.h>
+#include <pruss_intc_mapping.h>
+#include "domtypes.h"
+#include "pru_data.hp"
 
 namespace lighting{
-
-  LAPSE::LAPSE(){
-    previus_tick = std::chrono::steady_clock::now();
-  }
-
-  lighting::time_t LAPSE::get_lapse(){
-      std::chrono::steady_clock::time_point now =
-        std::chrono::steady_clock::now();
-      uint rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
-      previus_tick = now;
-      return rtn/1000000;
-    }
-
+  class PRULOADER{
+  public:
+    PRULOADER(std::string prubinary, pru_num pru);
+    void set_pwm(uint gpio, uint pwm);
+    void print();
+    ~PRULOADER();
+  private:
+    void *pruDataMemory;
+    unsigned int *pruDataMemory_int;
+    pru_num prunum;
+  };
 } //namespace
+#endif // PRU-LOADER_H
 //
-// lapse.cpp ends here
+// pru_loader.h ends here

@@ -6,9 +6,9 @@
 //
 // Created: Thu Jul 28 11:03:14 2016 (-0500)
 //
-// Last-Updated: Fri Aug 12 17:19:20 2016 (-0300)
+// Last-Updated: Thu Jul 28 14:47:00 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 18
+//     Update #: 16
 
 // Change Log:
 //
@@ -42,9 +42,9 @@ namespace lighting{
   lighting::time_t LAPSE::get_lapse(){
       std::chrono::steady_clock::time_point now =
         std::chrono::steady_clock::now();
-      uint rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
+      uint rtn = std::chrono::duration_cast<std::chrono::milliseconds>(now - previus_tick).count();
       previus_tick = now;
-      return rtn/1000000;
+      return rtn;
     }
 
 } //namespace

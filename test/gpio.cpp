@@ -25,7 +25,7 @@
  * For more details, see http://www.derekmolloy.ie/
  */
 
-#include "GPIO.h"
+#include "gpio.h"
 #include<iostream>
 #include<fstream>
 #include<string>

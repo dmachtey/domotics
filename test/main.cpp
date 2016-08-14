@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Aug 11 16:19:18 2016 (-0500)
+// Last-Updated: Thu Aug 11 15:17:26 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 186
+//     Update #: 177
 
 // Change Log:
 //
@@ -94,11 +94,11 @@ int main(int argc, char *argv[])
   BELL.setDirection(exploringBB::INPUT);
 
   // Outputs declaration
-  DIMMER patio  ("LT1", "localhost", 1883, 18*4, 100, GPIO0_27_SP, &pru_0);  // Patio
-  DIMMER salon  ("LT2", "localhost", 1883, 18*4, 100, GPIO1_15_SP, &pru_0);  // Salon quincho
-  DIMMER ingreso("LT3", "localhost", 1883, 18,   100, GPIO0_22_SP, &pru_0);  // Ingreso quincho
-  DIMMER bano   ("LT4", "localhost", 1883, 18,   70,  GPIO1_30_SP, &pru_0);  // Baño
-  DIMMER cocina ("LT5", "localhost", 1883, 18,   90,  GPIO1_4_SP,  &pru_0);  // Cocina quincho
+  DIMMER patio  ("LT1", "localhost", 1883, 18*4, 100, GPIO0_27_SP, pru_0.setpwm);  // Patio
+  DIMMER salon  ("LT2", "localhost", 1883, 18*4, 100, GPIO0_27_SP, pru_0.setpwm);  // Salon quincho
+  DIMMER ingreso("LT3", "localhost", 1883, 18,   100, GPIO0_27_SP, pru_0.setpwm);  // Ingreso quincho
+  DIMMER bano   ("LT4", "localhost", 1883, 18,   70, GPIO0_27_SP, pru_0.setpwm);  // Baño
+  DIMMER cocina ("LT5", "localhost", 1883, 18,   90, GPIO0_27_SP, pru_0.setpwm);   // Cocina quincho
 
   TEMPERATURE T1("CPUTemp", "localhost", 1883,
                  "/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
@@ -106,7 +106,8 @@ int main(int argc, char *argv[])
   lighting::time_t scan_time;
   bool bell_sw = false;
   LAPSE lapse;
-  do{
+  do
+    {
       scan_time = lapse.get_lapse();
 
       bell_sw = BELL.getValue();
@@ -116,16 +117,16 @@ int main(int argc, char *argv[])
       patio.looop(scan_time, SW1.getValue(), bell_sw);
 
       // salon Slot 10.1
-      salon.looop(scan_time, SW2.getValue(), bell_sw);
+      GPIO1_15_SP, salon.looop(scan_time, SW2.getValue(), bell_sw);
 
       // Ingreso Slot 10.3
-      ingreso.looop(scan_time, SW3.getValue(), bell_sw);
+      GPIO0_22_SP, ingreso.looop(scan_time, SW3.getValue(), bell_sw);
 
       // baño Slot 10.4
-      bano.looop(scan_time, SW4.getValue(), bell_sw);
+      GPIO1_30_SP, bano.looop(scan_time, SW4.getValue(), bell_sw);
 
       // cocina Slot 9.1
-      cocina.looop(scan_time, SW5.getValue(), bell_sw);
+      GPIO1_4_SP, cocina.looop(scan_time, SW5.getValue(), bell_sw);
 
 
       T1.looop(scan_time);

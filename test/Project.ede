@@ -1,33 +1,24 @@
-;; Object test-pwm
+;; Object ede-proj-project
 ;; EDE Project Files are auto generated: Do Not Edit
-(ede-proj-project "test-pwm"
+(ede-proj-project "ede-proj-project"
   :file "Project.ede"
-  :name "test-pwm"
+  :name "Domotics"
   :targets
   (list
-    (ede-proj-target-makefile-program "test-pwm"
-      :name "test-pwm"
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "../bin/main"
       :path ""
-      :source '("test-pwm.cpp" "dimmer_ctl.cpp" "GPIO.cpp" "temperature.cpp")
-      :auxsource '("dimmer_ctl.h" "GPIO.h" "temperature.h")
-      :configuration-variables '(("release" ("CFLAGS" . "-std=c++11")) ("debug" ("CFLAGS" . "-std=c++11")))
+      :source '("main.cpp" "coil.cpp" "dimmer.cpp" "lapse.cpp" "temperature.cpp" "pru_loader.cpp" "gpio.cpp")
+      :auxsource '("lapse.h" "domtypes.h" "dimmer.h" "pru_data.hp" "pru_loader.h" "temperature.h" "coil.h" "gpio.h")
+      :configuration-variables '(("release" ("CFLAGS" . "-std=c++11 -Wall")))
       :ldflags '("-pthread")
-      :ldlibs '("prussdrv" "mosquittopp"))
-    (ede-proj-target-makefile-program "prus_delay"
-      :name "prus_delay"
-      :path ""
-      :source '("prus_delay.cpp")
-      :configuration-variables nil
-    (ede-proj-target-makefile-program "pru.bin"
-      :name "pru.bin"
+      :ldlibs '("mosquittopp" "prussdrv"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "pwm"
       :path ""
       :source '("pwm.p")
-      :compiler 'ede-pasm-compiler
-      :configuration-variables nil)
-    (ede-proj-target-aux "auxfiles"
-      :name "auxfiles"
-      :path ""
-      :source '("dimmer_ctl.h" "GPIO.h" "temperature.h")))
-  :mailinglist "dmachtey@gmail.com"
+      :auxsource '("pru_data.hp" "pwm_macros.hp")
+      :compiler ede-pasm-compiler
+      :configuration-variables nil))
   :configuration-default "release"
   :configuration-variables nil)

@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sun Aug 14 19:04:02 2016 (-0300)
+// Last-Updated: Thu Aug 11 15:13:14 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 288
+//     Update #: 147
 
 // Change Log:
 //
@@ -39,10 +39,9 @@ namespace lighting{
 
   DIMMER::DIMMER(std::string id, std::string host, int port,
                  double power, uint max_level, uint gpio,
-                 PRULOADER *pru) : COIL (id, host, port, power){
+                 void (*set_pwm)(uint, uint)) : COIL (id, host, port, power){
     this->max_level = max_level; //LOOPCOUNTER
-    this->pru = pru;
-    this->gpio = gpio;
+    Set_PWM = set_pwm;
   }
 
 
@@ -80,12 +79,13 @@ namespace lighting{
       republish_acc = 0;
     }
 
+    going_on_off_acc += scan_time; //Steps at automatic fadding
+
     next_slot = (sw_press_acc - MIN_SCALING_TIME)/SCALING_TIME; //for scaling on long press
 
     if (shortpress && ((going_on || going_off))){
       going_on = false; //reset
       going_off = false; //reset
-      // TODO STOP The threads
       shortpress = false;
     }
 
@@ -93,19 +93,11 @@ namespace lighting{
     if (shortpress && on) going_off = true; //set
 
 
-    if (going_on && !going_latch){
-      t_going_on = std::thread(DIMMER::goingOn, &duty, gpio, &going_on, max_level, pru);
-      if(t_going_on.joinable()) t_going_on.join();
-      going_latch = true;
+    if (going_on_off_acc > 0){
+    if (going_on) goingOn();
+    if (going_off) goingOff();
+    going_on_off_acc = 0;
     }
-    if (going_off && !going_latch){
-      t_going_off = std::thread(goingOff, &duty, gpio, &going_off, pru);
-      if(t_going_off.joinable()) t_going_off.join();
-      going_latch = true;
-    }
-
-    if(!going_on && !going_off)
-      going_latch = false;
 
     if (!sw){
       sw_slots = 0; //reset the counter
@@ -143,9 +135,6 @@ namespace lighting{
       publish_now();
     }
 
-
-    if (!going_on || !going_off)
-      pru->set_pwm(gpio, duty);
     return duty;
   }
 
@@ -168,33 +157,28 @@ namespace lighting{
   }
 
 
- void DIMMER::goOff(){
+  void DIMMER::goOff(){
     going_off = true;
     going_on = false;
   }
 
 
-  void DIMMER::goingOff(uint *duty, uint gpio, bool *running, PRULOADER *pru){
-    int pwm = *duty;
-    do{
-      pwm = *duty-1;
-      *duty = pwm;
-      pru->set_pwm(gpio, pwm);
-      std::this_thread::sleep_for(std::chrono::milliseconds(25));
-    }while((pwm > 0) && *running);
-     *running = false;
+  void DIMMER::goingOff(){  // TODO need to be programmed in pru or thread
+   duty -= (3*max_level)/100;
+    if (duty <= ((3*max_level)/100)){
+      duty = 0;
+      going_off = 0;
+    }
+    D("goingOff, duty at: " << duty << std::endl);
   }
 
 
-  void DIMMER::goingOn(uint *duty, uint gpio, bool *running, uint max_level, PRULOADER *pru){
-    uint pwm;
-    do{
-      *duty += 1;
-      pwm = *duty;
-      pru->set_pwm(gpio, pwm);
-      std::this_thread::sleep_for(std::chrono::milliseconds(25));
-    }while((*duty < max_level) && *running);
-    *running = false;
+  void DIMMER::goingOn(){ // TODO need to be programmed in pru or thread
+   duty += (3*max_level)/100;
+   if (duty >= max_level){
+     duty = max_level;
+     going_on = 0;
+   }
   }
 
 
@@ -208,13 +192,11 @@ namespace lighting{
       }
     } // up
     else{ // down
-      int d = duty;
-      d -= max_level/DIMMING_STEPS;
-      if (d <= 0){
-        d = max_level/DIMMING_STEPS;
+      duty -= max_level/DIMMING_STEPS;
+      if (duty <= 0){
+        duty = max_level/DIMMING_STEPS;
         up_down = 1;
       }
-      duty = d;
     } // down
   }
 
@@ -267,20 +249,6 @@ namespace lighting{
       std::stringstream((char *)message->payload) >> max_level;
       if (max_level > LOOPCOUNTER) max_level = LOOPCOUNTER;
       write_conf();
-      return;
-    }
-
-    search_msg = mqtt_name + "/set/going_on";
-    if(!search_msg.compare(message->topic)){
-      going_on = true;
-      going_off = false;
-      return;
-    }
-
-    search_msg = mqtt_name + "/set/going_off";
-    if(!search_msg.compare(message->topic)){
-      going_off = true;
-      going_on = false;
       return;
     }
   }

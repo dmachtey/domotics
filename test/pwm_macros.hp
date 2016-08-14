@@ -1,0 +1,106 @@
+// Filename: pwm_macros.hp -*- mode: asm -*-
+//
+// Description:
+// Author: Damian Machtey
+// Maintainer:
+//
+// Created: Mon Aug  1 21:20:01 2016 (-0500)
+//
+// Last-Updated: Tue Aug  9 17:34:46 2016 (-0500)
+//           By: Damian Machtey
+//     Update #: 19
+
+// Change Log:
+//
+//
+// Copyright (C) 2016 Damian Machtey
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or (at
+// your option) any later version.
+//
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+//
+//
+
+// Code:
+
+//GPIO start
+.macro TURN_ON
+.mparam gpio, bank
+	MOV	r2, bank | GPIO_SETDATAOUT  // load addr for GPIO Set data  r2
+	MOV	r3, gpio     // write GPIO to r3
+    SBBO r3, r2, 0, 4     // write r3 to the r2 address value - LED ON
+.endm
+
+.macro TURN_OFF
+.mparam gpio, bank
+	MOV	r2, bank | GPIO_CLEARDATAOUT // load addr for GPIO Clear data
+	MOV	r3, gpio     // write GPIO
+	SBBO r3, r2, 0, 4     // write r3 to the r2 address - LED OFF
+.endm
+
+.macro PWM_MAIN
+.mparam gpio, gpio_sp, bank
+    // load the set point into a register r1
+    // Reading the memory that was set by the C program into registers
+    // r2 - Load the sample time delay
+    MOV	r0, gpio_sp	   //load the memory location
+    LBBO r1, r0, 0, 4	   //load the set point into r1
+
+    QBEQ CLR, r1, 0    //  if set point == 0, jump, KEEPT IT OFF
+    QBNE CLR, r29, 0   //  if counter <> 0, jump
+                               //  else turn it on
+    TURN_ON gpio, bank
+CLR:
+
+    QBEQ END, r1, LOOPCOUNTER //  jump if r1 (Set point)==LOOPCOUNTER (allways on)
+    QBNE END, r1, r29 //  jump if r1<>r29
+    TURN_OFF gpio, bank
+END:
+.endm
+//GPIO end
+
+
+// delay macro
+.macro DELAY
+    mov r4, DELAY_INS  // load r4 DELAY
+LOOPDELAY:
+    sub r4, r4, 1
+    qbne LOOPDELAY, r4, 0
+.endm
+
+
+
+// Copy the remote setpoint to a local setpoint
+.struct Global
+    .u32 size   // r10
+    .u32 src    // r11
+    .u32 dst    // r12
+.ends
+.assign Global, r10, *, global
+#define temp    r13
+
+ // Copy the remote setpoint to a local setpoint
+.macro CPY_SP
+    mov global.src, 0x00
+    mov global.dst, 0x100
+    mov global.size, 64
+NEXTMEM:
+    LBBO temp, global.src, 0, 4
+    SBBO temp, global.dst, 0, 4
+    ADD global.src,global.src, 4         // global.src points to NEXT location
+    ADD global.dst,global.dst, 4         // global.dst points to NEXT location
+    SUB global.size, global.size, 1     // size count reduces by 1
+
+    QBNE NEXTMEM, global.size, 0
+.endm
+//
+// pwm_macros.hp ends here

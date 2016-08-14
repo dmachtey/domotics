@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Sun Aug 14 18:34:11 2016 (-0300)
+// Last-Updated: Thu Aug 11 15:12:49 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 92
+//     Update #: 49
 
 // Change Log:
 //
@@ -43,7 +43,6 @@
 #include "coil.h"
 #include "domtypes.h"
 #include "pru_data.hp"
-#include "pru_loader.h"
 
 namespace lighting {
 
@@ -60,7 +59,7 @@ namespace lighting {
      * @param  power
      */
     DIMMER(std::string id, std::string host, int port,
-           double power, uint max_level, uint gpio, PRULOADER *pru);
+           double power, uint max_level, uint gpio, void (*set_pww)(uint, uint));
 
     /**
      * @name loop - should be called in an infinite loop
@@ -105,12 +104,12 @@ namespace lighting {
   private:
     /**
      */
-    void static goingOff(uint *duty, uint gpio, bool *running, PRULOADER *pru);
+    void goingOff();
 
 
     /**
      */
-    void static goingOn(uint *duty, uint gpio, bool *running, uint max_level,  PRULOADER *pru);
+    void goingOn();
 
 
     /**
@@ -132,7 +131,6 @@ namespace lighting {
      * @return void
      */
     void write_conf();
-
 
 
     /**
@@ -164,6 +162,10 @@ namespace lighting {
     // Active when ringing sequence is active
     // together with ringing_latch are used to
     // return to old_duty when ringing sequece is over
+    // bool ringing = false;  //< could be local! TODO
+    // Active when ringing sequence is active
+    // together with ringing_latch are used to
+    // return to old_duty when ringing sequece is over
     bool ringing_latch = false;
     // A short pressed was detected and we were "!on"
     // we are turning the lights on
@@ -171,11 +173,9 @@ namespace lighting {
     // A short pressed was detected and we were "on"
     // wee are turning the lights off
     bool going_off = false;
-    // to avoid calling the thread while running
-    bool going_latch = false;
-    PRULOADER *pru;
-    uint gpio;
-    std::thread t_going_on, t_going_off;
+    // going_on and off steps accumulator
+    lighting::time_t going_on_off_acc = 0;
+    void (*Set_PWM)(uint, uint);
   };
 }; // end of package namespace
 #endif // DIMMER_H

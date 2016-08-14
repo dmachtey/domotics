@@ -1,14 +1,14 @@
-// Filename: lapse.cpp
+// Filename: lapse.h
 //
 // Description: Compute the time lapse between calls in milliseconds
 // Author: Damian Machtey
 // Maintainer:
 //
-// Created: Thu Jul 28 11:03:14 2016 (-0500)
+// Created: Thu Jul 28 10:48:16 2016 (-0500)
 //
-// Last-Updated: Fri Aug 12 17:19:20 2016 (-0300)
+// Last-Updated: Thu Jul 28 21:35:11 2016 (-0500)
 //           By: Damian Machtey
-//     Update #: 18
+//     Update #: 20
 
 // Change Log:
 //
@@ -31,22 +31,35 @@
 //
 
 // Code:
-#include "lapse.h"
+
+#ifndef LAPSE_H
+#define LAPSE_H
+
+#include <chrono>
+#include "domtypes.h"
+
 
 namespace lighting{
 
-  LAPSE::LAPSE(){
-    previus_tick = std::chrono::steady_clock::now();
-  }
+    /**
+   * class LAPSE
+   * Implement a coil control class
+   */
 
-  lighting::time_t LAPSE::get_lapse(){
-      std::chrono::steady_clock::time_point now =
-        std::chrono::steady_clock::now();
-      uint rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
-      previus_tick = now;
-      return rtn/1000000;
-    }
+  class LAPSE{
+  private:
+    std::chrono::steady_clock::time_point previus_tick;
 
-} //namespace
+  public:
+
+    LAPSE();
+    lighting::time_t get_lapse();
+  };
+
+
+
+
+} // namespace lighting
 //
-// lapse.cpp ends here
+#endif // LAPSE_H
+// lapse.h ends here
