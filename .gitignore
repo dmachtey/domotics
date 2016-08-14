@@ -3,11 +3,12 @@
 build/*
 #!/lib
 #lib/*
+test/*
 
 
 # ede
 .deps
-\Project.ede
+#\Project.ede
 
 
 # Ignore my personal stuf

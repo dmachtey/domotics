@@ -1,0 +1,24 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "Domotics"
+  :targets
+  (list
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "../bin/main"
+      :path ""
+      :source '("main.cpp" "coil.cpp" "dimmer.cpp" "lapse.cpp" "temperature.cpp" "pru_loader.cpp" "gpio.cpp")
+      :auxsource '("lapse.h" "domtypes.h" "dimmer.h" "pru_data.hp" "pru_loader.h" "temperature.h" "coil.h" "gpio.h")
+      :configuration-variables '(("release" ("CFLAGS" . "-std=c++11 -Wall")))
+      :ldflags '("-pthread")
+      :ldlibs '("mosquittopp" "prussdrv"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "pwm"
+      :path ""
+      :source '("pwm.p")
+      :auxsource '("pru_data.hp" "pwm_macros.hp")
+      :compiler ede-pasm-compiler
+      :configuration-variables nil))
+  :configuration-default "release"
+  :configuration-variables nil)
