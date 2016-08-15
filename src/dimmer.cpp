@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Sun Aug 14 19:04:02 2016 (-0300)
+// Last-Updated: Mon Aug 15 15:24:47 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 288
+//     Update #: 326
 
 // Change Log:
 //
@@ -82,25 +82,27 @@ namespace lighting{
 
     next_slot = (sw_press_acc - MIN_SCALING_TIME)/SCALING_TIME; //for scaling on long press
 
-    if (shortpress && ((going_on || going_off))){
+    if (shortpress  && going_latch){
       going_on = false; //reset
       going_off = false; //reset
       // TODO STOP The threads
+
+      D("all off now, shortpress, going_on, going_off\n");
       shortpress = false;
     }
 
-    if (shortpress && !on) going_on = true; //set
-    if (shortpress && on) going_off = true; //set
+    if (shortpress && !on && !going_latch) going_on = true; //set
+    if (shortpress &&  on && !going_latch) going_off = true; //set
 
 
     if (going_on && !going_latch){
-      t_going_on = std::thread(DIMMER::goingOn, &duty, gpio, &going_on, max_level, pru);
-      if(t_going_on.joinable()) t_going_on.join();
+      t_going_on = new std::thread(DIMMER::goingOn, &duty, gpio, &going_on, max_level, pru);
+            //  if(t_going_on.joinable()) t_going_on.join();
       going_latch = true;
     }
     if (going_off && !going_latch){
-      t_going_off = std::thread(goingOff, &duty, gpio, &going_off, pru);
-      if(t_going_off.joinable()) t_going_off.join();
+      t_going_off = new std::thread(goingOff, &duty, gpio, &going_off, pru);
+      //      if(t_going_off.joinable()) t_going_off.join();
       going_latch = true;
     }
 
@@ -132,11 +134,13 @@ namespace lighting{
     if (ringing && !ringing_latch)  // go back to the start value
       duty = old_duty;
 
+    // limits control
     if (duty >= max_level) duty = max_level;
     if (duty <= 0) duty = 0;
 
     on = (duty > 0);
 
+    // publish
     if (((duty != old_duty) || (republish_acc > REPUBLISH_TIME)) && !going_on && !going_off && !ringing_latch){
       old_duty = duty;
       republish_acc *= (republish_acc < REPUBLISH_TIME); //Reset the counter when published was forced
@@ -144,7 +148,7 @@ namespace lighting{
     }
 
 
-    if (!going_on || !going_off)
+    if (!going_on && !going_off)
       pru->set_pwm(gpio, duty);
     return duty;
   }
@@ -168,7 +172,7 @@ namespace lighting{
   }
 
 
- void DIMMER::goOff(){
+  void DIMMER::goOff(){
     going_off = true;
     going_on = false;
   }
@@ -182,7 +186,8 @@ namespace lighting{
       pru->set_pwm(gpio, pwm);
       std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }while((pwm > 0) && *running);
-     *running = false;
+    *running = false;
+    D("goingOff finish\n";)
   }
 
 
@@ -195,11 +200,12 @@ namespace lighting{
       std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }while((*duty < max_level) && *running);
     *running = false;
+    D("goingOn finish\n";)
   }
 
 
   void DIMMER::fading(){
-       sw_slots += 1;
+    sw_slots += 1;
     if (up_down){ //up
       duty += max_level/DIMMING_STEPS;
       if (duty >= max_level){
@@ -219,12 +225,12 @@ namespace lighting{
   }
 
 
-    void DIMMER::on_connect(int rc){
-      std::cout << "Connected with code: " << rc << " from: " << mqtt_name << std::endl;
-      if(rc == 0){
-        /* Only attempt to subscribe on a successful connect. */
-        std::string sub = mqtt_name + "/#";
-        subscribe(NULL, sub.c_str());
+  void DIMMER::on_connect(int rc){
+    std::cout << "Connected with code: " << rc << " from: " << mqtt_name << std::endl;
+    if(rc == 0){
+      /* Only attempt to subscribe on a successful connect. */
+      std::string sub = mqtt_name + "/#";
+      subscribe(NULL, sub.c_str());
     }
   }
 
@@ -279,7 +285,7 @@ namespace lighting{
 
     search_msg = mqtt_name + "/set/going_off";
     if(!search_msg.compare(message->topic)){
-      going_off = true;
+      if(on) going_off = true;
       going_on = false;
       return;
     }

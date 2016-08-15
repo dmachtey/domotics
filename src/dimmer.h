@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Sun Aug 14 18:34:11 2016 (-0300)
+// Last-Updated: Mon Aug 15 15:16:14 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 92
+//     Update #: 93
 
 // Change Log:
 //
@@ -175,7 +175,7 @@ namespace lighting {
     bool going_latch = false;
     PRULOADER *pru;
     uint gpio;
-    std::thread t_going_on, t_going_off;
+    std::thread *t_going_on, *t_going_off;
   };
 }; // end of package namespace
 #endif // DIMMER_H
