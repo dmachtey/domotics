@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Thu Aug 11 16:19:18 2016 (-0500)
+// Last-Updated: Tue Aug 16 08:51:49 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 186
+//     Update #: 187
 
 // Change Log:
 //
@@ -85,6 +85,8 @@ int main(int argc, char *argv[])
   exploringBB::GPIO SW4(60);  // baño
   exploringBB::GPIO SW5(115); // Cocina
   exploringBB::GPIO BELL(14); // Timbre
+  exploringBB::GPIO door(35); // DOOR opener. Sloot 5,1
+
 
   SW1.setDirection(exploringBB::INPUT);
   SW2.setDirection(exploringBB::INPUT);
@@ -92,6 +94,8 @@ int main(int argc, char *argv[])
   SW4.setDirection(exploringBB::INPUT);
   SW5.setDirection(exploringBB::INPUT);
   BELL.setDirection(exploringBB::INPUT);
+  door.setDirection(exploringBB::OUTPUT);
+
 
   // Outputs declaration
   DIMMER patio  ("LT1", "localhost", 1883, 18*4, 100, GPIO0_27_SP, &pru_0);  // Patio
@@ -99,6 +103,8 @@ int main(int argc, char *argv[])
   DIMMER ingreso("LT3", "localhost", 1883, 18,   100, GPIO0_22_SP, &pru_0);  // Ingreso quincho
   DIMMER bano   ("LT4", "localhost", 1883, 18,   70,  GPIO1_30_SP, &pru_0);  // Baño
   DIMMER cocina ("LT5", "localhost", 1883, 18,   90,  GPIO1_4_SP,  &pru_0);  // Cocina quincho
+  COIL  opendoor("door","localhost", 1883, 0.2);
+
 
   TEMPERATURE T1("CPUTemp", "localhost", 1883,
                  "/sys/devices/ocp.3/44e10448.bandgap/temp1_input", 60000);
@@ -126,6 +132,9 @@ int main(int argc, char *argv[])
 
       // cocina Slot 9.1
       cocina.looop(scan_time, SW5.getValue(), bell_sw);
+
+      // Door
+      door.setValue(opendoor.looop(scan_time, false)? exploringBB::HIGH : exploringBB::LOW);
 
 
       T1.looop(scan_time);

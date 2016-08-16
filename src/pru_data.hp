@@ -6,9 +6,9 @@
 //
 // Created: Mon Aug  1 21:21:27 2016 (-0500)
 //
-// Last-Updated: Wed Aug 10 09:10:14 2016 (-0500)
+// Last-Updated: Tue Aug 16 08:32:33 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 22
+//     Update #: 23
 
 // Change Log:
 //
@@ -183,7 +183,7 @@
 #define INS_PER_GPIO 12
 #define N_GPIOS 5
 #define INS_OVERHEAD 4
-#define INS_CPY_SP ((64*6) + 3)
+#define INS_CPY_SP 0 //((64*6) + 3)
 #define TARGET_HZ 777
 #define TARGET_LOOP_TIME (1000000 / TARGET_HZ)  // us that shuld last each main loop
 

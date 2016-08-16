@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 12:04:29 2016(-0500)
 //
-// Last-Updated: Tue Aug  2 20:02:00 2016 (-0500)
+// Last-Updated: Tue Aug 16 09:09:24 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 151
+//     Update #: 154
 
 // Change Log:
 //
@@ -117,9 +117,9 @@ namespace lighting{
 
 
   void COIL::on_message(const struct  mosquitto_message *message){
-    std::string search_msg = mqtt_name + "/get/status";
+    std::string search_msg = mqtt_name + "/set/status";
     if(!search_msg.compare(message->topic)){
-      if(!(std::string("on")).compare((char *)message->payload)) goOn();
+      if(!(std::string("ON")).compare((char *)message->payload)) goOn();
       else goOff();
 
       D("COIL is " << on << std::endl);
@@ -142,7 +142,7 @@ namespace lighting{
 
   void COIL::publish_now(){
     std::string topic = mqtt_name + "/send/status" ;
-    std::string payload = on ? "on" : "off";  // CFLAGS=-std=c++11 on Makefile
+    std::string payload = on ? "ON" : "OFF";  // CFLAGS=-std=c++11 on Makefile
     publish(NULL, topic.c_str(), payload.length() , payload.c_str());
 
     D(mqtt_name << " is now " << std::boolalpha << on << std::endl);
