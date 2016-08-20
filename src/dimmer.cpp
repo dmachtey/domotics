@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:11:07 2016 (-0500)
 //
-// Last-Updated: Mon Aug 15 15:24:47 2016 (-0300)
+// Last-Updated: Fri Aug 19 08:02:34 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 326
+//     Update #: 339
 
 // Change Log:
 //
@@ -64,10 +64,36 @@ namespace lighting{
     ringing_acc += scan_time;
     ringing_acc *= (ringing_latch==true);
 
-    // timeout, turn it off
+
+
+    // ----------------------> timeout, turn it off <----------------------
     time_off_acc += scan_time * (time_off_sp>0);
-    time_off_acc *=(on==true);
-    if(time_off_acc > time_off_sp) going_off = true;
+    time_off_acc *= ((on==true) && !sw);
+
+    if(time_off_acc > time_off_sp){
+      going_off = true;
+      time_off_acc = 0;
+    }
+
+    if (time_off_acc==0){
+      tell_user = false;
+      user_told = false;
+      user_told2 = false;
+    }
+
+    // tell the user we are about to time out
+    if((time_off_acc > (time_off_sp - 60000)) && !user_told && (time_off_sp>0)){
+      duty = (float)duty*0.5f;
+      tell_user = true;
+      user_told = true;
+    }
+
+    if((time_off_acc > (time_off_sp - 59000)) && !user_told2 && (time_off_sp>0)){
+      duty = old_duty;
+      tell_user = false;
+      user_told2 = true;
+    }
+    // ----------------------> timeout, turn it off <----------------------
 
     // auto publish
     republish_acc += scan_time;
@@ -141,7 +167,8 @@ namespace lighting{
     on = (duty > 0);
 
     // publish
-    if (((duty != old_duty) || (republish_acc > REPUBLISH_TIME)) && !going_on && !going_off && !ringing_latch){
+    if (((duty != old_duty) || (republish_acc > REPUBLISH_TIME)) && !going_on
+        && !going_off && !ringing_latch && !tell_user){
       old_duty = duty;
       republish_acc *= (republish_acc < REPUBLISH_TIME); //Reset the counter when published was forced
       publish_now();
@@ -248,7 +275,7 @@ namespace lighting{
 
 
   void DIMMER::on_message(const struct mosquitto_message *message){
-    std::string search_msg = mqtt_name + "/get/duty";
+    std::string search_msg = mqtt_name + "/set/duty";
     if(!search_msg.compare(message->topic)){
       std::stringstream((char *)message->payload) >> duty;
       time_off_acc = 0;
@@ -287,6 +314,15 @@ namespace lighting{
     if(!search_msg.compare(message->topic)){
       if(on) going_off = true;
       going_on = false;
+      return;
+    }
+
+
+    search_msg = mqtt_name + "/get/time_off_acc";
+    if(!search_msg.compare(message->topic)){
+      std::string topic = mqtt_name + "/send/time_off_acc";
+      std::string payload = std::to_string(time_off_acc);
+      publish(NULL, topic.c_str(), payload.length() , payload.c_str());
       return;
     }
   }

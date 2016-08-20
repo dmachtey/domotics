@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 15:12:52 2016 (-0500)
 //
-// Last-Updated: Mon Aug 15 15:16:14 2016 (-0300)
+// Last-Updated: Thu Aug 18 19:53:21 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 93
+//     Update #: 97
 
 // Change Log:
 //
@@ -176,6 +176,11 @@ namespace lighting {
     PRULOADER *pru;
     uint gpio;
     std::thread *t_going_on, *t_going_off;
+    // tell the user we are about to time out
+    bool tell_user = false;
+    // user_told
+    bool user_told = false;
+    bool user_told2 = false;
   };
 }; // end of package namespace
 #endif // DIMMER_H
