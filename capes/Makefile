@@ -1,5 +1,5 @@
 top="$(CURDIR)"/
-half-in-half-pru-00A0_dtbo_SOURCES=half-in-half-pru.dts
+half-in-half-00A0_dtbo_SOURCES=half-in-half.dts
 DSC=dsc
 #C_LINK=$(CC) $(CFLAGS) $(LDFLAGS) -L.
 #LD=ld
@@ -9,11 +9,11 @@ VERSION=1.0
 DISTDIR=$(top)cape-$(VERSION)
 top_builddir =
 
-DEP_FILES=.deps/half-in-half-pru.P
+DEP_FILES=.deps/half-in-half.P
 
-all: half-in-half-pru-00A0.dtbo
+all: half-in-half-00A0.dtbo
 
-half-in-half-pru-00A0.dtbo: $(half-in-half-pru-00A0_dtbo_SOURCES)
+half-in-half-00A0.dtbo: $(half-in-half-00A0_dtbo_SOURCES)
 	dtc -O dtb -o $(basename .dts $@).dtbo -b 0 -@ $<
 
 tags:
@@ -30,7 +30,7 @@ install:
 dist:
 	rm -rf $(DISTDIR)
 	mkdir $(DISTDIR)
-	cp $(half-in-half-pru-00A0_dtbo_SOURCES) $(ede_FILES) $(DISTDIR)
+	cp $(half-in-half-00A0_dtbo_SOURCES) $(ede_FILES) $(DISTDIR)
 	tar -cvzf $(DISTDIR).tar.gz $(DISTDIR)
 	rm -rf $(DISTDIR)
 
