@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:beagleboard
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,6 +29,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:base-board-arranged-cache
 EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
@@ -1271,13 +1273,13 @@ GPIO2_10
 Text Label 1900 10650 0    60   ~ 0
 GPIO2_11
 Text Label 1100 8650 2    60   ~ 0
-GND
+GND2
 Text Label 1900 8650 0    60   ~ 0
-GND
+GND2
 Text Label 3300 8650 2    60   ~ 0
-GND
+GND1
 Text Label 4100 8650 0    60   ~ 0
-GND
+GND1
 Text Label 3300 8750 2    60   ~ 0
 DC_3.3Ve
 Text Label 4100 8750 0    60   ~ 0
@@ -1493,7 +1495,7 @@ F 3 "" H 14450 2750 30  0000 C CNN
 	1    14450 2750
 	1    0    0    -1  
 $EndComp
-Text Label 14450 2900 0    60   ~ 0
+Text Label 14450 4125 3    60   ~ 0
 GND3
 $Comp
 L R B5
@@ -2322,8 +2324,6 @@ Text Label 1150 5050 2    60   ~ 0
 GND12V
 Text Label 1150 5150 2    60   ~ 0
 12V+
-Text Label 1150 4850 2    60   ~ 0
-GND
 Text Label 1150 4950 2    60   ~ 0
 DC_3.3V
 Wire Wire Line
@@ -2426,7 +2426,7 @@ DC_3.3V
 Text Label 15250 2550 2    60   ~ 0
 GND
 Text Label 2300 4850 2    60   ~ 0
-GND
+GND1
 Wire Wire Line
 	1150 4850 1650 4850
 Text Label 2000 6125 0    60   ~ 0
@@ -2437,7 +2437,7 @@ U 1 1 55C7DFEA
 P 2150 5750
 F 0 "R100_16" V 2230 5750 50  0000 C CNN
 F 1 "1K" V 2150 5750 50  0000 C CNN
-F 2 "w_pth_resistors:R25x8" V 2080 5750 30  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Ceramic_Horizontal_L50mm-W14mm-H13mm-p60mm" V 2080 5750 30  0000 C CNN
 F 3 "" H 2150 5750 30  0000 C CNN
 	1    2150 5750
 	0    1    1    0   
@@ -2458,7 +2458,7 @@ F 3 "" H 2300 4375 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 2100 4425 2    60   ~ 0
-GND
+GND1
 Text Label 1550 4325 2    60   ~ 0
 PWR_BUT
 $Comp
@@ -2474,4 +2474,32 @@ F 3 "" H 1700 4325 30  0000 C CNN
 $EndComp
 Wire Wire Line
 	1850 4325 2100 4325
+$Comp
+L IRF540N Q1
+U 1 1 57B8B01B
+P 14350 3925
+F 0 "Q1" H 14650 4000 50  0000 L CNN
+F 1 "IRF540N" H 14600 3925 50  0000 L CNN
+F 2 "TO-220" H 14600 3850 50  0000 L CIN
+F 3 "" H 14350 3925 50  0000 L CNN
+	1    14350 3925
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R2
+U 1 1 57B8F1D2
+P 13850 3975
+F 0 "R2" V 13930 3975 50  0000 C CNN
+F 1 "1k" V 13850 3975 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Ceramic_Horizontal_L50mm-W14mm-H13mm-p60mm" V 13780 3975 30  0000 C CNN
+F 3 "" H 13850 3975 30  0000 C CNN
+	1    13850 3975
+	0    1    1    0   
+$EndComp
+Text Label 13700 3975 2    60   ~ 0
+SYS_RESETn
+Wire Wire Line
+	14450 3725 14450 2900
+Wire Wire Line
+	14000 3975 14150 3975
 $EndSCHEMATC

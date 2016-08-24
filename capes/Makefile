@@ -14,7 +14,7 @@ DEP_FILES=.deps/half-in-half-pru.P
 all: half-in-half-pru-00A0.dtbo
 
 half-in-half-pru-00A0.dtbo: $(half-in-half-pru-00A0_dtbo_SOURCES)
-	dsc -O dtb -o $(basename .dts $@) -b 0 -@ $<
+	dtc -O dtb -o $(basename .dts $@) -b 0 -@ $<
 
 tags:
 

@@ -39,7 +39,9 @@
   - Get a Beagle bone black with Linux running
   - to be able to compile c++ and new capes, they are needed to manage GPIOs
     - do =apt-get install build-essential=
-    - do =apt-get install linux-image-3.8.13-bone68 device-tree-compiler=
+    - do =apt-get install linux-image-3.8.13-bone68
+      device-tree-compiler=
+    - do =apt-get install libmosquitto-dev mosquitto mosquitto-clients=
   - compile the cape /domotics/capes/half-in-half-pru.dts by =make=
     - install by =make install=
   - get yours electronics ready and connected to one of the gpio used
@@ -51,10 +53,6 @@
   - Your led should get PWM controlled with the switch
 
   - Optional:
-    If you want to run it with openhab for remote control
-    - do =apt-get install libc-ares-dev uuid-dev libwrap0-dev
-      libssl-dev= needed by mosquitto library
-    - Install mosquitto it can be downloaded here: http://mosquitto.org/download/
   - Install openhab, instructions at it's site: http://openhab.org/
     - copy /domotics/root/* to "/" at BBB
   - Install an configure your openhab to point to your BBB ip as http://BBBip:8080
