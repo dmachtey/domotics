@@ -15,9 +15,8 @@ test/*
 private-notes
 
 # Ignore any executables but not directories
-!/bin
-!/bin/placeholder
 bin/*
+!bin/placeholder
 
 
 # Object files
