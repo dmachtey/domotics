@@ -2,7 +2,7 @@
   - I haven't found any complete project like this, I mean a general
     purpose (home) automation project with a full developed hardware
     and software.
-* This is another domotics project sw&hw (or general controller)
+* This is a domotics project sw&hw (or general controller)
     - The goals of this project are:
       - to be affordable (price/(outputs + inputs)), every thing is
         hardwired (not for every one)
