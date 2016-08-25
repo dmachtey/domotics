@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:44:00 2016 (-0500)
 //
-// Last-Updated: Tue Aug 23 08:22:08 2016 (-0300)
+// Last-Updated: Wed Aug 24 17:35:59 2016 (-0300)
 //           By: Damian Machtey
-//     Update #: 188
+//     Update #: 189
 
 // Change Log:
 //
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
   exploringBB::GPIO SW4(60);  // baño
   exploringBB::GPIO SW5(115); // Cocina
   exploringBB::GPIO BELL(14); // Timbre
-  exploringBB::GPIO door(115); // DOOR opener. Sloot 15,1
+  exploringBB::GPIO door(111); // DOOR opener. Sloot 15,1
 
 
   SW1.setDirection(exploringBB::INPUT);

@@ -41,71 +41,33 @@
       (place P1 314865 -56078.1 front 270 (PN BEAGLEBONE_BLACK))
     )
     (component w_pth_resistors:RC03
-      (place R100_0 88697.6 -99525.7 front 270 (PN 1K))
-      (place R101_0 85697.6 -101526 front 270 (PN 1K))
-      (place R102_0 82697.6 -104526 front 270 (PN 1K))
-      (place R103_0 79697.6 -107526 front 270 (PN 1K))
-      (place R100_1 110000 -99184.6 front 270 (PN 1K))
-      (place R100_2 131698 -98192.7 front 270 (PN 1K))
-      (place R100_3 152698 -99392.7 front 270 (PN 1K))
-      (place R100_4 165130 -88404.7 front 90 (PN 1K))
-      (place R100_5 185889 -88386 front 90 (PN 1K))
-      (place R100_6 207130 -88404.7 front 90 (PN 1K))
-      (place R100_7 227861 -88404.7 front 90 (PN 1K))
+      (place R100_0 88757.4 -104700 front 270 (PN 1K))
+      (place R101_0 85757.4 -106700 front 270 (PN 1K))
+      (place R102_0 82757.4 -109700 front 270 (PN 1K))
+      (place R103_0 79757.4 -112700 front 270 (PN 1K))
+      (place R100_1 109918 -104465 front 270 (PN 1K))
+      (place R100_2 132189 -105136 front 270 (PN 1K))
       (place R100_8 252275 -99859.6 front 0 (PN 1K))
-      (place R100_9 80816 -170213 front 90 (PN 1K))
-      (place R100_10 101970 -170213 front 90 (PN 1K))
-      (place R100_11 123151 -170213 front 90 (PN 1K))
-      (place R100_12 145041 -170213 front 90 (PN 1K))
-      (place R100_13 167515 -170150 front 90 (PN 1K))
-      (place R100_14 193525 -180518 front 270 (PN 1K))
-      (place R100_15 209806 -168097 front 90 (PN 1K))
-      (place R101_1 106650 -101660 front 270 (PN 1K))
-      (place R101_2 128850 -101285 front 270 (PN 1K))
-      (place R101_3 149698 -101393 front 270 (PN 1K))
-      (place R101_4 167670 -88404.7 front 90 (PN 1K))
-      (place R101_5 188439 -88411 front 90 (PN 1K))
-      (place R101_6 209670 -88404.7 front 90 (PN 1K))
-      (place R101_7 230401 -88404.7 front 90 (PN 1K))
+      (place R100_14 192939 -191286 front 270 (PN 1K))
+      (place R101_1 106842 -107040 front 270 (PN 1K))
+      (place R101_2 129047 -107346 front 270 (PN 1K))
       (place R101_8 252275 -103268 front 0 (PN 1K))
-      (place R101_9 83356 -170213 front 90 (PN 1K))
-      (place R101_10 104510 -170213 front 90 (PN 1K))
-      (place R101_11 125691 -170213 front 90 (PN 1K))
-      (place R101_12 147581 -170213 front 90 (PN 1K))
-      (place R101_13 172011 -184378 front 270 (PN 1K))
-      (place R101_14 191035 -182219 front 270 (PN 1K))
-      (place R101_15 213870 -168097 front 90 (PN 1K))
-      (place R102_1 103698 -104351 front 270 (PN 1K))
-      (place R102_2 125698 -104293 front 270 (PN 1K))
-      (place R102_3 146698 -104393 front 270 (PN 1K))
-      (place R102_4 170210 -88404.7 front 90 (PN 1K))
-      (place R102_5 191139 -88386 front 90 (PN 1K))
-      (place R102_6 212210 -88404.7 front 90 (PN 1K))
-      (place R102_7 232941 -88404.7 front 90 (PN 1K))
+      (place R101_13 172144 -187490 front 270 (PN 1K))
+      (place R101_14 190589 -192611 front 270 (PN 1K))
+      (place R102_2 125847 -109846 front 270 (PN 1K))
       (place R102_8 252275 -106676 front 0 (PN 1K))
-      (place R102_9 85896 -170213 front 90 (PN 1K))
-      (place R102_10 107050 -170213 front 90 (PN 1K))
-      (place R102_11 128231 -170213 front 90 (PN 1K))
-      (place R102_12 150121 -170213 front 90 (PN 1K))
-      (place R102_13 169141 -186131 front 270 (PN 1K))
-      (place R102_14 188445 -184963 front 270 (PN 1K))
-      (place R102_15 209298 -184861 front 270 (PN 1K))
-      (place R103_1 100698 -107351 front 270 (PN 1K))
-      (place R103_2 122698 -107293 front 270 (PN 1K))
+      (place R102_13 169274 -189243 front 270 (PN 1K))
+      (place R102_14 188149 -194206 front 270 (PN 1K))
+      (place R102_15 213539 -192071 front 270 (PN 1K))
+      (place R103_2 122897 -112771 front 270 (PN 1K))
       (place R103_3 143698 -107393 front 270 (PN 1K))
-      (place R103_4 172750 -88404.7 front 90 (PN 1K))
-      (place R103_5 193689 -88386 front 90 (PN 1K))
-      (place R103_6 214750 -88404.7 front 90 (PN 1K))
-      (place R103_7 235481 -88404.7 front 90 (PN 1K))
       (place R103_8 252275 -110085 front 0 (PN 1K))
-      (place R103_9 88436 -170213 front 90 (PN 1K))
-      (place R103_10 109590 -170213 front 90 (PN 1K))
-      (place R103_11 130771 -170213 front 90 (PN 1K))
-      (place R103_12 169674 -193751 front 0 (PN 1K))
-      (place R103_13 166169 -187477 front 270 (PN 1K))
-      (place R103_14 185955 -187731 front 270 (PN 1K))
-      (place R103_15 206758 -187909 front 270 (PN 1K))
+      (place R103_13 166302 -190589 front 270 (PN 1K))
+      (place R103_14 185687 -195614 front 270 (PN 1K))
       (place B7 317761 -84185.8 front 270 (PN 0))
+      (place R102_1 103942 -110840 front 270 (PN 1K))
+      (place R103_1 100918 -113365 front 270 (PN 1K))
+      (place R3 289239 -187786 front 180 (PN 47k))
     )
     (component lib:Socket_Strip_Straight_2x10
       (place P100_17 243821 -167927 front 270 (PN CONN_02X10))
@@ -131,10 +93,11 @@
       (place B0 106022 -87896.7 front 90 (PN 0))
       (place B1 103482 -85763.1 front 90 (PN 0))
       (place B2 100942 -83731.1 front 90 (PN 0))
-      (place B3 229618 -171653 front 90 (PN 0))
-      (place B4 234190 -171653 front 270 (PN 0))
       (place B5 151742 -83731.1 front 90 (PN 0))
       (place B6 122240 -89217.5 front 90 (PN 0))
+      (place R100_3 152664 -106061 front 270 (PN 1K))
+      (place R101_3 149714 -106011 front 270 (PN 1K))
+      (place R102_3 146689 -106011 front 270 (PN 1K))
     )
     (component Pin_Headers:Pin_Header_Straight_1x02
       (place P2 317659 -97627.4 front 0 (PN I2C))
@@ -145,7 +108,7 @@
       (place P6 318850 -165400 front 0 (PN CONN_02X10))
     )
     (component lib:MainBoardLayout
-      (place REF** 64162.4 -115164 front 0 (PN MainBoardLayout))
+      (place REF** 64222.2 -120338 front 0 (PN MainBoardLayout))
     )
     (component "Wire_Pads:SolderWirePad_single_2-5mmDrill"
       (place OR1 69238.6 -61261 front 0 (PN "Fix Hole"))
@@ -166,12 +129,51 @@
     (component "Wire_Pads:SolderWirePad_single_2-5mmDrill::1"
       (place OR9 330230 -138260 front 0 (PN "Fix Hole"))
     )
-    (component "TO-220"
-      (place Q1 297614 -151661 front 0 (PN IRF540N))
+    (component w_pth_resistors:RC07
+      (place R100_4 165180 -90204.7 front 90 (PN 1K))
+      (place R101_4 167720 -90204.7 front 90 (PN 1K))
+      (place R102_4 170260 -90204.7 front 90 (PN 1K))
+      (place R103_4 172800 -90204.7 front 90 (PN 1K))
+      (place R100_5 185891 -90294.9 front 90 (PN 1K))
+      (place R100_6 207139 -90292.7 front 90 (PN 1K))
+      (place R100_7 228137 -90283.7 front 90 (PN 1K))
+      (place R101_5 188441 -90319.9 front 90 (PN 1K))
+      (place R101_6 209679 -90292.7 front 90 (PN 1K))
+      (place R101_7 230677 -90283.7 front 90 (PN 1K))
+      (place R102_5 191141 -90294.9 front 90 (PN 1K))
+      (place R102_6 212219 -90292.7 front 90 (PN 1K))
+      (place R102_7 233217 -90283.7 front 90 (PN 1K))
+      (place R103_5 193691 -90294.9 front 90 (PN 1K))
+      (place R103_6 214759 -90292.7 front 90 (PN 1K))
+      (place R103_7 235757 -90283.7 front 90 (PN 1K))
+      (place R100_9 80817.4 -173346 front 90 (PN 1K))
+      (place R100_10 101972 -173346 front 90 (PN 1K))
+      (place R100_11 123152 -173346 front 90 (PN 1K))
+      (place R100_12 145042 -173346 front 90 (PN 1K))
+      (place R101_9 83357.4 -173346 front 90 (PN 1K))
+      (place R101_10 104512 -173346 front 90 (PN 1K))
+      (place R101_11 125692 -173346 front 90 (PN 1K))
+      (place R101_12 147582 -173346 front 90 (PN 1K))
+      (place R102_9 85897.4 -173346 front 90 (PN 1K))
+      (place R102_10 107052 -173346 front 90 (PN 1K))
+      (place R102_11 128232 -173346 front 90 (PN 1K))
+      (place R102_12 150122 -173346 front 90 (PN 1K))
+      (place R103_9 88437.4 -173346 front 90 (PN 1K))
+      (place R103_10 109592 -173346 front 90 (PN 1K))
+      (place R103_11 130772 -173346 front 90 (PN 1K))
+      (place R103_12 169669 -196586 front 0 (PN 1K))
+      (place R100_15 209447 -172002 front 90 (PN 1K))
+      (place R101_15 213511 -172002 front 90 (PN 1K))
+      (place B3 229364 -173481 front 90 (PN 0))
+      (place B4 234639 -175531 front 270 (PN 0))
+      (place R100_13 165689 -173381 front 90 (PN 1K))
+      (place R2 281989 -195411 front 270 (PN 10k))
     )
-    (component "Resistors_ThroughHole:Resistor_Ceramic_Horizontal_L50mm-W14mm-H13mm-p60mm"
-      (place R2 295139 -116461 front 90 (PN 1k))
-      (place R100_16 306889 -161711 front 90 (PN 1K))
+    (component w_pth_resistors:R25x8
+      (place R100_16 309739 -154861 front 90 (PN 1K))
+    )
+    (component "Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads"
+      (place Q1 289564 -183261 front 0 (PN IRF540N))
     )
   )
   (library
@@ -185,7 +187,6 @@
       (outline (path signal 150  20320 -38735  5715 -38735))
       (outline (path signal 150  5715 -38735  5715 -54610))
       (pin Round[A]Pad_1900_um @1 14605 -3175)
-      (pin Round[A]Pad_1900_um @2 14605 -51435)
       (pin Rect[A]Pad_1524x1524_um A1 19685 -50165)
       (pin Round[A]Pad_1900_um A2 19685 -52705)
       (pin Round[A]Pad_1900_um A3 22225 -50165)
@@ -249,7 +250,7 @@
       (pin Round[A]Pad_1900_um B16 37465 -4445)
       (pin Round[A]Pad_1900_um B17 40005 -1905)
       (pin Round[A]Pad_1900_um B18 40005 -4445)
-      (pin Round[A]Pad_1700_um B19 42545 -1905)
+      (pin Oval[A]Pad_1200x1700_um B19 42545 -1905)
       (pin Round[A]Pad_1900_um B20 42545 -4445)
       (pin Round[A]Pad_1900_um B21 45085 -1905)
       (pin Round[A]Pad_1900_um B22 45085 -4445)
@@ -417,40 +418,49 @@
     (image "Wire_Pads:SolderWirePad_single_2-5mmDrill::1"
       (pin Oval[A]Pad_4200x6200_um 1 0 0)
     )
-    (image "TO-220"
-      (outline (path signal 150  4826 1651  4826 -1778))
-      (outline (path signal 150  -4826 1651  -4826 -1778))
-      (outline (path signal 150  5334 2794  -5334 2794))
-      (outline (path signal 150  1778 1778  1778 3048))
-      (outline (path signal 150  -1778 1778  -1778 3048))
-      (outline (path signal 150  -5334 1651  5334 1651))
-      (outline (path signal 150  5334 -1778  -5334 -1778))
-      (outline (path signal 150  -5334 3048  -5334 -1778))
-      (outline (path signal 150  5334 3048  5334 -1778))
-      (outline (path signal 150  5334 3048  -5334 3048))
-      (pin Oval[A]Pad_2032x2540_um 2 0 0)
-      (pin Oval[A]Pad_2032x2540_um 3 2540 0)
-      (pin Oval[A]Pad_2032x2540_um 1 -2540 0)
+    (image w_pth_resistors:RC07
+      (outline (path signal 254  -5461 0  -5461 2032))
+      (outline (path signal 254  -5461 2032  5461 2032))
+      (outline (path signal 254  5461 2032  5461 -2032))
+      (outline (path signal 254  5461 -2032  -5461 -2032))
+      (outline (path signal 254  -5461 -2032  -5461 0))
+      (outline (path signal 254  5461 0  7620 0))
+      (outline (path signal 254  -7620 0  -5461 0))
+      (pin Round[A]Pad_1998.98_um 1 -7620 0)
+      (pin Round[A]Pad_1998.98_um 2 7620 0)
     )
-    (image "Resistors_ThroughHole:Resistor_Ceramic_Horizontal_L50mm-W14mm-H13mm-p60mm"
-      (outline (path signal 150  -25019 7112  -25019 -7112))
-      (outline (path signal 150  -25019 -7112  24384 -7112))
-      (outline (path signal 150  24384 -7112  24384 7112))
-      (outline (path signal 150  24384 7112  -25019 7112))
-      (outline (path signal 150  -25019 0  -29210 0))
-      (outline (path signal 150  24384 0  29210 0))
-      (pin Round[A]Pad_1800_um (rotate 180) 1 -30480 0)
-      (pin Round[A]Pad_1800_um (rotate 180) 2 30480 0)
+    (image w_pth_resistors:R25x8
+      (outline (path signal 254  -13299.4 4399.28  13299.4 4399.28))
+      (outline (path signal 254  13299.4 4399.28  13299.4 -4399.28))
+      (outline (path signal 254  13299.4 -4399.28  -13299.4 -4399.28))
+      (outline (path signal 254  -13299.4 -4399.28  -13299.4 4399.28))
+      (outline (path signal 254  13350.2 0  16101.1 0))
+      (outline (path signal 254  -13352.8 0  -16103.6 0))
+      (pin Round[A]Pad_2997.2_um 1 -15875 0)
+      (pin Round[A]Pad_2997.2_um 2 15875 0)
     )
-    (padstack Round[A]Pad_1700_um
-      (shape (circle F.Cu 1700))
-      (shape (circle B.Cu 1700))
-      (attach off)
-    )
-    (padstack Round[A]Pad_1800_um
-      (shape (circle F.Cu 1800))
-      (shape (circle B.Cu 1800))
-      (attach off)
+    (image "Transistors_TO-220:TO-220_Neutral123_Horizontal_LargePads"
+      (outline (path signal 150  -2540 3683  -2540 2286))
+      (outline (path signal 150  0 3683  0 2286))
+      (outline (path signal 150  2540 3683  2540 2286))
+      (outline (path signal 150  2514.47 16764  2391.41 15987  2034.25 15286  1477.97 14729.8
+            777.014 14372.6  0 14249.5  -777.014 14372.6  -1477.97 14729.8
+            -2034.25 15286  -2391.41 15987  -2514.47 16764  -2391.41 17541
+            -2034.25 18242  -1477.97 18798.2  -777.014 19155.4  0 19278.5
+            777.014 19155.4  1477.97 18798.2  2034.25 18242  2391.41 17541))
+      (outline (path signal 150  5334 12192  5334 20193))
+      (outline (path signal 150  5334 20193  -5334 20193))
+      (outline (path signal 150  -5334 20193  -5334 12192))
+      (outline (path signal 150  5334 3683  5334 12192))
+      (outline (path signal 150  5334 12192  -5334 12192))
+      (outline (path signal 150  -5334 12192  -5334 3683))
+      (outline (path signal 150  0 3683  -5334 3683))
+      (outline (path signal 150  0 3683  5334 3683))
+      (pin Oval[A]Pad_3500.12x1699.26_um (rotate 90) 2 0 0)
+      (pin Oval[A]Pad_3500.12x1699.26_um (rotate 90) 1 -2540 0)
+      (pin Oval[A]Pad_3500.12x1699.26_um (rotate 90) 3 2540 0)
+      (keepout "" (circle F.Cu 3799.84 0 16764))
+      (keepout "" (circle B.Cu 3799.84 0 16764))
     )
     (padstack Round[A]Pad_1900_um
       (shape (circle F.Cu 1900))
@@ -462,14 +472,24 @@
       (shape (circle B.Cu 1998.98))
       (attach off)
     )
+    (padstack Round[A]Pad_2997.2_um
+      (shape (circle F.Cu 2997.2))
+      (shape (circle B.Cu 2997.2))
+      (attach off)
+    )
     (padstack Round[A]Pad_6200_um
       (shape (circle F.Cu 6200))
       (shape (circle B.Cu 6200))
       (attach off)
     )
-    (padstack Oval[A]Pad_2032x2540_um
-      (shape (path F.Cu 2032  0 -254  0 254))
-      (shape (path B.Cu 2032  0 -254  0 254))
+    (padstack Oval[A]Pad_1200x1700_um
+      (shape (path F.Cu 1200  0 -250  0 250))
+      (shape (path B.Cu 1200  0 -250  0 250))
+      (attach off)
+    )
+    (padstack Oval[A]Pad_3500.12x1699.26_um
+      (shape (path F.Cu 1699.26  -900.43 0  900.43 0))
+      (shape (path B.Cu 1699.26  -900.43 0  900.43 0))
       (attach off)
     )
     (padstack Oval[A]Pad_2032x2032_um
@@ -663,7 +683,7 @@
       (pins P1-B9 B7-2)
     )
     (net /SYS_RESETn
-      (pins P1-B10 R2-2)
+      (pins P1-B10)
     )
     (net /GPIO0_30
       (pins P1-B11 R103_13-2)
@@ -714,7 +734,7 @@
       (pins P1-B28 R100_15-2)
     )
     (net /GPIO3_15
-      (pins P1-B29 R103_15-2)
+      (pins P1-B29 R2-2)
     )
     (net /GPIO3_16
       (pins P1-B30 R101_15-2)
@@ -756,7 +776,7 @@
       (pins P1-B42 R100_16-2)
     )
     (net /GND3
-      (pins P1-B43 P1-B44 P1-B45 P1-B46 Q1-3)
+      (pins P1-B43 P1-B44 P1-B45 P1-B46 R3-1 Q1-3)
     )
     (net "Net-(P100_1-Pad11)"
       (pins P100_1-11 P100_1-12)
@@ -768,10 +788,10 @@
       (pins R101_1-1 P100_1-15 P100_1-16)
     )
     (net "Net-(P100_1-Pad17)"
-      (pins R102_1-1 P100_1-17 P100_1-18)
+      (pins P100_1-17 P100_1-18 R102_1-1)
     )
     (net "Net-(P100_1-Pad19)"
-      (pins R103_1-1 P100_1-19 P100_1-20)
+      (pins P100_1-19 P100_1-20 R103_1-1)
     )
     (net "Net-(P100_2-Pad11)"
       (pins P100_2-11 P100_2-12)
@@ -792,13 +812,13 @@
       (pins P100_3-11 P100_3-12)
     )
     (net "Net-(P100_3-Pad13)"
-      (pins R100_3-1 P100_3-13 P100_3-14)
+      (pins P100_3-13 P100_3-14 R100_3-1)
     )
     (net "Net-(P100_3-Pad15)"
-      (pins R101_3-1 P100_3-15 P100_3-16)
+      (pins P100_3-15 P100_3-16 R101_3-1)
     )
     (net "Net-(P100_3-Pad17)"
-      (pins R102_3-1 P100_3-17 P100_3-18)
+      (pins P100_3-17 P100_3-18 R102_3-1)
     )
     (net "Net-(P100_3-Pad19)"
       (pins R103_3-1 P100_3-19 P100_3-20)
@@ -807,61 +827,61 @@
       (pins P100_4-11 P100_4-12)
     )
     (net "Net-(P100_4-Pad13)"
-      (pins R100_4-1 P100_4-13 P100_4-14)
+      (pins P100_4-13 P100_4-14 R100_4-1)
     )
     (net "Net-(P100_4-Pad15)"
-      (pins R101_4-1 P100_4-15 P100_4-16)
+      (pins P100_4-15 P100_4-16 R101_4-1)
     )
     (net "Net-(P100_4-Pad17)"
-      (pins R102_4-1 P100_4-17 P100_4-18)
+      (pins P100_4-17 P100_4-18 R102_4-1)
     )
     (net "Net-(P100_4-Pad19)"
-      (pins R103_4-1 P100_4-19 P100_4-20)
+      (pins P100_4-19 P100_4-20 R103_4-1)
     )
     (net "Net-(P100_5-Pad11)"
       (pins P100_5-11 P100_5-12)
     )
     (net "Net-(P100_5-Pad13)"
-      (pins R100_5-1 P100_5-13 P100_5-14)
+      (pins P100_5-13 P100_5-14 R100_5-1)
     )
     (net "Net-(P100_5-Pad15)"
-      (pins R101_5-1 P100_5-15 P100_5-16)
+      (pins P100_5-15 P100_5-16 R101_5-1)
     )
     (net "Net-(P100_5-Pad17)"
-      (pins R102_5-1 P100_5-17 P100_5-18)
+      (pins P100_5-17 P100_5-18 R102_5-1)
     )
     (net "Net-(P100_5-Pad19)"
-      (pins R103_5-1 P100_5-19 P100_5-20)
+      (pins P100_5-19 P100_5-20 R103_5-1)
     )
     (net "Net-(P100_6-Pad11)"
       (pins P100_6-11 P100_6-12)
     )
     (net "Net-(P100_6-Pad13)"
-      (pins R100_6-1 P100_6-13 P100_6-14)
+      (pins P100_6-13 P100_6-14 R100_6-1)
     )
     (net "Net-(P100_6-Pad15)"
-      (pins R101_6-1 P100_6-15 P100_6-16)
+      (pins P100_6-15 P100_6-16 R101_6-1)
     )
     (net "Net-(P100_6-Pad17)"
-      (pins R102_6-1 P100_6-17 P100_6-18)
+      (pins P100_6-17 P100_6-18 R102_6-1)
     )
     (net "Net-(P100_6-Pad19)"
-      (pins R103_6-1 P100_6-19 P100_6-20)
+      (pins P100_6-19 P100_6-20 R103_6-1)
     )
     (net "Net-(P100_7-Pad11)"
       (pins P100_7-11 P100_7-12)
     )
     (net "Net-(P100_7-Pad13)"
-      (pins R100_7-1 P100_7-13 P100_7-14)
+      (pins P100_7-13 P100_7-14 R100_7-1)
     )
     (net "Net-(P100_7-Pad15)"
-      (pins R101_7-1 P100_7-15 P100_7-16)
+      (pins P100_7-15 P100_7-16 R101_7-1)
     )
     (net "Net-(P100_7-Pad17)"
-      (pins R102_7-1 P100_7-17 P100_7-18)
+      (pins P100_7-17 P100_7-18 R102_7-1)
     )
     (net "Net-(P100_7-Pad19)"
-      (pins R103_7-1 P100_7-19 P100_7-20)
+      (pins P100_7-19 P100_7-20 R103_7-1)
     )
     (net "Net-(P100_8-Pad11)"
       (pins P100_8-11 P100_8-12)
@@ -882,67 +902,67 @@
       (pins P100_9-11 P100_9-12)
     )
     (net "Net-(P100_9-Pad13)"
-      (pins R100_9-1 P100_9-13 P100_9-14)
+      (pins P100_9-13 P100_9-14 R100_9-1)
     )
     (net "Net-(P100_9-Pad15)"
-      (pins R101_9-1 P100_9-15 P100_9-16)
+      (pins P100_9-15 P100_9-16 R101_9-1)
     )
     (net "Net-(P100_9-Pad17)"
-      (pins R102_9-1 P100_9-17 P100_9-18)
+      (pins P100_9-17 P100_9-18 R102_9-1)
     )
     (net "Net-(P100_9-Pad19)"
-      (pins R103_9-1 P100_9-19 P100_9-20)
+      (pins P100_9-19 P100_9-20 R103_9-1)
     )
     (net "Net-(P100_10-Pad11)"
       (pins P100_10-11 P100_10-12)
     )
     (net "Net-(P100_10-Pad13)"
-      (pins R100_10-1 P100_10-13 P100_10-14)
+      (pins P100_10-13 P100_10-14 R100_10-1)
     )
     (net "Net-(P100_10-Pad15)"
-      (pins R101_10-1 P100_10-15 P100_10-16)
+      (pins P100_10-15 P100_10-16 R101_10-1)
     )
     (net "Net-(P100_10-Pad17)"
-      (pins R102_10-1 P100_10-17 P100_10-18)
+      (pins P100_10-17 P100_10-18 R102_10-1)
     )
     (net "Net-(P100_10-Pad19)"
-      (pins R103_10-1 P100_10-19 P100_10-20)
+      (pins P100_10-19 P100_10-20 R103_10-1)
     )
     (net "Net-(P100_11-Pad11)"
       (pins P100_11-11 P100_11-12)
     )
     (net "Net-(P100_11-Pad13)"
-      (pins R100_11-1 P100_11-13 P100_11-14)
+      (pins P100_11-13 P100_11-14 R100_11-1)
     )
     (net "Net-(P100_11-Pad15)"
-      (pins R101_11-1 P100_11-15 P100_11-16)
+      (pins P100_11-15 P100_11-16 R101_11-1)
     )
     (net "Net-(P100_11-Pad17)"
-      (pins R102_11-1 P100_11-17 P100_11-18)
+      (pins P100_11-17 P100_11-18 R102_11-1)
     )
     (net "Net-(P100_11-Pad19)"
-      (pins R103_11-1 P100_11-19 P100_11-20)
+      (pins P100_11-19 P100_11-20 R103_11-1)
     )
     (net "Net-(P100_12-Pad11)"
       (pins P100_12-11 P100_12-12)
     )
     (net "Net-(P100_12-Pad13)"
-      (pins R100_12-1 P100_12-13 P100_12-14)
+      (pins P100_12-13 P100_12-14 R100_12-1)
     )
     (net "Net-(P100_12-Pad15)"
-      (pins R101_12-1 P100_12-15 P100_12-16)
+      (pins P100_12-15 P100_12-16 R101_12-1)
     )
     (net "Net-(P100_12-Pad17)"
-      (pins R102_12-1 P100_12-17 P100_12-18)
+      (pins P100_12-17 P100_12-18 R102_12-1)
     )
     (net "Net-(P100_12-Pad19)"
-      (pins R103_12-1 P100_12-19 P100_12-20)
+      (pins P100_12-19 P100_12-20 R103_12-1)
     )
     (net "Net-(P100_13-Pad11)"
       (pins P100_13-11 P100_13-12)
     )
     (net "Net-(P100_13-Pad13)"
-      (pins R100_13-1 P100_13-13 P100_13-14)
+      (pins P100_13-13 P100_13-14 R100_13-1)
     )
     (net "Net-(P100_13-Pad15)"
       (pins R101_13-1 P100_13-15 P100_13-16)
@@ -972,16 +992,16 @@
       (pins P100_15-11 P100_15-12)
     )
     (net "Net-(P100_15-Pad13)"
-      (pins R100_15-1 P100_15-13 P100_15-14)
+      (pins P100_15-13 P100_15-14 R100_15-1)
     )
     (net "Net-(P100_15-Pad15)"
-      (pins R101_15-1 P100_15-15 P100_15-16)
+      (pins P100_15-15 P100_15-16 R101_15-1)
     )
     (net "Net-(P100_15-Pad17)"
       (pins R102_15-1 P100_15-17 P100_15-18)
     )
     (net "Net-(P100_15-Pad19)"
-      (pins R103_15-1 P100_15-19 P100_15-20)
+      (pins P100_15-19 P100_15-20)
     )
     (net /GND12V
       (pins P100_17-5 P100_17-6 P100_16-5 P100_16-6 P100_15-5 P100_15-6 P100_14-5
@@ -1024,7 +1044,7 @@
         P100_0-4 B2-1 B5-1)
     )
     (net "Net-(B3-Pad2)"
-      (pins R100_13-2 B3-2)
+      (pins B3-2 R100_13-2)
     )
     (net /DC_3.3Ve
       (pins P1-B3 P1-B4 B5-2)
@@ -1097,7 +1117,7 @@
       (pins P1-B2 P1-B1 P6-1 P6-2 P3-2)
     )
     (net "Net-(Q1-Pad1)"
-      (pins Q1-1 R2-1)
+      (pins R3-2 R2-1 Q1-1)
     )
     (net "Net-(P5-Pad1)"
       (pins P5-1 P5-2)
@@ -1113,8 +1133,8 @@
       /GPIO2_13 /GPIO2_14 /GPIO2_15 /GPIO2_16 /GPIO2_17 /GPIO2_2 /GPIO2_22
       /GPIO2_23 /GPIO2_24 /GPIO2_25 /GPIO2_3 /GPIO2_4 /GPIO2_5 /GPIO2_6 /GPIO2_7
       /GPIO2_8 /GPIO2_9 /GPIO3_14 /GPIO3_15 /GPIO3_16 /GPIO3_17 /GPIO3_19
-      /GPIO3_21 /PWR_BUT /SYS_5V /SYS_RESETn /VADC /VDD_5V /VDD_5V_DOWN /VDD_5V_TOP
-      "Net-(B3-Pad2)" "Net-(B4-Pad2)" "Net-(B7-Pad1)" "Net-(P100_0-Pad11)"
+      /GPIO3_21 /I2C2_SCL /PWR_BUT /SYS_5V /SYS_RESETn /VADC /VDD_5V /VDD_5V_DOWN
+      /VDD_5V_TOP "Net-(B3-Pad2)" "Net-(B4-Pad2)" "Net-(B7-Pad1)" "Net-(P100_0-Pad11)"
       "Net-(P100_0-Pad13)" "Net-(P100_0-Pad15)" "Net-(P100_0-Pad17)" "Net-(P100_0-Pad19)"
       "Net-(P100_1-Pad11)" "Net-(P100_1-Pad13)" "Net-(P100_1-Pad15)" "Net-(P100_1-Pad17)"
       "Net-(P100_1-Pad19)" "Net-(P100_10-Pad11)" "Net-(P100_10-Pad13)" "Net-(P100_10-Pad15)"
@@ -1147,7 +1167,7 @@
         (clearance 330.1)
       )
     )
-    (class mini /I2C2_SCL /I2C2_SDA
+    (class mini /I2C2_SDA
       (circuit
         (use_via Via[0-1]_600:400_um)
       )

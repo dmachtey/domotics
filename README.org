@@ -40,9 +40,9 @@
   - to be able to compile c++ and new capes, they are needed to manage GPIOs
     - do =apt-get install build-essential=
     - do =apt-get install linux-image-3.8.13-bone68
-      device-tree-compiler=
-    - do =apt-get install libmosquitto-dev mosquitto mosquitto-clients=
-  - compile the cape /domotics/capes/half-in-half-pru.dts by =make=
+      device-tree-compiler am335x-pru-package=
+    - do =apt-get install libmosquitto-dev libmosquittopp-dev mosquitto mosquitto-clients=
+  - compile the cape /domotics/capes/half-in-half-out.dts by =make=
     - install by =make install=
   - get yours electronics ready and connected to one of the gpio used
     on "running/test-pwm.cpp" like "GPIO 27"
