@@ -1501,7 +1501,7 @@ F 3 "" H 2300 4050 60  0000 C CNN
 $EndComp
 Text Label 2100 4100 2    60   ~ 0
 I2C2_SCL
-Text Label 2100 4000 2    60   ~ 0
+Text Label 1475 3975 2    60   ~ 0
 I2C2_SDA
 Text Label 13700 2650 2    60   ~ 0
 DC_3.3V
@@ -2502,4 +2502,19 @@ F 3 "" H 12400 1800 60  0000 C CNN
 	1    12400 3000
 	1    0    0    -1  
 $EndComp
+$Comp
+L R B9
+U 1 1 57BF6C95
+P 1625 3975
+F 0 "B9" V 1705 3975 50  0000 C CNN
+F 1 "0" V 1625 3975 50  0000 C CNN
+F 2 "w_pth_resistors:RC05" V 1555 3975 30  0000 C CNN
+F 3 "" H 1625 3975 30  0000 C CNN
+	1    1625 3975
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1775 3975 2100 3975
+Wire Wire Line
+	2100 3975 2100 4000
 $EndSCHEMATC
