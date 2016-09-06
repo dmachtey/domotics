@@ -1,14 +1,16 @@
 * License
   - [X] Select a sharing license
 * Electronics
-  - [ ] Disconnect GND from the sockets until the board has booted, to
+  - [X] Disconnect GND from the sockets until the board has booted, to
     Avoid booting problems and lights outputs to go on during booting.
+  - [ ] A fan speed control board has to be complete designed
   - [ ] Design electronics and boards for connecting *one-wire*
     temperature sensors (very simple)
   - [ ] Design electronics and board to measure battery voltage
   - [ ] Design electronics and board to measure solar light intensity
     (very simple)
-  - [ ] External circuits need to be draws
+  - [ ] External circuits need to be drawn
+
 * Mechanics
   - [ ] Design a good enclosed, that allow to change boards easily
 * Cape
@@ -21,8 +23,12 @@
 * Software
   - [ ] Implement/test a kernel module to manage "Infra red leds" to use as
     remote control for air conditioners or other devices thought lirc
-  - [X] Improve and comment libraries
+  - [ ] Improve and comment libraries
   - [X] Add an standard comment headers to all software files
+  - [ ] A new calls for inputs has to be written, it has to send mqtt
+    messages of it's status
+
+
 ** Add functionalists
   - [ ] At time function to switch on and off the outputs, weekly
     programs and multiple times per day
