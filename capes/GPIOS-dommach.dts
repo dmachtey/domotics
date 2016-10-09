@@ -1,0 +1,152 @@
+/* Filename: GPIOS-dommach.dts
+*
+* Description:
+* Author: Damian Machtey
+* Maintainer:
+*
+* Created: Wed Sep 21 07:56:37 2016 (-0300)
+*
+* Last-Updated: Thu Sep 22 12:08:59 2016 (-0300)
+*           By: Damian Machtey
+*     Update #: 9
+
+* Change Log:
+*
+
+* Copyright (C) 2016 Damian Machtey
+
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or (at
+* your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/* Code: */
+
+/dts-v1/;
+/plugin/;
+
+/{
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+    part-number = "GPIOS-dommach";
+    version = "00A0";
+
+    fragment@0 {
+        target = <&am33xx_pinmux>;
+
+        __overlay__ {
+            gpios: GPIOS-dommach {
+			    pinctrl-single,pins = <
+
+                /* OUTPUT  GPIO(mode7) 0x07 pulldown, 0x17 pullup, 0x?f no pullup/down */
+			    /* INPUT   GPIO(mode7) 0x27 pulldown, 0x37 pullup, 0x?f no pullup/down */
+        //| Address | Mode | BBB Port | gpio number |  Slot | Order | Mode 7   | Mode  | Mode | Comment |
+        //|---------+------+----------+-------------+-------+-------+----------+-------+------+---------|
+                0x164  0x27  // P9_42 |           7 | Power |       | GPIO0_7  |       |      | Mains   |
+
+                0x0D8  0x07  // P8_31 |          10 |     0 |     1 | GPIO0_10 |       |      |         |
+                0x0D4  0x07  // P8_33 |           9 |     0 |     2 | GPIO0_9  |       |      |         |
+                0x0D0  0x07  // P8_35 |           8 |     0 |     3 | GPIO0_8  |       |      |         |
+                0x0C0  0x27  // P8_37 |          78 |     0 |     4 | GPIO2_14 |       |      |         |
+
+                0x0B8  0x27  // P8_39 |          76 |     1 |     1 | GPIO2_12 |       |      |         |
+                0x0B0  0x27  // P8_41 |          74 |     1 |     2 | GPIO2_10 |       |      |         |
+                0x0A8  0x27  // P8_43 |          72 |     1 |     3 | GPIO2_8  |       |      |         |
+                0x0A0  0x27  // P8_45 |          70 |     1 |     4 | GPIO2_6  |       |      |         |
+
+                0x0A4  0x27  // P8_46 |          71 |     2 |     1 | GPIO2_7  |       |      |         |
+                0x0AC  0x27  // P8_44 |          73 |     2 |     2 | GPIO2_9  |       |      |         |
+                0x0B4  0x27  // P8_42 |          75 |     2 |     3 | GPIO2_11 |       |      |         |
+                0x0BC  0x27  // P8_40 |          77 |     2 |     4 | GPIO2_13 |       |      |         |
+
+                0x0C4  0x27  // P8_38 |          79 |     3 |     1 | GPIO2_15 |       |      |         |
+                0x0C8  0x27  // P8_36 |          80 |     3 |     2 | GPIO2_16 |       |      |         |
+                0x0CC  0x07  // P8_34 |          81 |     3 |     3 | GPIO2_17 |       |      |         |
+                0x0DC  0x07  // P8_32 |          11 |     3 |     4 | GPIO0_11 |       |      |         |
+
+                0x090  0x07  // P8_07 |          66 |     4 |     1 | GPIO2_2  |       |      |         |
+                0x09c  0x07  // P8_09 |          69 |     4 |     2 | GPIO2_5  |       |      |         |
+                0x034  0x07  // P8_11 |          45 |     4 |     3 | GPIO1_13 |       |      |         |
+                0x024  0x07  // P8_13 |          23 |     4 |     4 | GPIO0_23 |       |      |         |
+
+                0x00c  0x07  // P8_06 |          35 |     5 |     1 | GPIO1_3  |       |      |         |
+                0x01c  0x07  // P8_04 |          39 |     5 |     2 | GPIO1_7  |       |      |         |
+                0x018  0x07  // P8_03 |          38 |     5 |     3 | GPIO1_6  |       |      |         |
+                0x008  0x07  // P8_05 |          34 |     5 |     4 | GPIO1_2  |       |      |         |
+
+                0x028  0x07  // P8_14 |          26 |     6 |     1 | GPIO0_26 |       |      |         |
+                0x030  0x07  // P8_12 |          44 |     6 |     2 | GPIO1_12 |       |      |         |
+                0x098  0x07  // P8_10 |          68 |     6 |     3 | GPIO2_4  |       |      |         |
+                0x094  0x07  // P8_08 |          67 |     6 |     4 | GPIO2_3  |       |      |         |
+
+                0x014  0x07  // P8_22 |          37 |     7 |     1 | GPIO1_5  |       |      |         |
+                0x084  0x07  // P8_20 |          63 |     7 |     2 | GPIO1_31 | UART4 |      |         |
+                0x08c  0x07  // P8_18 |          65 |     7 |     3 | GPIO2_1  |       |      |         |
+                0x038  0x07  // P8_16 |          46 |     7 |     4 | GPIO1_14 |       |      |         |
+
+                0x0EC  0x07  // P8_30 |          89 |     8 |     1 | GPIO2_25 |       |      |         |
+                0x0E8  0x07  // P8_28 |          88 |     8 |     2 | GPIO2_24 |       |      |         |
+                0x07c  0x07  // P8_26 |          61 |     8 |     3 | GPIO1_29 |       |      |         |
+                0x004  0x07  // P8_24 |          33 |     8 |     4 | GPIO1_1  |       |      |         |
+
+                0x010  0x07  // P8_23 |          36 |     9 |     1 | GPIO1_4  |       |      |         |
+                0x000  0x07  // P8_25 |          32 |     9 |     2 | GPIO1_0  |       |      |         |
+                0x0E0  0x07  // P8_27 |          86 |     9 |     3 | GPIO2_22 |       |      |         |
+                0x0E4  0x07  // P8_29 |          87 |     9 |     4 | GPIO2_23 |       |      |         |
+
+                0x03c  0x07  // P8_15 |          47 |    10 |     1 | GPIO1_15 |       |      |         |
+                0x02c  0x07  // P8_17 |          27 |    10 |     2 | GPIO0_27 |       |      |         |
+                0x020  0x07  // P8_19 |          22 |    10 |     3 | GPIO0_22 |       |      |         |
+                0x080  0x07  // P8_21 |          62 |    10 |     4 | GPIO1_30 | UART4 |      |         |
+
+                0x158  0x27  // P9_18 |           4 |    11 |     1 | GPIO0_4  | I2C1  |      |         |
+                0x04c  0x27  // P9_16 |          51 |    11 |     2 | GPIO1_19 |       |      |         |
+                0x048  0x27  // P9_14 |          50 |    11 |     3 | GPIO1_18 |       |      |         |
+                0x078  0x27  // P9_12 |          60 |    11 |     4 | GPIO1_28 |       |      |         |
+
+                0x1a4  0x27  // P9_27 |         115 |    12 |     1 | GPIO3_1  |       |      |         |
+                0x180  0x27  // P9_26 |          14 |    12 |     2 | GPIO0_14 | UART1 | I2C1 |         |
+                0x184  0x27  // P9_24 |          15 |    12 |     3 | GPIO0_15 | UART1 | I2C1 |         |
+                0x150  0x27  // P9_22 |           2 |    12 |     4 | GPIO0_2  | UART2 | I2C2 |         |
+
+                0x070  0x27  // P9_11 |          30 |    13 |     1 | GPIO0_30 |       |      |         |
+                0x074  0x27  // P9_13 |          31 |    13 |     2 | GPIO0_31 |       |      |         |
+                0x040  0x27  // P9_15 |          48 |    13 |     3 | GPIO1_16 |       |      |         |
+                0x1b4  0x27  // P9_41 |          20 |    13 |     4 | GPIO0_20 |       |      |         |
+
+                0x15c  0x27  // P9_17 |           5 |    14 |     1 | GPIO0_5  | I2C1  |      |         |
+                0x154  0x27  // P9_21 |           3 |    14 |     2 | GPIO0_3  | UART2 | I2C2 |         |
+                0x044  0x27  // P9_23 |          49 |    14 |     3 | GPIO1_17 |       |      |         |
+                0x1ac  0x27  // P9_25 |         117 |    14 |     4 | GPIO3_21 |       |      |         |
+
+                0x194  0x27  // P9_29 |         111 |    15 |     1 | GPIO3_15 | SPI   |      |Board En |
+                0x190  0x27  // P9_31 |         110 |    15 |     2 | GPIO3_14 | SPI   |      |         |
+                0x198  0x27  // P9_30 |         112 |    15 |     3 | GPIO3_16 | SPI   |      |         |
+                0x19c  0x27  // P9_28 |         113 |    15 |     4 | GPIO3_17 | SPI   |      |         |
+			    >;
+		    };
+        };
+    };
+
+    fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			gpio_helper {
+				compatible = "gpio-of-helper";
+				status = "okay";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpios>;
+			};
+		};
+	};
+};
+
+/* GPIOS-dommach.dts ends here */
