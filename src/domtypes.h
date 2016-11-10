@@ -6,9 +6,9 @@
 //
 // Created: Mon Jul 25 11:51:24 2016 (-0500)
 //
-// Last-Updated: Mon Aug 15 15:30:50 2016 (-0300)
+// Last-Updated: Thu Nov 10 14:13:31 2016 (-0600)
 //           By: Damian Machtey
-//     Update #: 50
+//     Update #: 58
 
 // Change Log:
 //
@@ -84,7 +84,18 @@ namespace lighting {
     one = 1
   } pru_num;
 
+  class t_gpio {
+  public:
+    uint mem_sp;
+    uint num;
+  };
 
+  class t_slot {
+  public:
+    lighting::t_gpio io[4];
+  };
+
+  extern t_slot const slots[];
 }
 #endif //DOMTYPES_H_
 //

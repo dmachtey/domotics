@@ -14,7 +14,6 @@
 * Mechanics
   - [ ] Design a good enclosed, that allow to change boards easily
 * Cape
-  - [ ] left the sockets from 7 to 15 as outputs
   - [X] Do Makefile
 * Clean and organize
   - [ ] Software
