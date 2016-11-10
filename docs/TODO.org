@@ -27,6 +27,7 @@
   - [X] Add an standard comment headers to all software files
   - [ ] A new calls for inputs has to be written, it has to send mqtt
     messages of it's status
+  - [X] Named gpios as slots into new branch
 
 
 ** Add functionalists
