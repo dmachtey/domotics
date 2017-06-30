@@ -8,7 +8,7 @@
 //
 // Last-Updated:
 //           By:
-//     Update #: 16
+//     Update #: 17
 
 // Change Log:
 //
@@ -26,7 +26,7 @@
 // General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 //
 

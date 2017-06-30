@@ -6,9 +6,9 @@
 //
 // Created: Thu Nov 10 09:17:43 2016 (-0600)
 //
-// Last-Updated: Thu Nov 10 14:12:08 2016 (-0600)
+// Last-Updated: Fri Jun 30 17:03:23 2017 (-0300)
 //           By:
-//     Update #: 23
+//     Update #: 24
 
 // Change Log:
 //
@@ -26,7 +26,7 @@
 // General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 //
 

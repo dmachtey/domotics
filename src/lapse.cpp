@@ -6,11 +6,13 @@
 //
 // Created: Thu Jul 28 11:03:14 2016 (-0500)
 //
-// Last-Updated: Fri Aug 12 17:19:20 2016 (-0300)
+// Last-Updated: Fri Jun 30 17:03:21 2017 (-0300)
 //           By: Damian Machtey
-//     Update #: 18
+//     Update #: 20
 
 // Change Log:
+// 2017-04-11 Tue: changed uint for unsigned long int for "rnt"
+//                 it was smaller than data
 //
 //
 // Copyright (C) 2016 Damian Machtey
@@ -26,7 +28,7 @@
 // General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 //
 
@@ -42,7 +44,7 @@ namespace lighting{
   lighting::time_t LAPSE::get_lapse(){
       std::chrono::steady_clock::time_point now =
         std::chrono::steady_clock::now();
-      uint rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
+      unsigned long int rtn = std::chrono::duration_cast<std::chrono::nanoseconds>(now - previus_tick).count();
       previus_tick = now;
       return rtn/1000000;
     }
