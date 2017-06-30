@@ -6,9 +6,9 @@
 //
 // Created: Thu Jul 28 11:03:14 2016 (-0500)
 //
-// Last-Updated: Thu Jul 28 14:47:00 2016 (-0500)
+// Last-Updated: Fri Jun 30 17:14:02 2017 (-0300)
 //           By: Damian Machtey
-//     Update #: 16
+//     Update #: 17
 
 // Change Log:
 //
@@ -26,7 +26,7 @@
 // General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 //
 

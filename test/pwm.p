@@ -6,9 +6,9 @@
 //
 // Created: 2015-06-22 Mon
 //
-// Last-Updated: Sat Aug  6 10:00:08 2016 (-0500)
+// Last-Updated: Fri Jun 30 17:14:01 2017 (-0300)
 //           By: Damian Machtey
-//     Update #: 10
+//     Update #: 11
 
 // Change Log:
 //
@@ -26,7 +26,7 @@
 // General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 //
 // Note: to compile: pasm -b pwm.p
